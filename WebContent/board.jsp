@@ -6,10 +6,10 @@
 <%@page import="com.windy.vo.Search" %>
 <%@page import="java.util.*" %>
 <%
+	//로그인
 	String id = (String) session.getAttribute("id");
 	String nick = (String) session.getAttribute("nick");
 %>
-
 <%
 	String s_type="";
 	String s_key="";
@@ -27,22 +27,17 @@
 	search.setS_type(s_type);
 	search.setS_key("%"+s_key+"%");
 	search.setP1(p1);
-	int fb_num = Integer.valueOf(request.getParameter("fb_num"));
 %>
 <%
+	//search
 	SqlSessionFactory sqlfactory = DAO.getConn();
-	List<Board> boardl;
-	Board board = DAO.view(fb_num);
-	if((nick!=null)&&(!nick.equals(board.getNick()))){
-		DAO.boardviewupd(fb_num);
-		board.setBoard_view(board.getBoard_view()+1);
-	}
+	List<Board> dtol;
 	if(request.getParameter("s_type")!=null&&request.getParameter("s_key")!=null){
-		boardl = DAO.search(search);
+		dtol = DAO.search(search);
 		nop = DAO.csearch(search);
 	}
 	else{
-		boardl = DAO.sel(p1);
+		dtol = DAO.sel(p1);
 		nop = DAO.count();
 	}
 	pag = (int) Math.ceil((double) nop/20);
@@ -338,44 +333,12 @@
 			width:800px;
 			height:28px;
 		}
-		#board_title{
-			margin-top:10px;
-			height:30px;
-			font-size:20pt;
-			padding:0 10px 0 10px;
-		}
-		#board_inf{
-			height:20px;
-			font-size:12pt;
-			padding:0 10px 0 10px;
-		}
-		#infl{
-			float:left;
-		}
-		#infr{
-			float:right;
-		}
-		#board_cont{
-			padding:0 10px 0 10px;
-			clear:both;
-			font-size:12pt;
-			min-height:300px;
-		}
 		#wb{
 			height:40px;
 			padding-top:15px;
 		}
-		#board_foot{
-			text-align:right;
-		}
-		#board_foot > input[type="button"]{
-			width:60px;
-			height:30px;
-		}
-		#sep{
-			border:0;
-			height:2px;
-			background:black;
+		#cp{
+			color:red;
 		}
 	</style>
 	<script>
@@ -397,32 +360,8 @@
 					$("#headb").removeClass("fix");
 				}
 			});
-			$(".board_inner").click(function(){
+			$(".board_inner:nth-child(n+2)").click(function(){
 				$(location).attr("href","view.jsp?fb_num="+$(this).children(':nth-child(1)').text());
-			});
-			$("#delete").click(function(){
-				$(location).attr("href","delete.jsp?fb_num="+<%=fb_num%>);
-			});
-			$("#edit").click(function(){
-				$(location).attr("href","fbedit.jsp?fb_num="+<%=fb_num%>);
-			});
-			$("#good").click(function(){
-				var nick = "<%=nick%>";
-				var fb_num = "<%=fb_num%>";
-				var g = parseInt(<%=board.getBoard_good()%>);
-				$.ajax({
-					url:'good.jsp',
-					data:{'nick':nick, 'fb_num':fb_num},
-					success : function(req){
-						var i = parseInt(req);
-						if(i==0){
-							$('#recommend').html("추천:"+(g+1));
-						}
-						else{
-							alert('추천은 하루에 한 번만 가능합니다.');
-						}
-					}
-				});	
 			});
 			$("#write").click(function(){
 				var lid = "<%=id%>"
@@ -433,7 +372,7 @@
 			});
 			$("#searchb").click(function(){
 				$(location).attr("href",encodeURI("board.jsp?s_type="+$("#ssel option:selected").val()+"&s_key="+$("#sbar").val()+"&p=1"));
-			});		
+			});			
 		});
 	</script>
 	<script>
@@ -544,44 +483,11 @@
 						<li>거래게시판</li>
 					</ul>
 				</div>
-				<div class="board">
-					<div id = "board_title">
-						<%out.print(board.getBoard_title());%>
-					</div>
-					<hr>
-					<div id = "board_inf">
-						<div id = "infl">
-							<span>작성자:<%out.print(board.getNick());%></span>
-							<span>작성일:<%out.print(board.getBoard_date());%></span>
-						</div>
-						<div id = "infr">
-							<span>조회:<%out.print(board.getBoard_view());%></span>
-							<span id = "recommend">추천:<%out.print(board.getBoard_good());%></span>
-						</div>
-					</div>
-					<hr>
-					<div id = "board_cont">
-						<%
-							out.print(board.getBoard_content());
-						%>
-					</div>
-					<div id = "board_foot">
-						<%
-							if(id!=null)
-								out.print("<input type = 'button' value = '추천' id = 'good'>");
-							if(board.getNick().equals(nick)){
-								out.print("<input type = 'button' value = '수정' id = 'edit'>");
-								out.print("<input type = 'button' value = '삭제' id = 'delete'>");
-							}
-						%>
-					</div>
-					<hr id = "sep">
-				</div>
 				<div class="board">		
 					<%
 						out.print("<ul class='board_inner'><li>번호</li><li>제목</li><li>글쓴이</li><li>작성일</li><li>조회</li><li>추천</li></ul>");
-						for(int i=0; i<boardl.size(); i++){
-							out.print("<ul class = 'board_inner'><li>"+boardl.get(i).getBoard_num()+"</li><li>"+boardl.get(i).getBoard_title()+"</li><li>"+boardl.get(i).getNick()+"</li><li>"+boardl.get(i).getBoard_date()+"</li><li>"+boardl.get(i).getBoard_view()+"</li><li>"+boardl.get(i).getBoard_good()+"</li></ul>");
+						for(int i=0; i<dtol.size(); i++){
+							out.print("<ul class = 'board_inner'><li>"+dtol.get(i).getBoard_num()+"</li><li>"+dtol.get(i).getBoard_title()+"</li><li>"+dtol.get(i).getNick()+"</li><li>"+dtol.get(i).getBoard_date()+"</li><li>"+dtol.get(i).getBoard_view()+"</li><li>"+dtol.get(i).getBoard_good()+"</li></ul>");
 						}
 					%>
 				</div>

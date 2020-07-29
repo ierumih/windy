@@ -1,7 +1,17 @@
 <%@ page language = "java" contentType = "text/html; charset = UTF-8" pageEncoding = "UTF-8" %>
+<%@page import="org.apache.ibatis.session.SqlSessionFactory"%>
+<%@page import="org.apache.ibatis.session.SqlSession"%>
+<%@page import="com.windy.dao.DAO" %>
+<%@page import="com.windy.vo.Board" %>
+<%@page import="java.util.*" %>
 <%
 	String id = (String) session.getAttribute("id");
 	String nick = (String) session.getAttribute("nick");
+%>
+<%
+	int fb_num = Integer.valueOf(request.getParameter("fb_num"));
+	SqlSessionFactory sqlfactory = DAO.getConn();
+	Board board = DAO.view(fb_num);
 %>
 <!doctype html>
 <html lang="en">
@@ -324,6 +334,9 @@
 				}
 			});
 		});
+		$(window).load(function(){
+			loadContent();
+		});
 	</script>
 	<script>
 	  $(document).ready(function(){
@@ -440,9 +453,9 @@
 						@decsription
 						등록하기 위한 Form으로 상황에 맞게 수정하여 사용한다. Form 이름은 에디터를 생성할 때 설정값으로 설정한다.
 					-->
-					<form name="tx_editor_form" id="tx_editor_form" action="writeaction.jsp" method="post" accept-charset="utf-8">
+					<form name="tx_editor_form" id="tx_editor_form" action="editaction.jsp" method="post" accept-charset="utf-8">
 						<div id="titlebox">
-							<input type = "text" id = "title" name = "title" placeholder = "제목 입력">
+							<input type = "text" id = "title" name = "title" placeholder = "제목 입력" value = <%=board.getBoard_title() %>>
 						</div>
 						<!-- 에디터 컨테이너 시작 -->
 						<div id="tx_trex_container" class="tx-editor-container">
@@ -861,6 +874,7 @@
 							</div>
 						</div>
 					</div>
+					<input type="hidden" name = "fb_num" value = "<%=fb_num %>">
 								<!-- 첨부박스 끝 -->
 						</div>
 						<!-- 에디터 컨테이너 끝 -->
@@ -919,7 +933,9 @@
 					
 				</script>
 				
-				<!-- Sample: Saving Contents -->
+				
+				<textarea id = "loadcont" style="display:none"><%=board.getBoard_content()%></textarea>
+				<!-- Saving Contents -->
 				<script type="text/javascript">
 					/* 예제용 함수 */
 					function saveContent() {
@@ -960,9 +976,8 @@
 				        var i, input;
 				        var form = editor.getForm();
 				        var content = editor.getContent();
-				        
 				        var title = document.getElementById('title');
-				
+				        
 				        // 본문 내용을 필드를 생성하여 값을 할당하는 부분
 				        var textarea = document.createElement('textarea');
 				        textarea.style.display = 'none';
@@ -1000,7 +1015,43 @@
 				</script>
 				<div id = "sm"><button class = "bbtn" onclick="history.back(-1);">뒤로</button><button class = "bbtn" onclick='saveContent()'>작성</button></div>
 				<!-- End: Saving Contents -->
-				
+				<script type="text/javascript">
+					function loadContent() {
+						var attachments = {};
+						/*attachments['image'] = [];
+						attachments['image'].push({
+							'attacher': 'image',
+							'data': {
+								'imageurl': 'http://cfile273.uf.daum.net/image/2064CD374EE1ACCB0F15C8',
+								'filename': 'github.gif',
+								'filesize': 59501,
+								'originalurl': 'http://cfile273.uf.daum.net/original/2064CD374EE1ACCB0F15C8',
+								'thumburl': 'http://cfile273.uf.daum.net/P150x100/2064CD374EE1ACCB0F15C8'
+							}
+						});
+						attachments['file'] = [];
+						attachments['file'].push({
+							'attacher': 'file',
+							'data': {
+								'attachurl': 'http://cfile297.uf.daum.net/attach/207C8C1B4AA4F5DC01A644',
+								'filemime': 'image/gif',
+								'filename': 'editor_bi.gif',
+								'filesize': 640
+							}
+						});*/
+						/* 저장된 컨텐츠를 불러오기 위한 함수 호출 */
+						Editor.modify({
+							"attachments": function () { /* 저장된 첨부가 있을 경우 배열로 넘김, 위의 부분을 수정하고 아래 부분은 수정없이 사용 */
+								var allattachments = [];
+								for (var i in attachments) {
+									allattachments = allattachments.concat(attachments[i]);
+								}
+								return allattachments;
+							}(),
+							"content": document.getElementById("loadcont") /* 내용 문자열, 주어진 필드(textarea) 엘리먼트 */
+						});
+					}
+				</script>		
 	</div>
 		<footer>
 			<div id = "foot">
