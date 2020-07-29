@@ -1,5 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+
 <!doctype html>
-<html lang="en">
+<html>
  <head>
   <meta charset="utf-8">
   <title>teamProject</title>
@@ -16,7 +18,7 @@
 			$("#submenu").hide();
 			$('.bxslider').bxSlider({
 				auto: true,
-				stopAutoOnClick: true,fd
+				stopAutoOnClick: true,
 				controls:false,
 				pager:true
 			});
@@ -54,7 +56,7 @@
  	<header>
 		<div id = "headt">
 			<div id = "headl">
-				<a href = "main.html"><img id = "logo" src = "img/logo.jpg"></a>
+				<a href = "main.html"><img id = "logo" src = "../img/qwer.jpg"></a>
 				HOJA
 			</div>
 			<div id = "headr">

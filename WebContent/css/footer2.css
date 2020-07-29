@@ -1,0 +1,13 @@
+		#foot{
+			position:relative;
+			padding-top:30px;
+			width:1080px;
+			height:100px;
+			color:white;
+		}
+		#foot ul{
+			list-style-type:none;			
+		}
+		#foot ul li{
+			display:inline;
+		}
