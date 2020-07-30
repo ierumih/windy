@@ -47,9 +47,9 @@ public class DAO {
 		return user;
 	}
 	
-	public static List<Board> sel(int p1) {
+	public static List<Board> boardlist(Page page) {
 		SqlSession sqlsession = sqlfactory.openSession();
-		List<Board> boardl = sqlsession.selectList("sel",p1);
+		List<Board> boardl = sqlsession.selectList("boardlist",page);
 		sqlsession.close();
 		return boardl;
 	}
@@ -61,30 +61,30 @@ public class DAO {
 		return user1;
 	}
 	
-	public static List<Board> search(Search search) {
+	public static List<Board> boardlists(Page page) {
 		SqlSession sqlsession = sqlfactory.openSession();
-		List<Board> boardl = sqlsession.selectList("search",search);
+		List<Board> boardl = sqlsession.selectList("boardlists",page);
 		sqlsession.close();
 		return boardl;
 	}
 	
-	public static Board view(int board_num) {
+	public static Board view(Board board) {
 		SqlSession sqlsession = sqlfactory.openSession();
-		Board board = sqlsession.selectOne("view", board_num);
+		Board board1 = sqlsession.selectOne("view", board);
 		sqlsession.close();
-		return board;
+		return board1;
 	}
 	
-	public static int count() {
+	public static int count(String board_num) {
 		SqlSession sqlsession = sqlfactory.openSession();
-		int nop = sqlsession.selectOne("count");
+		int nop = sqlsession.selectOne("count", board_num);
 		sqlsession.close();
 		return nop;
 	}
 	
-	public static int csearch(Search search) {
+	public static int csearch(Page page) {
 		SqlSession sqlsession = sqlfactory.openSession();
-		int nop = sqlsession.selectOne("csearch", search);
+		int nop = sqlsession.selectOne("csearch", page);
 		sqlsession.close();
 		return nop;
 	}
@@ -128,18 +128,20 @@ public class DAO {
 		return chk;
 	}
 	
-	public static void boardviewupd(int board_num) {
+	public static int boardviewupd(Board board) {
 		SqlSession sqlsession = sqlfactory.openSession();
-		sqlsession.update("boardviewupd", board_num);
+		int chk = sqlsession.update("boardviewupd", board);
 		sqlsession.commit();
 		sqlsession.close();
+		return chk;
 	}
 	
-	public static void boardgoodupd(int board_num) {
+	public static int boardgoodupd(Board board) {
 		SqlSession sqlsession = sqlfactory.openSession();
-		sqlsession.update("boardgoodupd", board_num);
+		int chk = sqlsession.update("boardgoodupd", board);
 		sqlsession.commit();
 		sqlsession.close();
+		return chk;
 	}
 	
 }
