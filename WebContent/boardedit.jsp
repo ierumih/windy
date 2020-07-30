@@ -451,7 +451,7 @@
 						@decsription
 						등록하기 위한 Form으로 상황에 맞게 수정하여 사용한다. Form 이름은 에디터를 생성할 때 설정값으로 설정한다.
 					-->
-					<form name="tx_editor_form" id="tx_editor_form" action="editaction.jsp" method="post" accept-charset="utf-8">
+					<form name="tx_editor_form" id="tx_editor_form" action="boardedit.b" method="post" accept-charset="utf-8">
 						<div id="titlebox">
 							<input type = "text" id = "title" name = "title" placeholder = "제목 입력" value = <%=board.getBoard_title() %>>
 						</div>
@@ -872,6 +872,7 @@
 							</div>
 						</div>
 					</div>
+					<input type="hidden" name = "board_name" value = "<%=board.getBoard_name()%>">
 					<input type="hidden" name = "board_num" value = "<%=board.getBoard_num()%>">
 								<!-- 첨부박스 끝 -->
 						</div>

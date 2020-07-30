@@ -407,11 +407,8 @@
 					$("#headb").removeClass("fix");
 				}
 			});
-			$(".board_inner").click(function(){
-				$(location).attr("href","view.jsp?board_num="+$(this).children(':nth-child(1)').text());
-			});
 			$("#delete").click(function(){
-				$(location).attr("href","delete.jsp?board_num="+<%=board_num%>);
+				$(location).attr("href","boarddelete.b?board_num=<%=board_num%>");
 			});
 			$("#edit").click(function(){
 				$(location).attr("href","boardeditform.b?board_name=<%=board_name%>&board_num=<%=board_num%>");

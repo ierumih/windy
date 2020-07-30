@@ -100,6 +100,14 @@ public class BController extends javax.servlet.http.HttpServlet{
 				e.printStackTrace();
 			}
 		}
+		else if(command.equals("/boarddelete.b")){
+			action = new BoardDeleteAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
 
 			
 		if(forward != null){
