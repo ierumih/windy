@@ -526,7 +526,7 @@
 					추천 코스
 				</li>
 				<li>
-					<a href = "board.jsp">게시판</a>
+					<a href = "boardlist.b?board_name=freeb"">게시판</a>
 				</li>
 				<li>
 					<a href = "shoppingmall.html">쇼핑몰</a>

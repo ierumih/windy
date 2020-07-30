@@ -440,7 +440,7 @@
 						@decsription
 						등록하기 위한 Form으로 상황에 맞게 수정하여 사용한다. Form 이름은 에디터를 생성할 때 설정값으로 설정한다.
 					-->
-					<form name="tx_editor_form" id="tx_editor_form" action="writeaction.jsp" method="post" accept-charset="utf-8">
+					<form name="tx_editor_form" id="tx_editor_form" action="writeaction.b?board_name=<%=request.getParameter("board_name") %>&p=<%=request.getParameter("p") %>" method="post" accept-charset="utf-8">
 						<div id="titlebox">
 							<input type = "text" id = "title" name = "title" placeholder = "제목 입력">
 						</div>
@@ -944,7 +944,6 @@
 							alert('내용을 입력하세요');
 							return false;
 						}
-				
 						return true;
 					}
 				

@@ -4,6 +4,7 @@
 <%@page import="com.windy.dao.DAO" %>
 <%@page import="com.windy.vo.Board" %>
 <%@page import="com.windy.vo.Search" %>
+<%@page import="com.windy.vo.Page" %>
 <%@page import="java.util.*" %>
 <%
 	//로그인
@@ -11,11 +12,12 @@
 	String nick = (String) session.getAttribute("nick");
 %>
 <%
-	String s_type="";
+	/*String s_type="";
 	String s_key="";
 	int nop;
 	int pag;
 	int p = 1;
+	request.setAttribute("board_name", request.getParameter("board_name"));
 	if(request.getParameter("s_type")!=null&&request.getParameter("s_key")!=null){
 		s_type = request.getParameter("s_type");
 		s_key = request.getParameter("s_key");
@@ -26,21 +28,29 @@
 	Search search = new Search();
 	search.setS_type(s_type);
 	search.setS_key("%"+s_key+"%");
-	search.setP1(p1);
+	search.setP1(p1);*/
 %>
 <%
 	//search
-	SqlSessionFactory sqlfactory = DAO.getConn();
-	List<Board> dtol;
+	/*SqlSessionFactory sqlfactory = DAO.getConn();
+	List<Board> listb;
 	if(request.getParameter("s_type")!=null&&request.getParameter("s_key")!=null){
-		dtol = DAO.search(search);
+		listb = DAO.search(search);
 		nop = DAO.csearch(search);
 	}
 	else{
-		dtol = DAO.sel(p1);
+		listb = DAO.sel(p1);
 		nop = DAO.count();
 	}
-	pag = (int) Math.ceil((double) nop/20);
+	pag = (int) Math.ceil((double) nop/20);*/
+%>
+<%
+	List<Board> listb = (List<Board>)request.getAttribute("listb");
+	Page pages = (Page)request.getAttribute("pages");
+	int p = pages.getCurrentpage();
+	int pag = pages.getEndpage();
+	String board_name = pages.getBoard_name();
+	request.setAttribute("listb", listb);
 %>
 <!doctype html>
 <html lang="en">
@@ -361,17 +371,21 @@
 				}
 			});
 			$(".board_inner:nth-child(n+2)").click(function(){
-				$(location).attr("href","view.jsp?fb_num="+$(this).children(':nth-child(1)').text());
+				var board_name = "<%=board_name%>"
+				$(location).attr("href","boardview.b?board_name="+board_name+"&board_num="+$(this).children(':nth-child(1)').text());
 			});
 			$("#write").click(function(){
 				var lid = "<%=id%>"
+				var board_name = "<%=board_name%>"
+				var p = <%=p%>
 				if(lid=="null")
 					alert('로그인하셔야 글을 작성하실 수 있습니다.');
 				else
-					$(location).attr("href","fbwrite.jsp");
+					$(location).attr("href","write.b?board_name="+board_name+"&p="+p);
 			});
 			$("#searchb").click(function(){
-				$(location).attr("href",encodeURI("board.jsp?s_type="+$("#ssel option:selected").val()+"&s_key="+$("#sbar").val()+"&p=1"));
+				var board_name = "<%=board_name%>"
+				$(location).attr("href",encodeURI("boardlist.b?board_name="+board_name+"&s_type="+$("#ssel option:selected").val()+"&s_key="+$("#sbar").val()+"&p=1"));
 			});			
 		});
 	</script>
@@ -423,7 +437,7 @@
 					추천 코스
 				</li>
 				<li>
-					<a href = "board.jsp">게시판</a>
+					<a href = "boardlist.b?board_name=freeb">게시판</a>
 				</li>
 				<li>
 					<a href = "shoppingmall.html">쇼핑몰</a>
@@ -486,8 +500,8 @@
 				<div class="board">		
 					<%
 						out.print("<ul class='board_inner'><li>번호</li><li>제목</li><li>글쓴이</li><li>작성일</li><li>조회</li><li>추천</li></ul>");
-						for(int i=0; i<dtol.size(); i++){
-							out.print("<ul class = 'board_inner'><li>"+dtol.get(i).getBoard_num()+"</li><li>"+dtol.get(i).getBoard_title()+"</li><li>"+dtol.get(i).getNick()+"</li><li>"+dtol.get(i).getBoard_date()+"</li><li>"+dtol.get(i).getBoard_view()+"</li><li>"+dtol.get(i).getBoard_good()+"</li></ul>");
+						for(int i=0; i<listb.size(); i++){
+							out.print("<ul class = 'board_inner'><li>"+listb.get(i).getBoard_num()+"</li><li>"+listb.get(i).getBoard_title()+"</li><li>"+listb.get(i).getNick()+"</li><li>"+listb.get(i).getBoard_date()+"</li><li>"+listb.get(i).getBoard_view()+"</li><li>"+listb.get(i).getBoard_good()+"</li></ul>");
 						}
 					%>
 				</div>
@@ -498,25 +512,26 @@
 					<table>
 						<tr>
 							<%
-								if(p>1)
-									out.print("<td><input type='button' value='<' class='search' onclick = \"location.href='board.jsp?p="+(p-1)+"'\"></td>");
-							%>
+								if(p>1){%>
+									<td><input type='button' value='<' class='search' onclick = "location.href='boardlist.b?board_name=<%=board_name %>&p=<%=p-1 %>'"></td>
+								<%}%>
 							<td><ul class="num">
 								<%
 									for(int i=(p-5); i<(p+5); i++){
 										if((i>0)&&(i<=pag)){
-											if(i!=p)
-												out.print("<a href = 'board.jsp?p="+i+"'><li>"+i+"</li></a>");
-											else
-												out.print("<li id = 'cp'>"+i+"</li>");
+											if(i!=p){%>
+												<a href = 'boardlist.b?board_name=<%=board_name%>&p=<%=i %>'><li><%=i %></li></a><%
+											}else{%>
+												<li id = 'cp'><%=i %></li>
+											<%}
 										}
 									}
 								%>
 							</ul></td>
 							<%
-								if(p<pag)
-									out.print("<td><input type='button' value='>' class='search' onclick = \"location.href='board.jsp?p="+(p+1)+"'\"></td>");
-							%>
+								if(p<pag){%>
+									<td><input type='button' value='>' class='search' onclick = "location.href='boardlist.b?board_name=<%=board_name %>&p=<%=p+1 %>'"></td>
+								<%}%>
 						</tr>
 					</table>
 				</div>
@@ -524,9 +539,9 @@
 					<table>
 						<tr>
 							<td><select id = "ssel" style="height:32px;">
-								<option value = "fb_title">제목</option>
+								<option value = "board_title">제목</option>
 								<option value = "nick">글쓴이</option>
-								<option value = "fb_content">내용</option>
+								<option value = "board_content">내용</option>
 								</select>
 							</td>
 							<td><input type="text" class="searchbar" id = "sbar" placeholder="검색바" style="margin:0 5px"></td>	
