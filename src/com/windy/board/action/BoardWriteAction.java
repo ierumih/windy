@@ -37,7 +37,6 @@ public class BoardWriteAction implements Action {
 		}
 		else {
 			forward = new ActionForward();
-			forward.setRedirect(true);
 			forward.setPath("boardlist.b");
 		}
 		
