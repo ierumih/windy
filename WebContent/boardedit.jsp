@@ -872,7 +872,8 @@
 							</div>
 						</div>
 					</div>
-					<input type="hidden" name = "board_name" value = "<%=board.getBoard_name()%>">
+					<input type="hidden" name = "board_n
+					ame" value = "<%=board.getBoard_name()%>">
 					<input type="hidden" name = "board_num" value = "<%=board.getBoard_num()%>">
 								<!-- 첨부박스 끝 -->
 						</div>
