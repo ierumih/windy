@@ -52,7 +52,6 @@ public class BController extends javax.servlet.http.HttpServlet{
 			}
 		}
 		else if(command.equals("/loginaction.b")){
-			System.out.println("aa");
 			action = new LoginAction();
 			try{
 				forward=action.execute(request, response);
@@ -77,6 +76,15 @@ public class BController extends javax.servlet.http.HttpServlet{
 				e.printStackTrace();
 			}
 		}
+		else if(command.equals("/boardview.b")){
+			action = new BoardViewAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+
 			
 		if(forward != null){
 			
