@@ -38,7 +38,6 @@ public class BoardListSVC {
 	public List<Board> boardlists(Page page){
 		List<Board> listb = new ArrayList<Board>();
 		DAO.getConn();
-		System.out.println(page.getS_key());
 		listb = DAO.boardlists(page);
 		return listb;
 	}

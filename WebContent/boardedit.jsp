@@ -9,9 +9,7 @@
 	String nick = (String) session.getAttribute("nick");
 %>
 <%
-	int fb_num = Integer.valueOf(request.getParameter("fb_num"));
-	SqlSessionFactory sqlfactory = DAO.getConn();
-	Board board = DAO.view(fb_num);
+	Board board = (Board) request.getAttribute("board");
 %>
 <!doctype html>
 <html lang="en">
@@ -874,7 +872,7 @@
 							</div>
 						</div>
 					</div>
-					<input type="hidden" name = "fb_num" value = "<%=fb_num %>">
+					<input type="hidden" name = "board_num" value = "<%=board.getBoard_num()%>">
 								<!-- 첨부박스 끝 -->
 						</div>
 						<!-- 에디터 컨테이너 끝 -->

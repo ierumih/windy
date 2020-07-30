@@ -52,6 +52,7 @@
 %>
 <%
 	Board view = (Board) request.getAttribute("view");
+	request.setAttribute("view", view);
 	int board_num = view.getBoard_num();
 	String board_name = view.getBoard_name();
 	List<Board> listb = (List<Board>)request.getAttribute("listb");
@@ -413,7 +414,7 @@
 				$(location).attr("href","delete.jsp?board_num="+<%=board_num%>);
 			});
 			$("#edit").click(function(){
-				$(location).attr("href","fbedit.jsp?board_num="+<%=board_num%>);
+				$(location).attr("href","boardeditform.b?board_name=<%=board_name%>&board_num=<%=board_num%>");
 			});
 			$("#good").click(function(){
 				var nick = "<%=nick%>";
@@ -574,14 +575,9 @@
 						<%=view.getBoard_content()%>
 					</div>
 					<div id = "board_foot">
-						<%
-							if(id!=null)
-								out.print("<input type = 'button' value = '추천' id = 'good'>");
-							if(view.getNick().equals(nick)){
-								out.print("<input type = 'button' value = '수정' id = 'edit'>");
-								out.print("<input type = 'button' value = '삭제' id = 'delete'>");
-							}
-						%>
+								<input type = 'button' value = '추천' id = 'good'>&nbsp
+								<input type = 'button' value = '수정' id = 'edit'>&nbsp
+								<input type = 'button' value = '삭제' id = 'delete'>
 					</div>
 					<hr id = "sep">
 				</div>

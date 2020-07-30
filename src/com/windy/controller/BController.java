@@ -84,6 +84,22 @@ public class BController extends javax.servlet.http.HttpServlet{
 				e.printStackTrace();
 			}
 		}
+		else if(command.equals("/boardeditform.b")){
+			action = new BoardEditFormAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/boardedit.b")){
+			action = new BoardEditAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
 
 			
 		if(forward != null){
