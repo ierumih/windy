@@ -19,7 +19,7 @@
 <body>
 	<div id = "headt">
 			<div id = "headl">
-				<a href = "main.html"><img id = "logo" src = "img/qwer.jpg"></a>
+				<a href = "main_2.jsp"><img id = "logo" src = "img/qwer.jpg"></a>
 				windy
 			</div>
 			<div id = "headr">
@@ -46,7 +46,7 @@
 					<a href = "board.html">게시판</a>
 				</li>
 				<li>
-					<a href = "shoppingmall.html">쇼핑몰</a>
+					<a href = "shopList.b">쇼핑몰</a>
 				</li>
 				<li>
 					건강관리

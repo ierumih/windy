@@ -11,7 +11,6 @@
 %>
 
 <%
-	/*
 	String s_type="";
 	String s_key="";
 	int nop;
@@ -28,15 +27,14 @@
 	search.setS_type(s_type);
 	search.setS_key("%"+s_key+"%");
 	search.setP1(p1);
-	int board_num = Integer.valueOf(request.getParameter("board_num"));
-	*/
+	int fb_num = Integer.valueOf(request.getParameter("fb_num"));
 %>
 <%
-	/*SqlSessionFactory sqlfactory = DAO.getConn();
+	SqlSessionFactory sqlfactory = DAO.getConn();
 	List<Board> boardl;
-	Board board = DAO.view(board_num);
+	Board board = DAO.view(fb_num);
 	if((nick!=null)&&(!nick.equals(board.getNick()))){
-		DAO.boardviewupd(board_num);
+		DAO.boardviewupd(fb_num);
 		board.setBoard_view(board.getBoard_view()+1);
 	}
 	if(request.getParameter("s_type")!=null&&request.getParameter("s_key")!=null){
@@ -48,14 +46,6 @@
 		nop = DAO.count();
 	}
 	pag = (int) Math.ceil((double) nop/20);
-	*/
-%>
-<%
-	Board view = (Board) request.getAttribute("view");
-	request.setAttribute("view", view);
-	int board_num = view.getBoard_num();
-	String board_name = view.getBoard_name();
-	List<Board> listb = (List<Board>)request.getAttribute("listb");
 %>
 <!doctype html>
 <html lang="en">
@@ -407,20 +397,22 @@
 					$("#headb").removeClass("fix");
 				}
 			});
+			$(".board_inner").click(function(){
+				$(location).attr("href","view.jsp?fb_num="+$(this).children(':nth-child(1)').text());
+			});
 			$("#delete").click(function(){
-				$(location).attr("href","boarddelete.b?board_num=<%=board_num%>");
+				$(location).attr("href","delete.jsp?fb_num="+<%=fb_num%>);
 			});
 			$("#edit").click(function(){
-				$(location).attr("href","boardeditform.b?board_name=<%=board_name%>&board_num=<%=board_num%>");
+				$(location).attr("href","fbedit.jsp?fb_num="+<%=fb_num%>);
 			});
 			$("#good").click(function(){
 				var nick = "<%=nick%>";
-				var board_num = <%=board_num%>;
-				var board_name = "<%=board_name%>";
-				var g = parseInt(<%=view.getBoard_good()%>);
+				var fb_num = "<%=fb_num%>";
+				var g = parseInt(<%=board.getBoard_good()%>);
 				$.ajax({
 					url:'good.jsp',
-					data:{'nick':nick, 'board_name':board_name, 'board_num':board_num},
+					data:{'nick':nick, 'fb_num':fb_num},
 					success : function(req){
 						var i = parseInt(req);
 						if(i==0){
@@ -554,31 +546,88 @@
 				</div>
 				<div class="board">
 					<div id = "board_title">
-						<%=view.getBoard_title()%>
+						<%out.print(board.getBoard_title());%>
 					</div>
 					<hr>
 					<div id = "board_inf">
 						<div id = "infl">
-							<span>작성자:<%=view.getNick()%></span>
-							<span>작성일:<%=view.getBoard_date()%></span>
+							<span>작성자:<%out.print(board.getNick());%></span>
+							<span>작성일:<%out.print(board.getBoard_date());%></span>
 						</div>
 						<div id = "infr">
-							<span>조회:<%=view.getBoard_view()%></span>
-							<span id = "recommend">추천:<%=view.getBoard_good()%></span>
+							<span>조회:<%out.print(board.getBoard_view());%></span>
+							<span id = "recommend">추천:<%out.print(board.getBoard_good());%></span>
 						</div>
 					</div>
 					<hr>
 					<div id = "board_cont">
-						<%=view.getBoard_content()%>
+						<%
+							out.print(board.getBoard_content());
+						%>
 					</div>
 					<div id = "board_foot">
-								<input type = 'button' value = '추천' id = 'good'>&nbsp
-								<input type = 'button' value = '수정' id = 'edit'>&nbsp
-								<input type = 'button' value = '삭제' id = 'delete'>
+						<%
+							if(id!=null)
+								out.print("<input type = 'button' value = '추천' id = 'good'>");
+							if(board.getNick().equals(nick)){
+								out.print("<input type = 'button' value = '수정' id = 'edit'>");
+								out.print("<input type = 'button' value = '삭제' id = 'delete'>");
+							}
+						%>
 					</div>
 					<hr id = "sep">
 				</div>
-
+				<div class="board">		
+					<%
+						out.print("<ul class='board_inner'><li>번호</li><li>제목</li><li>글쓴이</li><li>작성일</li><li>조회</li><li>추천</li></ul>");
+						for(int i=0; i<boardl.size(); i++){
+							out.print("<ul class = 'board_inner'><li>"+boardl.get(i).getBoard_num()+"</li><li>"+boardl.get(i).getBoard_title()+"</li><li>"+boardl.get(i).getNick()+"</li><li>"+boardl.get(i).getBoard_date()+"</li><li>"+boardl.get(i).getBoard_view()+"</li><li>"+boardl.get(i).getBoard_good()+"</li></ul>");
+						}
+					%>
+				</div>
+				<div id = "wb">
+					<input type="button" value="글쓰기" class="search" id = "write" style="float:right;">
+				</div>
+				<div style="clear:both;">
+					<table>
+						<tr>
+							<%
+								if(p>1)
+									out.print("<td><input type='button' value='<' class='search' onclick = \"location.href='board.jsp?p="+(p-1)+"'\"></td>");
+							%>
+							<td><ul class="num">
+								<%
+									for(int i=(p-5); i<(p+5); i++){
+										if((i>0)&&(i<=pag)){
+											if(i!=p)
+												out.print("<a href = 'board.jsp?p="+i+"'><li>"+i+"</li></a>");
+											else
+												out.print("<li id = 'cp'>"+i+"</li>");
+										}
+									}
+								%>
+							</ul></td>
+							<%
+								if(p<pag)
+									out.print("<td><input type='button' value='>' class='search' onclick = \"location.href='board.jsp?p="+(p+1)+"'\"></td>");
+							%>
+						</tr>
+					</table>
+				</div>
+				<div>
+					<table>
+						<tr>
+							<td><select id = "ssel" style="height:32px;">
+								<option value = "fb_title">제목</option>
+								<option value = "nick">글쓴이</option>
+								<option value = "fb_content">내용</option>
+								</select>
+							</td>
+							<td><input type="text" class="searchbar" id = "sbar" placeholder="검색바" style="margin:0 5px"></td>	
+							<td><input type="button" value="검색" class="search" id = "searchb"></td>
+						</tr>
+					</table>
+				</div>
 			</article>
 		</main>
 		

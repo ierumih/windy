@@ -2,15 +2,11 @@
 <%@page import="org.apache.ibatis.session.SqlSessionFactory"%>
 <%@page import="org.apache.ibatis.session.SqlSession"%>
 <%@page import="com.windy.dao.DAO" %>
-<%@page import="com.windy.vo.Board" %>
 <%@page import="java.util.*" %>
 <%
-	Board board = new Board();
-	board.setBoard_num(Integer.valueOf(request.getParameter("board_num")));
-	board.setBoard_name(request.getParameter("board_name"));
-	String cn = board.getBoard_name()+request.getParameter("nick")+board.getBoard_num();
 	int cnt=0;
-	
+	String fb_num = request.getParameter("fb_num");
+	String cn = "fb"+request.getParameter("nick")+fb_num;
 	
 	Cookie[] cookies = request.getCookies();
 	if(cookies!=null){
@@ -22,7 +18,7 @@
 	}
 	if(cnt==0){
 		SqlSessionFactory sqlfactory = DAO.getConn();
-		DAO.boardgoodupd(board);
+		DAO.boardgoodupd(Integer.valueOf(fb_num));
 		Cookie cookie_good = new Cookie(cn, "ok");
 		cookie_good.setMaxAge(60*60*24);
 		cookie_good.setPath("/");
