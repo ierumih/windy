@@ -1,4 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@page import="org.apache.ibatis.session.SqlSessionFactory"%>
+<%@page import="org.apache.ibatis.session.SqlSession"%>
+<%@page import="com.windy.dao.DAO" %>
+<%@page import="com.windy.vo.Product" %>
+<%@page import="java.util.*" %>
+<%
+	List<Product> list = (List<Product>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,28 +16,45 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function(){
-		// $("#menu9").hide();
+		/*$("#menu9").hide();
 		$("#menubtn9").mouseenter(function(){
 			$("#menu9").stop().fadeIn();
 
 		});
-		// $("#menu9").mouseleave(function(){
-		// 	$("#menu9").stop().fadeOut();	
-		// });	
+		$("#menu9").mouseleave(function(){
+			$("#menu9").stop().fadeOut();	
+		 });	
 		$("#f li").hover(function(){
 			$(this).css('color','rosybrown');
 		},
 		function(){
 			$(this).css('color','black');
-		});
+		});*/
+		
 		$(window).scroll(function(){
 				var scr = $(document).scrollTop();
-			if (scr>1025)
+			if (scr>969&&scr<1926)
 				{
-					$("#sub_t").addClass("fix");
+					$("#mtb").removeClass("fix");
+					$("#rb").addClass("fix");
+					$(".left").css("margin-top","90px");
 				}
+			else if(scr>1926&&scr<2883){
+				$("#hb").removeClass("fix");
+				$("#mtb").addClass("fix");
+				$(".left").css("margin-top","90px");
+			}
+			else if(scr>=2883){
+
+				$("#hb").addClass("fix");
+				$(".left").css("margin-top","90px");
+			}
+
 			else {
-					$("#sub_t").removeClass("fix");
+					$("#rb").removeClass("fix");
+					$("#mtb").removeClass("fix");
+					$("#hb").removeClass("fix");
+					$(".left").css("margin-top","0");
 				}
 			});
 
@@ -63,8 +88,9 @@
 	}
 	.left{
 		clear:both;
-		width:1000px;
-		height:400px;
+		width:100%;
+		height:870px;
+		padding-left:50px;
 	}
 	.left ul{
 		list-style-type:none;
@@ -96,9 +122,10 @@
 	}
 	.fix{
 		position:fixed;
-		top:-50px;
+		top:0px;
 		text-align: center;
 		clear: both;
+		z-index:99;
 	}
 	.hvr-reveal {
 	  display: inline-block;
@@ -141,51 +168,34 @@
 	<jsp:include page="shop_form.html"/>
 	<div class="wrap">
 		<div id="pp"></div>
-		<div id="sub_t">Road Bike</div>
-		<div class="left">
-				<div id="pname">
-				</div>
-				<div class="lookmore"></div>
-				<ul>
-					<li class="pic hvr-reveal"><img src="https://shopping-phinf.pstatic.net/main_2229978/22299787784.20200326150316.jpg?type=f300"></li>
-					<li>스캇 에딕트 RC 프리미엄</li>
-					<li>풀카본/시마노22단</li>
-					<li>13,000,000원</li>
-				</ul>
-				<ul>
-					<li class="pic hvr-reveal"><img src="https://shopping-phinf.pstatic.net/main_2091719/20917195413.20190920170242.jpg?type=f300"></li>
-					<li>스페셜라이즈드 타막 디스크 콤프</li>
-					<li>풀카본/시마노11단/디스크</li>
-					<li>3,500,000원</li>
-				</ul>
-				<ul>
-					<li class="pic hvr-reveal"><img src="https://shop-phinf.pstatic.net/20191127_208/1574837754379VfDLa_JPEG/c6d07129f9.jpg?type=m510"></li>
-					<li>스페셜라이즈드 2020년 에스웍스 루베</li>
-					<li>풀카본/스렘 레드 이텝12단/디스크</li>
-					<li>12,500,000원</li>
-				</ul>
+		<div class="sub_t" id="rb">Road Bike</div><div class="left">
+		<%for(int i=0;i<list.size();i++) {
+			if(list.get(i).getP_kind().equals("road")){
+				
+				out.println("<ul><li class='pic hvr-reveal'><img src="+list.get(i).getP_img()+"></li>");
+					out.println("<li>"+list.get(i).getP_name()+"</li>");
+					out.println("<li>"+list.get(i).getP_detail()+"</li>");
+					out.println("<li>"+list.get(i).getP_price()+"</li></ul>");
+			}}%>
 			</div>
-			<div class="left">
-				<div id="pname"><b>H</b>ybrid <b>B</b>ike</div>
-				<div class="lookmore">+더보기</div>
-				<ul>
-					<li class="pic hvr-reveal"><img src="https://shopping-phinf.pstatic.net/main_2079373/20793733770.20190902115538.jpg?type=f300"></li>
-					<li>메리다 빅나인 XT 에디션</li>
-					<li>알루미늄/시마노24단/디스크</li>
-					<li>1,850,000원</li>
-				</ul>
-				<ul>
-					<li class="pic hvr-reveal"><img src="https://shopping-phinf.pstatic.net/main_2081006/20810061502.20190904112019.jpg?type=f300"></li>
-					<li>자이언트 XTC 3</li>
-					<li>알루미늄/시마노30단/디스크</li>
-					<li>800,000원</li>
-				</ul>
-				<ul>
-					<li class="pic hvr-reveal"><img src="https://shopping-phinf.pstatic.net/main_2204986/22049860226.20200225165241.jpg?type=f300"></li>
-					<li>알톤 샌드스톤 3.0D</li>
-					<li>알루미늄/시마노24단/디스크</li>
-					<li>454,000원</li>
-				</ul>
+			<div class="sub_t" id="mtb">MTB</div><div class='left'>
+			<%for(int i=0;i<list.size();i++) {
+			if(list.get(i).getP_kind().equals("mtb")){
+				out.println("<ul><li class='pic hvr-reveal'><img src="+list.get(i).getP_img()+"></li>");
+					out.println("<li>"+list.get(i).getP_name()+"</li>");
+					out.println("<li>"+list.get(i).getP_detail()+"</li>");
+					out.println("<li>"+list.get(i).getP_price()+"</li></ul>");
+			}}%>
+			</div>
+				
+			<div class="sub_t" id="hb">Hybrid Bike</div><div class='left'>
+			<%for(int i=0;i<list.size();i++) {
+			if(list.get(i).getP_kind().equals("hy")){
+				out.println("<ul><li class='pic hvr-reveal'><img src="+list.get(i).getP_img()+"></li>");
+					out.println("<li>"+list.get(i).getP_name()+"</li>");
+					out.println("<li>"+list.get(i).getP_detail()+"</li>");
+					out.println("<li>"+list.get(i).getP_price()+"</li></ul>");
+			}}%>
 			</div>
 	</div>
 </body>

@@ -43,10 +43,10 @@
 					추천 코스
 				</li>
 				<li>
-					<a href = "board.html">게시판</a>
+					<a href = "boardlist.b?board_name=freeb">게시판</a>
 				</li>
 				<li>
-					<a href = "shopList.b">쇼핑몰</a>
+					<a href = "shopBestList.b">쇼핑몰</a>
 				</li>
 				<li>
 					건강관리

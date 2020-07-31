@@ -144,4 +144,11 @@ public class DAO {
 		return chk;
 	}
 	
+	public static List<Product> productList() {
+		SqlSession sqlsession = sqlfactory.openSession();
+		List<Product> productlist = sqlsession.selectList("productlist");
+		sqlsession.close();
+		return productlist;
+	}
+	
 }

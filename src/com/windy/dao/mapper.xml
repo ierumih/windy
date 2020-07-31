@@ -34,6 +34,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id = "csearch" resultType = "Integer" parameterType = "page">
 		select count(*) from ${board_name} where ${s_type} like #{s_key};
 	</select>
+	<select id = "productlist" resultType = "com.windy.vo.Product">
+		select * from product;
+	</select>
 	<insert id = "ins" parameterType = "board">
 		insert into ${board_name} (nick, board_title, board_content, board_date, board_good, board_view, board_image, board_file) values(#{nick}, #{board_title}, #{board_content}, now(), 0, 0, #{board_image}, #{board_file});
 	</insert>

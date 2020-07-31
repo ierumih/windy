@@ -4,7 +4,7 @@
 	}
 	.wrap{
 		width: 1080px;
-		height:3000px;
+		height:4000px;
 	}
 	#menu9{
 		float: left;
@@ -13,6 +13,7 @@
 		background: rgba(0,0,0,.1);
 		position: fixed;
 		padding-left: 40px;
+		z-index:999;
 	}
 	#menubtn9{
 		float: left;
@@ -60,13 +61,14 @@
 		
 		font-weight: bold;
 	}
-	#sub_t{
+	.sub_t{
 		font-size: 65px;
 		font-weight: bold;
 		text-align: center;
-		margin-top: 50px;
 		background-color: white;
 		width: 1080px;
+		z-index:99;
+		
 	}
 	#add_prod{
 		position: fixed;

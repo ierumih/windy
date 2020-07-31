@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.windy.board.action.*;
+import com.windy.shop.action.ProductListAction;
 import com.windy.vo.ActionForward;
 
 @WebServlet("*.b")
@@ -102,6 +103,16 @@ public class BController extends javax.servlet.http.HttpServlet{
 		}
 		else if(command.equals("/boarddelete.b")){
 			action = new BoardDeleteAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals("/shopBestList.b")){
+			System.out.println("comeon");
+			action = new ProductListAction();
 			try{
 				forward=action.execute(request, response);
 			}catch(Exception e){
