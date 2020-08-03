@@ -24,7 +24,7 @@
 			</div>
 			<div id = "headr">
 				<div>
-					로그인 | <a href = "mypage.html">마이페이지</a>
+					<a href ="join.jsp">로그인</a> | <a href = "mypage.jsp">마이페이지</a>
 				</div>
 			</div>
 		
