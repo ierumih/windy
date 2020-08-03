@@ -9,6 +9,8 @@
 	<title>WINDY</title>
 </head>
 	<meta charset="utf-8">
+	<link rel="stylesheet" href="DaumEditor-master/daumeditor/css/editor.css" type="text/css" charset="utf-8"/>
+ 	<script src="DaumEditor-master/daumeditor/js/editor_loader.js?environment=development" type="text/javascript" charset="utf-8"></script>
 	<style>
 		/*@font-face {
 			font-family:Noto Sans CJK Regular;
