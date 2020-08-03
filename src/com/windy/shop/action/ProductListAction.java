@@ -13,12 +13,19 @@ import com.windy.vo.Product;
 
 public class ProductListAction implements Action {
 	public ActionForward execute(HttpServletRequest request,HttpServletResponse response) throws Exception{
-		ActionForward forward = new ActionForward();
 		
+		ActionForward forward = null;
+		String p_kind = request.getParameter("p_kind");
+		
+		if(p_kind==null) {
+		forward = new ActionForward();
 		ProductListService productListService = new ProductListService();
-		List<Product> list = productListService.productlist();
-		request.setAttribute("list",list);
+		List<Product> Blist = productListService.Bproductlist();
+		request.setAttribute("Blist",Blist);
 		forward.setPath("shop_main.jsp");
+		}
+		
+		// p_kind 로 받은 값을 기준으로 상품 진열해야함. 디테일 하고 넘어오셈
 		return forward;
 	}
 }

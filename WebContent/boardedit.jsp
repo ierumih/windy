@@ -16,6 +16,8 @@
  <head>
   <meta charset = "utf-8">
   <title>게시판</title>
+  	<link rel="stylesheet" href="DaumEditor-master/daumeditor/css/editor.css" type="text/css" charset="utf-8"/>
+ 	<script src="DaumEditor-master/daumeditor/js/editor_loader.js?environment=development" type="text/javascript" charset="utf-8"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<style>
 				/*@font-face {
@@ -247,7 +249,7 @@
 						@decsription
 						등록하기 위한 Form으로 상황에 맞게 수정하여 사용한다. Form 이름은 에디터를 생성할 때 설정값으로 설정한다.
 					-->
-					<form name="tx_editor_form" id="tx_editor_form" action="boardedit.b" method="post" accept-charset="utf-8">
+					<form name="tx_editor_form" id="tx_editor_form" action="boardedit.b?board_name=<%=board.getBoard_name()%>&board_num=<%=board.getBoard_num()%>" method="post" accept-charset="utf-8">
 						<div id="titlebox">
 							<input type = "text" id = "title" name = "title" placeholder = "제목 입력" value = <%=board.getBoard_title() %>>
 						</div>
@@ -668,9 +670,6 @@
 							</div>
 						</div>
 					</div>
-					<input type="hidden" name = "board_n
-					ame" value = "<%=board.getBoard_name()%>">
-					<input type="hidden" name = "board_num" value = "<%=board.getBoard_num()%>">
 								<!-- 첨부박스 끝 -->
 						</div>
 						<!-- 에디터 컨테이너 끝 -->
@@ -773,7 +772,6 @@
 				        var form = editor.getForm();
 				        var content = editor.getContent();
 				        var title = document.getElementById('title');
-				        
 				        // 본문 내용을 필드를 생성하여 값을 할당하는 부분
 				        var textarea = document.createElement('textarea');
 				        textarea.style.display = 'none';

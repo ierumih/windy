@@ -9,7 +9,7 @@ import com.windy.board.svc.BoardListSVC;
 import com.windy.vo.ActionForward;
 import com.windy.vo.Board;
 import com.windy.vo.Page;
-import com.windy.vo.Search;
+
 
 public class BoardListAction implements Action{
 

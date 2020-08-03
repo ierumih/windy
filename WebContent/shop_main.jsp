@@ -3,9 +3,11 @@
 <%@page import="org.apache.ibatis.session.SqlSession"%>
 <%@page import="com.windy.dao.DAO" %>
 <%@page import="com.windy.vo.Product" %>
+<%@page import="java.text.DecimalFormat" %>
 <%@page import="java.util.*" %>
 <%
-	List<Product> list = (List<Product>)request.getAttribute("list");
+	List<Product> Blist = (List<Product>)request.getAttribute("Blist");
+	DecimalFormat formatter = new DecimalFormat("###,###");
 %>
 <!DOCTYPE html>
 <html>
@@ -169,32 +171,32 @@
 	<div class="wrap">
 		<div id="pp"></div>
 		<div class="sub_t" id="rb">Road Bike</div><div class="left">
-		<%for(int i=0;i<list.size();i++) {
-			if(list.get(i).getP_kind().equals("road")){
+		<%for(int i=0;i<Blist.size();i++) {
+			if(Blist.get(i).getP_kind().equals("road")){
 				
-				out.println("<ul><li class='pic hvr-reveal'><img src="+list.get(i).getP_img()+"></li>");
-					out.println("<li>"+list.get(i).getP_name()+"</li>");
-					out.println("<li>"+list.get(i).getP_detail()+"</li>");
-					out.println("<li>"+list.get(i).getP_price()+"</li></ul>");
+				out.println("<ul><a href='productDetail.b?p_code="+Blist.get(i).getP_code()+"'><li class='pic hvr-reveal'><img src="+Blist.get(i).getP_img()+"></li></a>");
+					out.println("<li>"+Blist.get(i).getP_name()+"</li>");
+					out.println("<li>"+Blist.get(i).getP_detail()+"</li>");
+					out.println("<li>"+formatter.format(Blist.get(i).getP_price())+"</li></ul>");
 			}}%>
 			</div>
 			<div class="sub_t" id="mtb">MTB</div><div class='left'>
-			<%for(int i=0;i<list.size();i++) {
-			if(list.get(i).getP_kind().equals("mtb")){
-				out.println("<ul><li class='pic hvr-reveal'><img src="+list.get(i).getP_img()+"></li>");
-					out.println("<li>"+list.get(i).getP_name()+"</li>");
-					out.println("<li>"+list.get(i).getP_detail()+"</li>");
-					out.println("<li>"+list.get(i).getP_price()+"</li></ul>");
+			<%for(int i=0;i<Blist.size();i++) {
+			if(Blist.get(i).getP_kind().equals("mtb")){
+				out.println("<ul><a href='productDetail.b?p_code="+Blist.get(i).getP_code()+"'><li class='pic hvr-reveal'><img src="+Blist.get(i).getP_img()+"></li></a>");
+					out.println("<li>"+Blist.get(i).getP_name()+"</li>");
+					out.println("<li>"+Blist.get(i).getP_detail()+"</li>");
+					out.println("<li>"+formatter.format(Blist.get(i).getP_price())+"</li></ul>");
 			}}%>
 			</div>
 				
 			<div class="sub_t" id="hb">Hybrid Bike</div><div class='left'>
-			<%for(int i=0;i<list.size();i++) {
-			if(list.get(i).getP_kind().equals("hy")){
-				out.println("<ul><li class='pic hvr-reveal'><img src="+list.get(i).getP_img()+"></li>");
-					out.println("<li>"+list.get(i).getP_name()+"</li>");
-					out.println("<li>"+list.get(i).getP_detail()+"</li>");
-					out.println("<li>"+list.get(i).getP_price()+"</li></ul>");
+			<%for(int i=0;i<Blist.size();i++) {
+			if(Blist.get(i).getP_kind().equals("hy")){
+				out.println("<ul><a href='productDetail.b?p_code="+Blist.get(i).getP_code()+"'><li class='pic hvr-reveal'><img src="+Blist.get(i).getP_img()+"></li></a>");
+					out.println("<li>"+Blist.get(i).getP_name()+"</li>");
+					out.println("<li>"+Blist.get(i).getP_detail()+"</li>");
+					out.println("<li>"+formatter.format(Blist.get(i).getP_price())+"</li></ul>");
 			}}%>
 			</div>
 	</div>

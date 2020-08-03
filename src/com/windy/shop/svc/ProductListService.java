@@ -7,11 +7,11 @@ import com.windy.dao.DAO;
 import com.windy.vo.Product;
 
 public class ProductListService {
-	public List<Product> productlist(){
+	public List<Product> Bproductlist(){
 		DAO.getConn();
-		List<Product> list = new ArrayList<Product>();
-		list = DAO.productList();
+		List<Product> Blist = new ArrayList<Product>();
+		Blist = DAO.BproductList();
 		
-		return list;
+		return Blist;
 	}
 }

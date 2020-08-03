@@ -144,11 +144,17 @@ public class DAO {
 		return chk;
 	}
 	
-	public static List<Product> productList() {
+	public static List<Product> BproductList() {
 		SqlSession sqlsession = sqlfactory.openSession();
-		List<Product> productlist = sqlsession.selectList("productlist");
+		List<Product> Bproductlist = sqlsession.selectList("Bproductlist");
 		sqlsession.close();
-		return productlist;
+		return Bproductlist;
+	}
+	public static Product productdetail(String p_code) {
+		SqlSession sqlsession = sqlfactory.openSession();
+		Product detail = sqlsession.selectOne("productdetail", p_code);
+		sqlsession.close();
+		return detail;
 	}
 	
 }

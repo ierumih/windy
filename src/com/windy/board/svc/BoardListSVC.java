@@ -5,7 +5,7 @@ import java.util.*;
 import com.windy.dao.DAO;
 import com.windy.vo.Board;
 import com.windy.vo.Page;
-import com.windy.vo.Search;
+
 
 public class BoardListSVC {
 	

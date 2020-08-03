@@ -21,64 +21,16 @@
 			font-family:Noto Sans CJK Regular;
 			src:url(https://dl.dropboxusercontent.com/s/zkw6tapuv8oj6cn/NSKR400.woff);}
 		*/
-		*{
-			margin:0 auto;
-			padding:0;
-			font-family: 'Nanum Gothic Coding', monospace;
-		}
-		header{
-			position:relative;
-			height:80px;
-			background:white;
-			background-position:center;
-			top:0;
-			margin:0 auto;
-			left:0;
-			right:0;
-			z-index:999;
-			width:100%;
-			min-width:1080px;
-		}
-		#wrapper{
-			position:relative;
-			width:100%;
-			top:0;
-			left:0;
-			overflow:hidden;
-			
-		}
-		
-		.fix{
-			position:fixed;
-			text-align:center;
-			top:0;
-		}
-		
-		
-		div img{
-			vertical-align:middle;
-		}
-		footer{
-			position:relative;
-			background-color:#5e5e5e;
-			min-width:1080px;
-			height:150px;
-			margin:auto;
-		}
-		
 		#wrap{
 			position:relative;
 			width:1080px;
-			height:850px;
-			
+			height:700px;
+		
 		}
-		.main_img{
-			width: 100%;
-			height: 100%;
-		}
+		
 		.mdiv{
 			width:1080px;
-			height:550px;
+			height:490px;
 			float:left;
 			margin-top:150px;
 			margin-bottom:150px;
@@ -102,28 +54,7 @@
 			border-radius: 7px;
 			z-index: 0;
 		}
-		.learn{
-			width: 150px;
-			height: 50px;
-			z-index: 999;
-			position: absolute;
-			top: 525px;
-			left: 350px;
-			border-radius: 5px;			
-		}
-		.learn:hover{
-			border : 2.5px double #337ab7;
-			transform: perspective(1px) translateZ(0);
-			-webkit-transition-property: border-width;
-		  	transition-property: border-width;
-		  	-webkit-transition-duration: 0.1s;
-		  	transition-duration: 0.1s;
-		 	-webkit-transition-timing-function: ease-out;
-		  	transition-timing-function: ease-out;
-		}
 		
-		
-
 		
 
 
