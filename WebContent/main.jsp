@@ -1,165 +1,62 @@
-<%@ page language = "java" contentType = "text/html; charset = UTF-8" pageEncoding = "UTF-8" %>
-<%
-	//로그인
-	String id = null;
-	String nick = null;
-	id = (String) session.getAttribute("id");
-	nick = (String) session.getAttribute("nick");
-	
-	Cookie[] cookies = request.getCookies();
-	if(cookies!=null){
-		for(int i=0; i<cookies.length;i++){
-			if(cookies[i].getName().equals("c_id")){
-				id = cookies[i].getValue();
-				session.setAttribute("id",id);
-			}
-			else if(cookies[i].getName().equals("c_nick")){
-				nick = cookies[i].getValue();
-				session.setAttribute("nick",nick);
-			}
-		}
-	}
-		
-%>
-<!doctype html>
-<html lang="en">
- <head>
-  <meta charset = "utf-8">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> 
-  <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
-  <title>메인(추성호)</title>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>WINDY</title>
+	  <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	  <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	  <!--tap bar slide-->
+	  <script src="tendina-master/dist/tendina.js"></script>
+	  <!--font-->
+	  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap"  rel="stylesheet">
+	  <link href="https://fonts.googleapis.com/css2?family=Rowdies:wght@300&display=swap" rel="stylesheet">  <!--font-->
+	  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+	<meta charset="utf-8">
 	<style>
+		/*@font-face {
+			font-family:Noto Sans CJK Regular;
+			src:url(https://dl.dropboxusercontent.com/s/zkw6tapuv8oj6cn/NSKR400.woff);}
+		*/
 		*{
 			margin:0 auto;
 			padding:0;
 			font-family: 'Nanum Gothic Coding', monospace;
+		}
+		header{
+			position:relative;
+			height:80px;
+			background:white;
+			background-position:center;
+			top:0;
+			margin:0 auto;
+			left:0;
+			right:0;
+			z-index:999;
+			width:100%;
+			min-width:1080px;
 		}
 		#wrapper{
 			position:relative;
 			width:100%;
 			top:0;
 			left:0;
+			overflow:hidden;
+			
 		}
-		header{
-			min-width:1080px;
-			position:relative;
-			height:140px;
-			background:white;
-			top:0;
-			margin:0 auto;
-			left:0;
-			right:0;
-			z-index:999;
-		}
+		
 		.fix{
 			position:fixed;
 			text-align:center;
 			top:0;
 		}
-		#headt{
-			width:1080px;
-			height:80px;
-			position:relative;
-		}
-		#logo{
-			margin-top:-8px;
-			width:70px;
-			height:70px;
-		}
-		#headl{
-			height:80px;
-			float:left;
-			font-size:25pt;
-			font-weight:900;
-			color:black;
-			line-height:80px;
-			font-family:"굴림";
-		}
-		#headr{
-			width:500px;
-			height:80px;
-			float:right;
-			display:table;
-		}
-		#headr div{
-			width:500px;
-			display:table-cell;
-			vertical-align:middle;
-			text-align:right;
-		}
-		#headb{
-			width:100%;
-			min-width:1080px;
-			height:60px;
-			color:white;
-			clear:both;
-			background-color:#303030;		
-		}
-		#headb a{
-			color:white;
-			text-decoration:none
-		}
-		#menu{
-			min-width:1080px;
-			height:60px;
-			display:table;
-			margin-bottom:0;
-			font-size:13pt;
-		}
-		#menu li{
-			width:154px;
-			display:table-cell;
-			text-align:center;
-		}
-		#menu li a {
-			display:block;
-			width:100%;
-			height:100%;
-			line-height:60px;
-		}
-		#menu li:hover{
-			cursor: pointer;
-			background-color: #aaaaaa;
-		}
-		#submenu{
-			position:relative;
-			min-width:1080px;
-			height:175px;
-			display:block;
-			background-color:#5e5e5e;
-			z-index:50;
-			padding-top:10px;
-		}
-		#submenuin{
-			display:table;
-			line-height:30px;
-		}
-		#submenuin ul{
-			width:154px;
-			display:table-cell;
-			list-style-type:none;
-			text-align:center;
-		}
-		#submenuin ul li {
-			color:white;
-			text-align: center;
-			line-height: 1.8;
-			font-size: 13px;
-			list-style-type:none;
-		}
+		
+		
 		div img{
 			vertical-align:middle;
-		}
-		#wrap{
-			position:relative;
-			width:1080px;
-			height:1080px;
-			z-index:1;
 		}
 		footer{
 			position:relative;
@@ -168,98 +65,94 @@
 			height:150px;
 			margin:auto;
 		}
-		#foot{
+		
+		#wrap{
 			position:relative;
-			padding-top:30px;
 			width:1080px;
-			height:100px;
-			color:white;
+			height:850px;
+			
 		}
-		#foot ul{
-			list-style-type:none;			
-		}
-		#foot ul li{
-			display:inline;
-		}
-		nav{
-			width:160px;
-			height:1000px;
-			background-color:#FBFBEF;
-			float:left;
-		}
-		nav div{
-			width:100px;
-			height:400px;
-			border:1px solid red;
-			margin:20px auto auto auto;
-		}
-		nav div ul{
-			list-style-type:none;
-			display:inline;
-		}
-		nav div ul li{
-			vertical-align:middle;
-			border:solid red 1px;
+		.main_img{
+			width: 100%;
+			height: 100%;
 		}
 		.mdiv{
 			width:1080px;
-			height:400px;
+			height:550px;
 			float:left;
-			margin-top:40px;
-			margin-bottom:40px;
+			margin-top:150px;
+			margin-bottom:150px;
 		}
 		.mdiv div{
-			background:#f0f0f0;
+			/*background:#f0f0f0;*/
 		}
 		.mdivl{
 			width:530px;
-			height:380px;
+			height:450px;
 			float:left;
 			margin:20px 20px 0 0;
 			position:relative;
 			overflow:hidden;
 			font-size:12pt;
 		}
-		.mdivl div{
-			position:relative;
-			width:530px;
-			height:30px;
-			text-align:center;
-			font-weight:800;
-			font-size:15pt;
-		}
 		.mdivl img{
 			position:relative;
-			width:300px;
-			height:300px;
-			margin-top:20px;
+			width:530px;
+			height:450px;
+			border-radius: 7px;
+			z-index: 0;
 		}
-		.mdivl ul{
-			position:absolute;
-			top:50px;
-			left:320px;
-			list-style-type:none;
-			font-size:12pt;
+		.learn{
+			width: 150px;
+			height: 50px;
+			z-index: 999;
+			position: absolute;
+			top: 525px;
+			left: 350px;
+			border-radius: 5px;			
 		}
+		.learn:hover{
+			border : 2.5px double #337ab7;
+			transform: perspective(1px) translateZ(0);
+			-webkit-transition-property: border-width;
+		  	transition-property: border-width;
+		  	-webkit-transition-duration: 0.1s;
+		  	transition-duration: 0.1s;
+		 	-webkit-transition-timing-function: ease-out;
+		  	transition-timing-function: ease-out;
+		}
+		
+		
+
+		
+
+
 		.mdivr{
 			width:530px;
 			height:180px;
 			float:left;
-			margin:20px 0 0 0;
+			margin:25px 0 0 0;
 			font-size:12pt;
+			border-bottom: 1px solid #af833770;
 		}
 		.mdivr div{
 			width:530px;
 			height:40px;
 			font-size:15pt;
-			text-align:center;
+			text-align: center;
 			font-weight:800;
+		}
+		.mdivrspan{
+			font-size: 8pt;
+			float: right;
+			padding: 7px 5px 0 0;
 		}
 		.mdivr > ul{
 			padding: 0 0 0 20px;
 			width:100%;
 			height:120px;
 			list-style-type:circle;
+			margin-top: 10px;
 		}
 		.mdivr > ul li{
 			height:25%;
@@ -272,22 +165,22 @@
 			display:inline-block;
 		}
 		.mdivr ul li ul li:first-child{
-			width:20%;
-		}
-		.mdivr ul li ul li:nth-child(2){
-			width:55%;
+			width:75%;
+			font-size: 11pt;
 		}
 		.mdivr ul li ul li:last-child{
 			width:20%;
 			text-align:right;
+			font-size: 8pt;
 		}
 		#weather{
 			position:relative;
 			width:530px;
-			height:180px;
+			height:245px;
 			float:left;
 			margin:20px 0 0 0;
 			z-index:10;
+			border-bottom: 1px solid #af833770;
 		}
 		.mdiv2{
 			position:relative;
@@ -338,8 +231,9 @@
 			width:530px;
 			height:30px;
 			background:#5e5e5e;
-			color:white;
-			border-radius:10px;
+			color:#1b1717ad;
+			border-radius:10px 10px 0 0;
+			background:#af833770;
 		}
 		#weat{
 			line-height:30px;
@@ -358,62 +252,186 @@
 		#weat > li > ul{
 			list-style-type:none;
 			font-size:10pt;
-			background:#8e8e8e;;
+			background:#8e8e8e;
 			padding:0 0 5px 0;
-			border-radius:10px;
+			border-radius:0 0 10px 10px;
+			background:#dddddd8c;
 		}
 		#weat > li > ul > li{
 			height:25px;
 		}
 		#weal{
-			position:absolute;
-			top:60px;
 			left:0;
-			width:220px;
-			height:120px;
+			width:530px;
+			height:180px;
 			z-index:0;
+			background-color: rgba(0, 0, 0, 0.4);
 		}
 		#weal img{
-			position:absolute;
+			/*position:absolute;*/
 			right:0;
-			width:110px;
-			height:110px;
-			margin-top:5px;
+			width:530px;
+			height:180px;
+			border-radius: 0 0 10px 10px;
+
+			
 		}
 		#wear{
 			position:absolute;
-			top:60px;
-			right:0;
-			width:280px;
-			height:120px;
-			z-index:0;
+			color : white;
+			top:30px;
+			width:530px;
+			height:180px;
+			z-index:2;
+			background-color: rgba(0, 0, 0, 0.1);
+			border-radius: 0 0 10px 10px;
+			padding-left: 150px;
 		}
 		#wear ul{
+			line-height: 2.1;
 			padding:15px 0 0 0;
-			font-size:15pt;
 			list-style-type:none;
+			font-weight: bold;
 		}
 		#wear ul li{
 			padding:0 0 0 60px;
+			font-size: 17px;
 		}
-		#nb{
-			position:relative;
-			width:100%;
-			min-width:1080px;
+		.img_community{
+			position: relative;
+			width: 345px;
+			height: 300px;
+			border-radius: 10px;
+			margin: 10px 0 10px 10px;
 		}
-		#nb img{
-			width:100%;
-			max-width:100%;
+		.community{
+			width: 345px;
+			height: 300px;
 		}
-	</style>
- </head>
+		.img_health{
+			position: relative;
+			width: 345px;
+			height: 300px;
+			border-radius: 10px;
+			margin: 0 10px 10px 10px;
+		}
+		.vital{
+			padding-left: 120px;
+			width: 345px;
+			height: 300px;
+		}
+		.img_race{
+			position: relative;
+			width: 375px;
+			height: 610px;
+			border-radius: 10px;
+		}
+		.race{
+			width: 375px;
+			height: 610px;
+		}
+		.img_bike{
+			position: relative;
+			width: 613px;
+			height: 300px;
+			margin-right: 10px;
+			overflow: hidden;
+			margin:0 0 10px 10px;	
+			border-radius: 10px;
+		}
+		.img_bike img{
+			background-size: initial;
+			margin-top: -150px;
 
- <script>
+		}
+		.bike{
+			width: 613px;
+			height: 300px;
+		}
+		.cate4{
+			font-size: 70pt;
+			color: #ddd;
+			font-family: 'Rowdies', cursive;
+
+		}
+		.section_hei{
+			height: 730px;
+		}
+		
+		.bike_content{
+			position: absolute;                                                                
+		    font-size:5rem;
+		    color: white;
+		    z-index: 2;
+		    width: 613px;
+		    height: 300px;
+		    text-align: center;
+		    line-height: 300px;
+		    border-radius: 10px;
+		    margin-left: 10px;
+		    background-color: rgba(0, 0, 0, 0.4);
+		}
+		.health_content{
+			position: absolute;                                                                
+		    font-size:5rem;
+		    color: white;
+		    z-index: 2;
+		    width: 345px;
+		    height: 300px;
+		    text-align: center;
+		    line-height: 300px;
+		    margin-left: 10px;
+		    border-radius: 10px;
+		    background-color: rgba(0, 0, 0, 0.4);
+		}
+		.race_content{
+			position: absolute;                                                                
+		    font-size:5rem;
+		    color: white;
+		    z-index: 2;
+		    width: 375px;
+		    height: 610px;
+		    text-align: center;
+		    line-height: 610px;
+		    border-radius: 10px;
+		    background-color: rgba(0, 0, 0, 0.4);
+		}
+		.health2_content{
+			position: absolute;                                                                
+		    font-size:5rem;
+		    color: white;
+		    z-index: 2;
+		    width: 345px;
+		    height: 300px;
+		    text-align: center;
+		    line-height: 300px;
+		    margin: 10px 0 0 10px;
+		    border-radius: 10px;
+		    background-color: rgba(0, 0, 0, 0.4);
+		}
+		.course{
+			width:530px;
+			height:450px;
+			z-index: 20;
+			color: white;
+			position: absolute;
+			line-height: 450px;
+			font-size: 5rem;
+			text-align: center;
+			background-color: rgba(0, 0, 0, 0.4);
+			border-radius: 7px;
+		}
+		
+		
+		
+	</style>
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+	<script>
 	$(document).ready(function(){
 		var api = "http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=5141ea7889133873d1ded5d335ff5ed8";
 		var api1 = "http://api.openweathermap.org/data/2.5/weather?q=";
 		var api2 = "&appid=5141ea7889133873d1ded5d335ff5ed8";
-		var img = "img/we/";
+		var img = "img/we2/";
 		$.ajax({
 			url: api,
 			dataType:"json",
@@ -425,14 +443,30 @@
 				var nam = "서울";
 				var id = (res.weather[0].id);
 				if((id==701)||(id==711)||(id==721)||(id==731)||(id==741)||(id==751)||(id==761)||(id==762)||(id==771)||(id==781)){
-					$("#weather").find("img").attr("src",(img+"Fog.gif"));
+					$("#weather").find("img").attr("src",(img+"Fog.jpg"));
 				}
 				else{
-					$("#weather").find("img").attr("src",(img+wea+".gif"));
+					$("#weather").find("img").attr("src",(img+wea+".jpg"));
 				}
+				if(wea == "Clouds"){
+						wea="흐림";
+					}else if (wea == "Thunderstorm") {
+						wea="낙뢰"
+					}else if (wea == "Rain") {
+						wea="비"
+					}else if (wea == "Drizzle") {
+						wea="이슬비"
+					}else if (wea == "Clear") {
+						wea="맑음"
+					}else if (wea == "Fog") {
+						wea="안개"
+					}else if (wea == "Snow") {
+						wea="눈"
+					}
 				$("#wcity").html("지역 : "+nam);
 				$("#wtemp").html("온도 : "+temp+"℃");
-				$("#whum").html("습도 : "+hum);
+				$("#whum").html("습도 : "+hum+" %");
+				$("#wwea").html("날씨 : "+wea);
 			}
 		});
 		$('.mdiv4').bxSlider();
@@ -454,149 +488,217 @@
 					var temp = ((res.main.temp)-273).toFixed(1);
 					var hum = (res.main.humidity);
 					var wea = (res.weather[0].main);
+					
 					//var nam = (res.name);
 					var id = (res.weather[0].id);
 					if((id==701)||(id==711)||(id==721)||(id==731)||(id==741)||(id==751)||(id==761)||(id==762)||(id==771)||(id==781)){
-						$("#weather").find("img").attr("src",(img+"Fog.gif"));
+						$("#weather").find("img").attr("src",(img+"Fog.jpg"));
 					}
 					else{
-						$("#weather").find("img").attr("src",(img+wea+".gif"));
+						$("#weather").find("img").attr("src",(img+wea+".jpg"));
 					}
+					if(wea == "Clouds"){
+						wea="흐림";
+					}else if (wea == "Thunderstorm") {
+						wea="낙뢰"
+					}else if (wea == "Rain") {
+						wea="비"
+					}else if (wea == "Drizzle") {
+						wea="이슬비"
+					}else if (wea == "Clear") {
+						wea="맑음"
+					}else if (wea == "Fog") {
+						wea="안개"
+					}else if (wea == "Snow") {
+						wea="눈"
+					}
+					
 					$("#wcity").html("지역 : "+nam);
 					$("#wtemp").html("온도 : "+temp+"℃");
-					$("#whum").html("습도 : "+hum);
+					$("#whum").html("습도 : "+hum+" %");
+					$("#wwea").html("날씨 : "+wea);
 				}
 			});
 		});
-		$("#menu").mouseenter(function(){
-			$("#submenu").stop().slideDown(400);
+			$("#submenu").hide();
+			$("#menu").mouseenter(function(){
+				$("#submenu").stop().slideDown(400);
+			});
+			$("header").mouseleave(function(){
+				$("#submenu").stop().slideUp(400);
+			});
+			$(window).scroll(function(){
+				var scr = $(document).scrollTop();
+				if (scr>140)
+				{
+					$("#headb").addClass("fix");
+				}
+				else {
+					$("#headb").removeClass("fix");
+				}
+			});
 		});
-		$("header").mouseleave(function(){
-			$("#submenu").stop().slideUp(400);
+	</script>
+	<script>
+	  $(document).ready(function(){
+		$('#tapbar').tendina({  
 		});
-		$(window).scroll(function(){
-			var scr = $(document).scrollTop();
-			if (scr>80)
-			{
-				$("#headb").addClass("fix");
-			}
-			else {
-				$("#headb").removeClass("fix");
-			}
+		$('.slider').bxSlider({
+	  	auto:true,
+		pause:4000,
+		controls:false,
+		stopAutoOnClick:true,
 		});
-		$(".bx-viewport").mouseover(function(){
+	  });
+	</script>
+	<script>
+		$(document).ready(function(){
+			$(".learn").hide();
+			$(".course").hide();
+			$(".mdivl img").hover(
+				function(){
+					$(".course").fadeIn();
+					$(".learn").show();
+				},
+				function(){
+					$(".course").hide();
+					$(".learn").hide();
+				}
+			);
+			
+			// $(".learn").hover(
+			// 	function(){
+			// 		$(".course").show();
+			// 		$(this).show();
+			// 	},
+			// 	function(){
+			// 		$(".course").hide();
+			// 		$(this).hide();					
+			// 	}
+			// );
+			$(".learn").mouseover(
+				function(){
+					$(".course").show();
+					$(this).show();
+				});
+
+			$(".course").hover(
+				function(){
+					$(this).show();
+					$(".learn").fadeIn();
+				},
+				function(){
+					$(this).fadeOut();
+					$(".learn").fadeOut();
+				}
+			);
+
 
 		});
-	});
+	</script>
+	<script>
+		$(document).ready(function(){
+			$(".health_content").hide();
+			$(".health2_content").hide();
+			$(".bike_content").hide();
+			$(".race_content").hide();
 
- </script>
+			//health
+			$(".img_health").hover(
+				function(){
+					$(".health_content").fadeIn();
+				},
+				function(){
+					$(".health_content").hide();	
+				}
+			);
+			$(".health_content").hover(
+				function(){
+					$(".health_content").show();
+				},
+				function(){
+					$(".health_content").fadeOut();
+				}
+			);
 
- <body>
-  <div id = "wrapper">
+			//community
+			$(".img_community").hover(
+				function(){
+					$(".health2_content").fadeIn();
+				},
+				function(){
+					$(".health2_content").hide();	
+				}
+			);
+			$(".health2_content").hover(
+				function(){
+					$(".health2_content").show();
+				},
+				function(){
+					$(".health2_content").fadeOut();
+				}
+			);
+
+			//bike
+			$(".img_bike img").hover(
+				function(){
+					$(".bike_content").fadeIn();
+				},
+				function(){
+					$(".bike_content").hide();	
+				}
+			);
+			$(".bike_content").hover(
+				function(){
+					$(".bike_content").show();
+				},
+				function(){
+					$(".bike_content").fadeOut();
+				}
+			);
+
+			//race
+			$(".img_race").hover(
+				function(){
+					$(".race_content").fadeIn();
+				},
+				function(){
+					$(".race_content").hide();	
+				}
+			);
+			$(".race_content").hover(
+				function(){
+					$(".race_content").show();
+				},
+				function(){
+					$(".race_content").fadeOut();
+				}
+			);
+
+			
+
+
+			
+		})
+	</script>
+<body>
+	
  	<header>
-		<div id = "headt">
-			<a href = "main.jsp"><div id = "headl">
-				<img id = "logo" src = "img/logo1.jpg">
-				WINDY
-			</div></a>
-			<div id = "headr">
-				<div>
-					<%
-						if(nick!=null)
-							out.print(nick+"님 환영합니다. | <a href = 'logout.jsp'>로그아웃</a>");
-						else
-							out.print("<a href = 'join.jsp'>회원가입</a> | <a href = 'login.jsp'>로그인</a>");
-					%>
-					 | <a href = "mypage.jsp">마이페이지</a>
-				</div>
-			</div>
-		</div>
-		<div id = "headb">
-			<ul id = "menu">
-				<li>
-					자전거 정보
-				</li>
-				<li>
-					투어
-				</li>
-				<li>
-					이벤트
-				</li>
-				<li>
-					추천 코스
-				</li>
-				<li>
-					<a href = "boardlist.b?board_name=freeb">게시판</a>
-				</li>
-				<li>
-					<a href = "shoppingmall.html">쇼핑몰</a>
-				</li>
-				<li>
-					건강관리
-				</li>
-			</ul>
-			<div id = "submenu">
-				<div id = "submenuin">
-						<ul>
-							<li>자전거 정보</li>
-						</ul>
-						<ul>
-							<li>전국 투어</li>
-							<li>투어 계획 세우기</li>
-							<li>업적</li>
-							<li>추천 동선</li>
-							<li>수리점 찾기</li>
-						</ul>
-						<ul>
-							<li>이벤트</li>
-							<li>이벤트 정보</li>
-						</ul>
-						<ul>
-							<li>추천 코스</li>
-							<li>추천 코스 정보</li>
-						</ul>
-						<ul>
-							<li>자유게시판</li>
-							<li>인증게시판</li>
-							<li>거래게시판</li>
-						</ul>
-						<ul>
-							<li>자전거</li>
-							<li>부수기재</li>
-							<li>장바구니</li>
-							<li>관심물품</li>
-							<li>가격비교</li>
-						</ul>
-						<ul>
-							<li>비만도 계산</li>
-							<li>코스 추천</li>
-							<li>식단 제공</li>
-							<li>건강 변화 확인</li>
-						</ul>
-				</div>
-			</div>
-		</div>
+		<jsp:include page="header2.jsp"/>
 	</header>
-	<div id = "nb">
-		<img src = "img/01.jpg"/>
-	</div>
+		<div>
+			<img src = "img/white_bike21.jpg" class="main_img">
+		</div>
 	<div id = "wrap">
 		<div class = "mdiv">
 			<div class = "mdivl">
-				<div>
-					금주의 추천 코스
-				</div>
-				<img src = "img/c1.jpg">
-				<ul>
-					<li>코스 이름:###</li>
-					<li>코스 길이:###</li>
-					<li>코스 정보:###</li>
-				</ul>
+				<div class="course">COURSE</div>				
+				<img src = "img/course13.jpg">	
 			</div>
+			
+			<img src="img/learnmore.png" class="learn">
 			<div id = "weather">
-				<div id = "weatdiv1">
-					오늘의 날씨
-				</div>
+				
 				<div id = "weatdiv2">
 					<ul id = "weat">
 						<li>서울
@@ -749,69 +851,97 @@
 				<div id = "wear">
 					<ul>
 						<li id = "wcity"><img src = "img/loading.gif"/></li>
+						<li id = "wwea"><img src = "img/loading.gif"/></li>
 						<li id = "wtemp"><img src = "img/loading.gif"/></li>
-						<li id = "whum"><img src = "img/loading.gif"/></li>
+						<li id = "whum"><img src = "img/loading.gif"/></li>						
 					</ul>
 				</div>
 			</div>
 			<div  class = "mdivr">
-				<div>최신 뉴스</div>
+				<div>최신 뉴스<span class="mdivrspan">더보기 ▶</span></div>
 				<ul>
 					<li>
 						<ul>
-							<li>뉴스제목</li>
-							<li>뉴스1내용</li>
-							<li>2020-00-00</li>
+							<li>GS칼텍스 주유소, 카카오 전기자전거 충전소로 변신</li>
+							<li>2020-07-21</li>
 						</ul>
 					</li>
 					<li>
 						<ul>
-							<li>뉴스제목</li>
-							<li>뉴스1내용</li>
-							<li>2020-00-00</li>
+							<li>코로나 영향.. 전세계 자전거 이용 40% '급증'</li>
+							<li>2020-07-22</li>
 						</ul>
 					</li>
 					<li>
 						<ul>
-							<li>뉴스제목</li>
-							<li>뉴스1내용</li>
-							<li>2020-00-00</li>
+							<li>'안전,크기,AS' 어린이 자전거 구매 팁 3가지</li>
+							<li>2020-07-17</li>
 						</ul>
 					</li>
 					<li>
 						<ul>
-							<li>뉴스제목</li>
-							<li>뉴스1내용</li>
-							<li>2020-00-00</li>
+							<li>구글 맵에 자전거 내비게이션 기능 도입된다</li>
+							<li>2020-07-21</li>
 						</ul>
 					</li>
 				</ul>
 			</div>
 		</div>
-		<div class = "mdiv2">
-			<div class = "mdiv3">
-				추천 아이템
-			</div>
-			<div class = "mdiv4">
-				<div><img src = "img/b1.jpg"></div>
-				<div><img src = "img/b2.jpg"></div>
-				<div><img src = "img/b3.jpg"></div>
-			</div>
 		</div>
+		<section class="section_hei">
+			<table>
+				<tr>
+					<td colspan="2"><div class="cate4" >CATEGORY</div></td>
+
+					<td rowspan="2" class="race">
+						<div>
+							<div class="race_content">
+								EVENT
+							</div>
+							<img src="img/race11.jpg" class="img_race">
+						</div>
+					</td>
+
+					<td class="community">
+						<div>
+							<div class="health2_content">
+								COMMUNITY
+							</div>
+							<a href="board.jsp"><img src="img/community.jpg" class="img_community"></a>
+						</div>
+					</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td class="vital">
+						<div>
+							<div class="health_content">
+								HEALTH
+							</div>
+							<img src="img/vital.jpg" class="img_health">
+						</div>
+					</td>
+					<td colspan="2" class="bike">
+						<div>
+							<div class="bike_content">
+								BICYCLE
+							</div>
+							<div class="img_bike"><img src="img/bb13.jpg"></div>
+						</div>
+					</td>
+				</tr>
+			</table>
+	</section>	
+	
+
+	
+	
+	<hr style="clear:both;">
+		<footer>
+			<jsp:include page="footer2.jsp"/>
+		</footer>
 	</div>
-	<footer>
-		<div id = "foot">
-		<ul>
-			<li>개인정보처리방침 |</li>
-			<li>이용약관 |</li>
-			<li>고객문의</li>
-		</ul>
-		<div>
-			<p>주소:서울특별시 강남구 역삼동 테헤란로5길 24</p>
-			<p>last update:2020-06-12</p>
-		</div>
-		</div>
-	</footer>
-  </div>
- </body>
+
+</body>
 </html>

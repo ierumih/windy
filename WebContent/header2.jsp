@@ -19,12 +19,12 @@
 <body>
 	<div id = "headt">
 			<div id = "headl">
-				<a href = "main_2.jsp"><img id = "logo" src = "img/qwer.jpg"></a>
+				<a href = "main.jsp"><img id = "logo" src = "img/qwer.jpg"></a>
 				windy
 			</div>
 			<div id = "headr">
 				<div>
-					<a href ="join.jsp">로그인</a> | <a href = "mypage.jsp">마이페이지</a>
+					<a href ="login.jsp">로그인</a> | <a href = "mypage.jsp">마이페이지</a>
 				</div>
 			</div>
 		
