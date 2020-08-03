@@ -228,6 +228,7 @@
 			font-weight:800;
 			font-size:15pt;
 		}
+<<<<<<< HEAD
 		.mdivl img{
 			position:relative;
 			width:300px;
@@ -241,6 +242,11 @@
 			list-style-type:none;
 			font-size:12pt;
 		}
+=======
+				
+
+
+>>>>>>> branch 'master' of https://github.com/ierumih/windy.git
 		.mdivr{
 			width:530px;
 			height:180px;
@@ -360,7 +366,12 @@
 			font-size:10pt;
 			background:#8e8e8e;;
 			padding:0 0 5px 0;
+<<<<<<< HEAD
 			border-radius:10px;
+=======
+			border-radius:0 0 10px 10px;
+			background:#b79c6c7d;
+>>>>>>> branch 'master' of https://github.com/ierumih/windy.git
 		}
 		#weat > li > ul > li{
 			height:25px;
@@ -430,6 +441,26 @@
 				else{
 					$("#weather").find("img").attr("src",(img+wea+".gif"));
 				}
+<<<<<<< HEAD
+=======
+				if(wea == "Clouds"){
+						wea="흐림";
+					}else if (wea == "Thunderstorm") {
+						wea="낙뢰"
+					}else if (wea == "Rain") {
+						wea="비"
+					}else if (wea == "Drizzle") {
+						wea="이슬비"
+					}else if (wea == "Clear") {
+						wea="맑음"
+					}else if (wea == "Fog") {
+						wea="안개"
+					}else if (wea == "Snow") {
+						wea="눈"
+					}else if (wea == "Mist") {
+						wea="안개"
+					}
+>>>>>>> branch 'master' of https://github.com/ierumih/windy.git
 				$("#wcity").html("지역 : "+nam);
 				$("#wtemp").html("온도 : "+temp+"℃");
 				$("#whum").html("습도 : "+hum);
@@ -462,6 +493,27 @@
 					else{
 						$("#weather").find("img").attr("src",(img+wea+".gif"));
 					}
+<<<<<<< HEAD
+=======
+					if(wea == "Clouds"){
+						wea="흐림";
+					}else if (wea == "Thunderstorm") {
+						wea="낙뢰"
+					}else if (wea == "Rain") {
+						wea="비"
+					}else if (wea == "Drizzle") {
+						wea="이슬비"
+					}else if (wea == "Clear") {
+						wea="맑음"
+					}else if (wea == "Fog") {
+						wea="안개"
+					}else if (wea == "Snow") {
+						wea="눈"
+					}else if (wea == "Mist") {
+						wea="안개"
+					}
+					
+>>>>>>> branch 'master' of https://github.com/ierumih/windy.git
 					$("#wcity").html("지역 : "+nam);
 					$("#wtemp").html("온도 : "+temp+"℃");
 					$("#whum").html("습도 : "+hum);
@@ -484,7 +536,32 @@
 				$("#headb").removeClass("fix");
 			}
 		});
+<<<<<<< HEAD
 		$(".bx-viewport").mouseover(function(){
+=======
+	  });
+	</script>
+	<script>
+		$(document).ready(function(){			
+			$(".course").hide();
+			$(".mdivl img").hover(
+				function(){
+					$(".course").fadeIn();
+				},
+				function(){
+					$(".course").hide();
+				}
+			);
+			$(".course").hover(
+				function(){
+					$(this).show();
+			},
+				function(){
+					$(this).fadeOut();					
+				}	
+			);
+
+>>>>>>> branch 'master' of https://github.com/ierumih/windy.git
 
 		});
 	});
@@ -593,6 +670,11 @@
 					<li>코스 정보:###</li>
 				</ul>
 			</div>
+<<<<<<< HEAD
+=======
+			
+			
+>>>>>>> branch 'master' of https://github.com/ierumih/windy.git
 			<div id = "weather">
 				<div id = "weatdiv1">
 					오늘의 날씨

@@ -165,6 +165,7 @@
 		.txt_nick{
 			width : 80px;
 			height : 32px;
+			text-align: center;
 		}
 		.txt_middle{
 			width:210px;
@@ -180,6 +181,7 @@
 		.sel_tel{
 			height: 32px;
 			width:92px;
+			text-align: center;
 		}
 		.txt_addres{
 			width: 70px;
@@ -482,7 +484,7 @@
 					</tr>
 					<tr>
 						<th>생년월일</th>
-						<td><input type="text" name="birth1" maxlength="4" placeholder="   YYYY" class="txt_nick"> 년 <input type="text" name="birth2" maxlength="2" placeholder="    MM" class="txt_nick"> 월 <input type="text" maxlength="2" name="birth3" placeholder="    DD" class="txt_nick"> 일</td>
+						<td><input type="text" name="birth1" maxlength="4" placeholder="YYYY" class="txt_nick"> 년 <input type="text" name="birth2" maxlength="2" placeholder="MM" class="txt_nick"> 월 <input type="text" maxlength="2" name="birth3" placeholder="DD" class="txt_nick"> 일</td>
 					</tr>
 					<tr>
 						<th>E-MAIL</th>
