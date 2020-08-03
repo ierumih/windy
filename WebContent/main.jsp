@@ -696,7 +696,6 @@
 				<img src = "img/course13.jpg">	
 			</div>
 			
-			<img src="img/learnmore.png" class="learn">
 			<div id = "weather">
 				
 				<div id = "weatdiv2">
