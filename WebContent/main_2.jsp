@@ -409,7 +409,7 @@
 		var api = "http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=5141ea7889133873d1ded5d335ff5ed8";
 		var api1 = "http://api.openweathermap.org/data/2.5/weather?q=";
 		var api2 = "&appid=5141ea7889133873d1ded5d335ff5ed8";
-		var img = "img2/we2/";
+		var img = "img/we2/";
 		$.ajax({
 			url: api,
 			dataType:"json",
@@ -647,13 +647,13 @@
 		<jsp:include page="header2.jsp"/>
 	</header>
 		<div>
-			<img src = "img2/white_bike21.jpg" class="main_img">
+			<img src = "img/white_bike21.jpg" class="main_img">
 		</div>
 	<div id = "wrap">
 		<div class = "mdiv">
 			<div class = "mdivl">
 				<div class="course">COURSE</div>				
-				<img src = "img2/course13.jpg">	
+				<img src = "img/course13.jpg">	
 			</div>
 			
 			
@@ -806,14 +806,14 @@
 					</ul>
 				</div>
 				<div id = "weal">
-					<img src = "img2/loading.gif"/>
+					<img src = "img/loading.gif"/>
 				</div>
 				<div id = "wear">
 					<ul>
-						<li id = "wcity"><img src = "img2/loading.gif"/></li>
-						<li id = "wwea"><img src = "img2/loading.gif"/></li>
-						<li id = "wtemp"><img src = "img2/loading.gif"/></li>
-						<li id = "whum"><img src = "img2/loading.gif"/></li>						
+						<li id = "wcity"><img src = "img/loading.gif"/></li>
+						<li id = "wwea"><img src = "img/loading.gif"/></li>
+						<li id = "wtemp"><img src = "img/loading.gif"/></li>
+						<li id = "whum"><img src = "img/loading.gif"/></li>						
 					</ul>
 				</div>
 			</div>
@@ -858,7 +858,7 @@
 							<div class="race_content">
 								EVENT
 							</div>
-							<img src="img2/race11.jpg" class="img_race">
+							<img src="img/race11.jpg" class="img_race">
 						</div>
 					</td>
 
@@ -867,7 +867,7 @@
 							<div class="health2_content">
 								COMMUNITY
 							</div>
-							<a href="board.jsp"><img src="img2/community.jpg" class="img_community"></a>
+							<a href="board.jsp"><img src="img/community.jpg" class="img_community"></a>
 						</div>
 					</td>
 					<td></td>
@@ -879,7 +879,7 @@
 							<div class="health_content">
 								HEALTH
 							</div>
-							<img src="img2/vital.jpg" class="img_health">
+							<img src="img/vital.jpg" class="img_health">
 						</div>
 					</td>
 					<td colspan="2" class="bike">
@@ -887,7 +887,7 @@
 							<div class="bike_content">
 								BICYCLE
 							</div>
-							<div class="img_bike"><img src="img2/bb13.jpg"></div>
+							<div class="img_bike"><img src="img/bb13.jpg"></div>
 						</div>
 					</td>
 				</tr>
