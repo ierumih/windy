@@ -13,5 +13,5 @@
 		}
 	}
 
-	response.sendRedirect(request.getHeader("referer"));
+	response.sendRedirect("main.jsp");
 %>

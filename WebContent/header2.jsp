@@ -1,4 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%
+	String id = (String) session.getAttribute("id");
+	String nick = (String) session.getAttribute("nick");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +28,8 @@
 			</div>
 			<div id = "headr">
 				<div>
-					<a href ="login.jsp">로그인</a> | <a href = "mypage.jsp">마이페이지</a>
+					<%if(id!=null) {%><a href ="mypage.jsp">마이페이지</a> | <a href = "logout.jsp">로그아웃</a>
+					<%}else {%><a href ="join.jsp">회원가입</a> | <a href = "login.jsp">로그인</a><%} %>
 				</div>
 			</div>
 		
