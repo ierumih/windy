@@ -79,20 +79,20 @@
 	
 	.pic{
 		margin:0;
-		width:290px;
-		height:300px;
-		padding-top: 5px;
+		width:320px;
+		height:270px;
+		padding-top: 35px;
 	}
 	.pic img{
-		width: 270px;
-		height: 270px;
+		width: 315px;
+		height: 209px;
 		padding-top: 5px;
 	}
 	.left{
 		clear:both;
 		width:100%;
 		height:870px;
-		padding-left:50px;
+		
 	}
 	.left ul{
 		list-style-type:none;
@@ -176,7 +176,7 @@
 				
 				out.println("<ul><a href='productDetail.b?p_code="+Blist.get(i).getP_code()+"'><li class='pic hvr-reveal'><img src="+Blist.get(i).getP_img()+"></li></a>");
 					out.println("<li>"+Blist.get(i).getP_name()+"</li>");
-					out.println("<li>"+Blist.get(i).getP_detail()+"</li>");
+					out.println("<li>"+Blist.get(i).getP_summary()+"</li>");
 					out.println("<li>"+formatter.format(Blist.get(i).getP_price())+"</li></ul>");
 			}}%>
 			</div>
@@ -185,7 +185,7 @@
 			if(Blist.get(i).getP_kind().equals("mtb")){
 				out.println("<ul><a href='productDetail.b?p_code="+Blist.get(i).getP_code()+"'><li class='pic hvr-reveal'><img src="+Blist.get(i).getP_img()+"></li></a>");
 					out.println("<li>"+Blist.get(i).getP_name()+"</li>");
-					out.println("<li>"+Blist.get(i).getP_detail()+"</li>");
+					out.println("<li>"+Blist.get(i).getP_summary()+"</li>");
 					out.println("<li>"+formatter.format(Blist.get(i).getP_price())+"</li></ul>");
 			}}%>
 			</div>
@@ -195,7 +195,7 @@
 			if(Blist.get(i).getP_kind().equals("hy")){
 				out.println("<ul><a href='productDetail.b?p_code="+Blist.get(i).getP_code()+"'><li class='pic hvr-reveal'><img src="+Blist.get(i).getP_img()+"></li></a>");
 					out.println("<li>"+Blist.get(i).getP_name()+"</li>");
-					out.println("<li>"+Blist.get(i).getP_detail()+"</li>");
+					out.println("<li>"+Blist.get(i).getP_summary()+"</li>");
 					out.println("<li>"+formatter.format(Blist.get(i).getP_price())+"</li></ul>");
 			}}%>
 			</div>

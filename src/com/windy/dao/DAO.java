@@ -156,5 +156,11 @@ public class DAO {
 		sqlsession.close();
 		return detail;
 	}
+	public static List<Product> stockmanage(String p_code) {
+		SqlSession sqlsession = sqlfactory.openSession();
+		List<Product> sm = sqlsession.selectList("stockmanage", p_code);
+		sqlsession.close();
+		return sm;
+	}
 	
 }

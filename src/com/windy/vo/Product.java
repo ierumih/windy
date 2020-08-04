@@ -2,8 +2,20 @@ package com.windy.vo;
 
 public class Product {
 	int p_price, p_stock;
-	String p_code, p_name, p_kind, p_detail, p_img;
+	String p_code, p_name, p_kind, p_detail, p_img, p_option, p_summary;
 	
+	public String getP_option() {
+		return p_option;
+	}
+	public void setP_option(String p_option) {
+		this.p_option = p_option;
+	}
+	public String getP_summary() {
+		return p_summary;
+	}
+	public void setP_summary(String p_summary) {
+		this.p_summary = p_summary;
+	}
 	public int getP_price() {
 		return p_price;
 	}

@@ -3,6 +3,7 @@
 <%@page import="java.util.*" %>
 <%
 	Product detail = (Product)request.getAttribute("detail");
+	List<Product> sm = (List<Product>)request.getAttribute("sm");
 %>
 
 <!DOCTYPE html>
@@ -30,13 +31,25 @@
 	<!--
 	
 	<%= detail.getP_detail() %>/
-	<img src="<%= detail.getP_img() %>"/>
+	<img src="<%= detail.getP_img() %>"/>+
 	<%= detail.getP_kind() %>/
 	<%= detail.getP_name() %>/
 	<%= detail.getP_price() %>/
-	<%= detail.getP_stock() %>
+	
 	-->
-	<div id="pic_det"><img src="<%= detail.getP_img() %>"/></div>
+	<div class="sub_t" id="rb">Road Bike</div><div class="left">
+		<div id="pic_det"><img src="<%= detail.getP_img() %>"/></div>	
+	</div>
+	
+	이름<%=detail.getP_name() %>/
+	종류<%=detail.getP_kind() %>/
+	가격<%=detail.getP_price() %>/
+	사이즈<%=sm.get(0).getP_option()%>/
+	재고<%=sm.get(0).getP_stock() %>/
+	사이즈<%=sm.get(1).getP_option()%>/
+	재고<%=sm.get(1).getP_stock() %>
+	
+	
 	
 	
 </body>

@@ -35,10 +35,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from ${board_name} where ${s_type} like #{s_key};
 	</select>
 	<select id = "Bproductlist" resultType = "com.windy.vo.Product">
-		select * from product;
+		select * from product where p_best is not null;
 	</select>
 	<select id = "productdetail" resultType = "com.windy.vo.Product" parameterType = "String">
 		select * from product where p_code = #{value};
+	</select>
+	<select id = "stockmanage" resultType = "com.windy.vo.Product" parameterType = "String">
+		select * from stockmanage where p_code = #{value};
 	</select>
 	<insert id = "ins" parameterType = "board">
 		insert into ${board_name} (nick, board_title, board_content, board_date, board_good, board_view, board_image, board_file) values(#{nick}, #{board_title}, #{board_content}, now(), 0, 0, #{board_image}, #{board_file});

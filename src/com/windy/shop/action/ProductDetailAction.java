@@ -16,6 +16,8 @@ public class ProductDetailAction implements Action {
 		String code = request.getParameter("p_code");
 		ProductDetailService productdetailservice = new ProductDetailService();
 		Product detail = productdetailservice.productdetail(code);
+		List<Product> sm = productdetailservice.stockmanage(code);
+		request.setAttribute("sm", sm);
 		request.setAttribute("detail", detail);
 		forward.setPath("product_detail.jsp");
 		

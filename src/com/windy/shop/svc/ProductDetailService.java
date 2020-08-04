@@ -13,4 +13,12 @@ public class ProductDetailService {
 		
 		return detail;
 	}
+	
+	public List<Product> stockmanage(String code) {
+		DAO.getConn();
+		List<Product> sm = new ArrayList<Product>(); 
+		sm = DAO.stockmanage(code);
+		return sm;
+	}
+	
 }
