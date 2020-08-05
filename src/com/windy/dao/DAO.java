@@ -169,5 +169,11 @@ public class DAO {
 		return info;
 		
 	}
+	public static List<Event> EventList() {
+		SqlSession sqlsession = sqlfactory.openSession();
+		List<Event> EventList = sqlsession.selectList("EventList");
+		sqlsession.close();
+		return EventList;
+	}
 	
 }
