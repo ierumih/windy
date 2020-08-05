@@ -2,15 +2,16 @@ package com.windy.mypage.svc;
 
 import com.mysql.jdbc.Connection;
 import com.windy.dao.*;
+import com.windy.vo.User;
 
 public class UserInfoService {
-	public String getname(String id) throws Exception{
+	public User getinfo(String id) throws Exception{
 		
-		String name = null;
+		User info = null;
 		DAO dao = new DAO();
 		dao.getConn();
-		name = dao.getUserName(id);
+		info = dao.getUserinfo(id);
 		
-		return null;
+		return info;
 	}
 }

@@ -162,9 +162,11 @@ public class DAO {
 		sqlsession.close();
 		return sm;
 	}
-	public static String getUserName(String id) {
+	public static User getUserinfo(String id) {
 		SqlSession sqlsession = sqlfactory.openSession();
-		return null;
+		User info = sqlsession.selectOne("mypage_user_info_select" , id);
+		sqlsession.close();
+		return info;
 		
 	}
 	
