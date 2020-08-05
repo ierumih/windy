@@ -3,7 +3,21 @@
 <head>
 	<meta charset="utf-8">
 	<title></title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/shop_form.css">
+	<script type="text/javascript">
+	$(function(){
+		$(window).resize(function(){
+			var width_size = window.outerWidth;
+			if(width_size<=1800){
+				$("#menu9").hide();
+			}
+			else{
+				$("#menu9").show();
+			}
+		})
+	});
+	</script>
 </head>
 <body>
 	<div id="menu9">

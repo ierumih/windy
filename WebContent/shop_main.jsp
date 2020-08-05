@@ -59,8 +59,17 @@
 					$(".left").css("margin-top","0");
 				}
 			});
-
+			$(window).resize(function(){
+				var width_size = window.outerWidth;
+				if(width_size<=1800){
+					$("#menu9").hide();
+				}
+				else{
+					$("#menu9").show();
+				}
+			})
 	});
+	
 	// 폰트 color:#866565;
 	
 </script>
