@@ -129,7 +129,7 @@ public class BController extends javax.servlet.http.HttpServlet{
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/roadlist.b")){
+		else if(command.equals("/bikelist.b")){
 			action = new ProductDetailAction();
 			try{
 				forward=action.execute(request, response);
