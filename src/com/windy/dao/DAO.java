@@ -162,5 +162,10 @@ public class DAO {
 		sqlsession.close();
 		return sm;
 	}
+	public static String getUserName(String id) {
+		SqlSession sqlsession = sqlfactory.openSession();
+		return null;
+		
+	}
 	
 }
