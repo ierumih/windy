@@ -16,6 +16,7 @@
 	<title>a</title>
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/shop_form.css">
 <script type="text/javascript">
 	$(function(){
 		/*$("#menu9").hide();
@@ -80,7 +81,6 @@
 		background-repeat: no-repeat;
 
 	}
-	
 	#pp{
 		text-align: center;
 		height: 969px;
@@ -126,11 +126,7 @@
 		font-size: 12pt;
 		font-weight: bold;
 	}
-	#pname{
-		padding-top: 30px;
-		font-size: 15pt;
-		border-bottom: 2px solid black;
-	}
+	
 	.fix{
 		position:fixed;
 		top:0px;
@@ -171,8 +167,6 @@
 	  transform: translateY(0);
 	  border-width: 4px;
 	}
-	
-	
 	
 </style>
 <body>

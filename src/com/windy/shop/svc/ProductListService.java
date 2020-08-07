@@ -14,4 +14,12 @@ public class ProductListService {
 		
 		return Blist;
 	}
+	
+	public List<Product> productlist(String p_kind){
+		DAO.getConn();
+		List<Product> list = new ArrayList<Product>();
+		list = DAO.productList(p_kind);
+		
+		return list;
+	}
 }

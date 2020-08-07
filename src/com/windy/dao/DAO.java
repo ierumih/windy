@@ -156,9 +156,21 @@ public class DAO {
 		sqlsession.close();
 		return detail;
 	}
-	public static List<Product> stockmanage(String p_code) {
+	public static List<Product> size(String p_code) {
 		SqlSession sqlsession = sqlfactory.openSession();
-		List<Product> sm = sqlsession.selectList("stockmanage", p_code);
+		List<Product> sm = sqlsession.selectList("size", p_code);
+		sqlsession.close();
+		return sm;
+	}
+	public static List<Product> color(String p_code) {
+		SqlSession sqlsession = sqlfactory.openSession();
+		List<Product> sm = sqlsession.selectList("color", p_code);
+		sqlsession.close();
+		return sm;
+	}
+	public static List<Product> gear(String p_code) {
+		SqlSession sqlsession = sqlfactory.openSession();
+		List<Product> sm = sqlsession.selectList("gear", p_code);
 		sqlsession.close();
 		return sm;
 	}
@@ -168,6 +180,12 @@ public class DAO {
 		sqlsession.close();
 		return info;
 		
+	}
+	public static List<Product> productList(String p_kind) {
+		SqlSession sqlsession = sqlfactory.openSession();
+		List<Product> list = sqlsession.selectList("productlist", p_kind);
+		sqlsession.close();
+		return list;
 	}
 	
 }

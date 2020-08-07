@@ -4,11 +4,14 @@
 <%@page import="java.text.DecimalFormat" %>
 <%
 	Product detail = (Product)request.getAttribute("detail");
-	List<Product> sm = (List<Product>)request.getAttribute("sm");
+	List<Product> bs = (List<Product>)request.getAttribute("size");
+	List<Product> color = (List<Product>)request.getAttribute("color");
+	List<Product> gear = (List<Product>)request.getAttribute("gear");
 	DecimalFormat formatter = new DecimalFormat("###,###");
 	String [] dimg = detail.getP_detail().split(" "); 
 	String [] mimg = detail.getP_img().split(" ");
 	String [] man = detail.getP_name().split(" ");
+
 %>
 
 <!DOCTYPE html>
@@ -16,6 +19,7 @@
 <head>
 <meta charset="utf-8">
 <title>상품정보</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <style>
 	#pic_det{
 		width:600px;
@@ -38,6 +42,7 @@
 		margin-right:0;
 		border-radius:10px;
 		padding:10px;
+		margin-top:50px;
 	}
 	#depic{
 		text-align:center;
@@ -80,7 +85,37 @@
 		font-weight:bold;
 		font-size:15pt;
 	}
+	.wrap{
+		padding-left:100px;	
+	}
+	select { 
+		width: 200px;
+		font-family: inherit;
+		border: 1px solid #999; 
+		border-radius: 0px; 
+		}
+
+
 </style>
+	<script type="text/javascript">
+		$(function(){
+			$("#sel_size").change(function(){
+				
+			var size = $("#sel_size option:selected").val();
+			$("#ss").text(size);
+			});
+			
+			$("select:last-child").change(function(){
+				
+				if($("#sel_size option:selected").val()==""){
+					$("select:last-child option:eq(0)").prop("selected", true);
+					console.log("dd");
+					alert("순서지켜");
+				}
+			});
+		});
+
+	</script>
 </head>
 <body>
 	<div>
@@ -119,11 +154,47 @@
 					<th>상품코드</th>
 					<td><%=detail.getP_code() %></td>
 				</tr>
-				<tr>
+				<%if(!(bs.get(0).getP_size().equals("no"))){ %>
+				<tr>	
 					<th>사이즈</th>
-					<td><select name="b_size">
-						<option value=""></option>
+					<td><select name="b_size" id="sel_size">
+						<option value="" selected>선택</option>
+						<option value="">------------</option>
+				<%for(int i=0;i<bs.size();i++){ %>
+						<option value="<%=bs.get(i).getP_size()%>"><%=bs.get(i).getP_size()%></option>
+						<%} %>
 					</select></td>
+				</tr>
+				<%} %>
+				<%if(!(color.get(0).getP_color().equals("no"))){ %>
+				<tr>	
+					<th>색상</th>
+					<td><select name="b_color" id="sel_color">
+						<option value="">선택</option>
+						<option value="">------------</option>
+				<%for(int i=0;i<color.size();i++){ %>
+						<option value="<%=color.get(i).getP_color()%>"><%=color.get(i).getP_color()%></option>
+						<%} %>
+					</select></td>
+				</tr>
+				<%} %>
+				<%if(!(gear.get(0).getP_gear().equals("no"))){%>
+				<tr>	
+					<th>기어</th>
+					<td><select name="b_gear" id="sel_gear">
+						<option value="">선택</option>
+						<option value="">------------</option>
+				<%for(int i=0;i<gear.size();i++){ %>
+						<option value="<%=gear.get(i).getP_gear()%>"><%=gear.get(i).getP_gear()%></option>
+				<%}%>						
+					</select></td>
+				</tr>
+				<%} %>
+				<tr>
+					<td>
+						
+						<label id="ss"></label>
+					</td>
 				</tr>
 			</table>				
 				
