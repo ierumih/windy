@@ -1,26 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@page import="com.windy.vo.User"%>
+<%@page import="org.apache.ibatis.session.SqlSessionFactory"%>
+<%@page import="org.apache.ibatis.session.SqlSession"%>
 
 
 <!DOCTYPE html>
 <%
-	String name = (String) session.getAttribute("name");
-	String nick = (String) session.getAttribute("nick");
-	String phone_num = (String) session.getAttribute("phone_num");
-	String email = (String) session.getAttribute("email");
-	String email_tail = (String) session.getAttribute("email_tail");
-	String addr = (String) session.getAttribute("addr");
-	String addr_detail = (String) session.getAttribute("addr_detail");
-	
-
-	name = "홍구리동";
-	nick = "Admin_xxxkf_ang";
-	phone_num = "010-4444-4444";
-	email = "angtanga";
-	email_tail = "eXam.com";
-	addr = "강남";
-	addr_detail = "출력되는 값들은 임의로 준값들 입니다";
+	User info = (User) session.getAttribute("info");
 
 	int boards_count = 11;
 	int my_bike_count = 2;
@@ -62,10 +49,6 @@
 	width: 880px;
 }
 
-.test_t tr {
-	
-}
-
 .test_t tr td {
 	width: 200px;
 	height: 80px;
@@ -73,10 +56,6 @@
 
 .test_b {
 	width: 1000px;
-}
-
-.test_b tr {
-	
 }
 
 .test_b tr td {
@@ -92,29 +71,31 @@
 	color: black;
 }
 
-.categori1 {
+#board_div table {
 	width: 1000px;
 }
 
-.categori1 tr td {
+#board_div table tr td {
 	border: solid 1px;
 	width: 20%;
 	text-align: center;
 }
 
-.categori2 tr {
+#my_bike_div table {
+	width: 1000px;
+}
+
+#my_bike_div table tr td {
+	width: 33%;
 	border: solid 1px;
 	text-align: center;
 }
 
-
-
-
-.receipt{
+.receipt {
 	width: 1000px;
 }
 
-.receipt tr td{
+.receipt tr td {
 	width: 20%;
 	text-align: center;
 }
@@ -184,7 +165,7 @@
 					style="margin-left: 50px; margin-right: 50px; margin-top: 14px;">
 					<br> <br> <input type="text"
 					style="border: none; font-size: 30px; margin-left: 40px; text-align: center;"
-					readonly="readonly" placeholder="<%out.print(nick);%>"><br>
+					readonly="readonly" placeholder="<%out.print(info.getNick());%>"><br>
 					<br>
 					<button type="button" class="btn btn-danger" onclick="update()"
 						style="margin-left: 158px;">SETTING</button></td>
@@ -194,32 +175,33 @@
 				<td><label for="exampleInputName2">Name</label> <input
 					type="text" readonly="readonly" style="width: 256px;"
 					class="form-control" id="exampleInputName2"
-					placeholder="<%out.print(name);%>"></td>
+					placeholder="<%out.print(info.getName());%>"></td>
 			</tr>
 			<tr>
 
 				<td><label for="exampleInputName3">Phone Number</label> <input
 					type="text" readonly="readonly" style="width: 256px;"
 					class="form-control" id="exampleInputName3"
-					placeholder=" <%out.print(phone_num);%> "></td>
+					placeholder=" <%out.print(info.getTel());%> "></td>
 			</tr>
 			<tr>
 
 				<td><label for="exampleInputName5">Email</label> <input
 					type="text" readonly="readonly" style="width: 256px;"
 					class="form-control" id="exampleInputName5"
-					placeholder="<%out.print(email + "@" + email_tail);%>"></td>
+					placeholder="<%out.print(info.getEmail());%>"></td>
 			</tr>
 			<tr>
 
 				<td><label for="exampleInputName4">Addr</label> <input
 					type="text" readonly="readonly" style="width: 256px;"
 					class="form-control" id="exampleInputName4"
-					placeholder="<%out.print(addr);%>"> <label
+					placeholder="<%out.print(info.getAddr());%>"> <label
 					for="exampleInputName6">Detail</label> <textarea
-						readonly="readonly" style="width: 256px; resize: none;"
+						readonly="readonly"
+						style="width: 256px; height: 90px; resize: none;"
 						class="form-control" id="exampleInputName6"
-						placeholder="<%out.print(addr_detail);%>"></textarea></td>
+						placeholder="<%out.print(info.getAddr1() + "\n" + info.getAddr2() + "\n" + info.getAddr3());%>"></textarea></td>
 			</tr>
 		</table>
 		<br> <br> <br> <br> <br> <br> <br>
@@ -242,7 +224,7 @@
 		</table>
 		<br> <br>
 		<div id="board_div">
-			<table class="categori1">
+			<table>
 				<%
 					for (int i = 0; i < boards_count; i++) {
 				%>
@@ -261,29 +243,31 @@
 		</div>
 
 		<div id="my_bike_div">
-			<table class="categori2">
+			<table>
 				<tr>
-					<td>선호자전거</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" id="blankCheckbox" value="type1"
-						aria-label="X">로드 바이크</td>
-					<td><input type="checkbox" id="blankCheckbox" value="type2"
-						aria-label="X">산악 바이크</td>
-					<td><input type="checkbox" id="blankCheckbox" value="type3"
-						aria-label="X">E-bike</td>
-					<td><input type="checkbox" id="blankCheckbox" value="type3"
-						aria-label="X">하이브리드</td>
-					<td><input type="checkbox" id="blankCheckbox" value="type3"
-						aria-label="X">픽시</td>
-					<td><input type="checkbox" id="blankCheckbox" value="type3"
-						aria-label="X"><input type="text" placeholder="직접입력">
-					</td>
-				</tr>
-				<tr>
-					<td>등록된자전거</td>
 					<td>자전거 명</td>
-					<td>시리얼 넘버</td>
+					<td>자전거 시리얼 넘버</td>
+					<td>등록 날짜</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox">브베의 행복한 자전거</td>
+					<td>3029-111-11</td>
+					<td>2000-00-00</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox">무면라이더 자전거</td>
+					<td>6669-1555-21</td>
+					<td>2000-00-00</td>
+				</tr>
+				<tr>
+					<td><input type="text" placeholder="이름"></td>
+					<td><input type="text" placeholder="시리얼 넘버"></td>
+					<td><input type="button" value="등록"></td>
+				</tr>
+				<tr>
+					<td>===</td>
+					<td><input type="button" value="체크한거 삭제하는 버튼"></td>
+					<td>===</td>
 				</tr>
 			</table>
 		</div>
@@ -303,12 +287,11 @@
 				</tr>
 			</table>
 		</div>
-		<br>
-		<br>
+		<br> <br>
 		<hr>
-		<br>
-		<br>
-		<p style="text-align: center; font-size: 28px;">주문 현황<p>
+		<br> <br>
+		<p style="text-align: center; font-size: 28px;">주문 현황
+		<p>
 		<table class="receipt">
 			<tr>
 				<td style="width: 10%">주문번호</td>
@@ -333,7 +316,7 @@
 			</tr>
 			<tr>
 				<td>47</td>
-				<td>하이브리드 자전거</td>
+				<td>무면라이더 자전거</td>
 				<td>59999.99</td>
 				<td>2016-10-10</td>
 				<td>배송완료</td>
