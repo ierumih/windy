@@ -50,7 +50,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select distinct ifnull(p_gear,"no") as p_gear from stockmanage where p_code = #{value};
 	</select>
 	<select id = "mypage_user_info_select" resultType = "com.windy.vo.User" parameterType = "String">
-		select * from user where id = #{value};
+		select * from user where id = #{id};
 	</select>
 	<select id = "productlist" resultType = "com.windy.vo.Product" parameterType = "String">
 		select * from product where p_kind = #{value};
@@ -73,4 +73,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id = "boardviewupd" parameterType = "Integer">
 		update ${board_name} set board_view = board_view+1 where board_num = #{board_num};
 	</update>
+	<select id = "EventList" resultType = "com.windy.vo.Event">
+		select * from event;
+	</select>
 </mapper>

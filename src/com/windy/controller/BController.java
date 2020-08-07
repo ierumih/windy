@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.windy.board.action.*;
+import com.windy.event.action.EventListAction;
 import com.windy.mypage.action.userInfoSelectAction;
 import com.windy.shop.action.ProductDetailAction;
 import com.windy.shop.action.ProductListAction;
@@ -140,6 +141,14 @@ public class BController extends javax.servlet.http.HttpServlet{
 		}
 		else if(command.equals("/mypage.b")){
 			action = new userInfoSelectAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/eventlist.b")){
+			System.out.println("event");
+			action = new EventListAction();
 			try{
 				forward=action.execute(request, response);
 			}catch(Exception e){

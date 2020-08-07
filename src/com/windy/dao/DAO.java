@@ -181,11 +181,19 @@ public class DAO {
 		return info;
 		
 	}
+
 	public static List<Product> productList(String p_kind) {
 		SqlSession sqlsession = sqlfactory.openSession();
 		List<Product> list = sqlsession.selectList("productlist", p_kind);
 		sqlsession.close();
 		return list;
+	}
+	public static List<Event> EventList() {
+		SqlSession sqlsession = sqlfactory.openSession();
+		List<Event> EventList = sqlsession.selectList("EventList");
+		sqlsession.close();
+		return EventList;
+
 	}
 	
 }
