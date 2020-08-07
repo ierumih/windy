@@ -1,12 +1,13 @@
+<%@page import="java.io.Console"%>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@page import="org.apache.ibatis.session.SqlSessionFactory"%>
 <%@page import="org.apache.ibatis.session.SqlSession"%>
 <%@page import="com.windy.dao.DAO" %>
 <%@page import="com.windy.vo.Event" %>
 <%@page import="java.text.DecimalFormat" %>
-<%@page import="java.util.*" %>
+<%@page import="java.util.*, java.text.*" %>
 <%
-	List<Event> Elist = (List<Event>)request.getAttribute("Elist");
+	List<Event> Elistend = (List<Event>)request.getAttribute("Elistend");
 %>
 <!DOCTYPE html>
 <html>
@@ -110,11 +111,11 @@
 			padding-left:10px;
 			border-left:2px solid #ddd;
 		}
-		.event li a{
-			color:black;
-		}
-		.event li:first-child {
+		.now{
 			color:#e65700;
+		}
+		.not{
+			color:black;
 		}
 		.pp{
 			width: 1080px;
@@ -134,24 +135,25 @@
 						이벤트
 					</h2>
 					<ul class="event">
-						<li><a href="">진행중인 이벤트</a></li>
-						<li><a href="">종료된 이벤트</a></li>
-						<li><a href="">당첨자 발표</a></li>
+						<li><a href="eventlisting.b" class="not">진행중인 이벤트</a></li>
+						<li><a href="eventlistend.b" class="now">종료된 이벤트</a></li>
+						<li><a href="" class="not">당첨자 발표</a></li>
 					</ul>
-					<p>윈디에서만 즐길 수 있는 다양한 이벤트, 농치지 마세요!</p>
+					<p>윈디에서만 즐길 수 있는 다양한 이벤트, 놓치지 마세요!</p>
 				</div>			
 			</div>
 			<div class="pp">
 				<ul class='row'>
 			
-			<%for(int i=0;i<Elist.size();i++) {
+			<%for(int i=0;i<Elistend.size();i++) {
 				
-				out.println("<a href='productDetail.b?E_num="+Elist.get(i).getE_num()+"'><li><img src="+Elist.get(i).getE_sum()+">");
-				out.println("<div>"+Elist.get(i).getE_title()+"</div>");
-				out.println("<p> 이벤트기간 <span>"+Elist.get(i).getS_date()+"~"+Elist.get(i).getE_date()+"</span></p></a></li>");
+				out.println("<a href='eventdetail.b?e_num="+Elistend.get(i).getE_num()+"'><li><img src="+Elistend.get(i).getE_sum()+">");
+				out.println("<div>"+Elistend.get(i).getE_title()+"</div>");
+				out.println("<p> 이벤트기간 <span>"+Elistend.get(i).getS_date()+" ~ "+Elistend.get(i).getE_date()+"</span></p></a></li>");
 			}%>
 				</ul>
 			</div>
+			
 		</div>
 	
 	

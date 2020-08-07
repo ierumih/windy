@@ -6,12 +6,12 @@ import java.util.List;
 import com.windy.dao.DAO;
 import com.windy.vo.Event;
 
-public class EventListService {
+public class EventListendService {
 	public List<Event> EventList(){
 		DAO.getConn();
-		List<Event> Elist = new ArrayList<Event>();
-		Elist = DAO.EventList();
+		List<Event> Elistend = new ArrayList<Event>();
+		Elistend = DAO.EventListend();
 		
-		return Elist;
+		return Elistend;
 	}
 }

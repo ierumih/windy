@@ -51,4 +51,6 @@ public class Event {
 	public void setE_num(int e_num) {
 		this.e_num = e_num;
 	}
+	
+	
 }

@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.windy.board.action.*;
-import com.windy.event.action.EventListAction;
+import com.windy.event.action.EventDetailAction;
+import com.windy.event.action.EventListendAction;
+import com.windy.event.action.EventListingAction;
 import com.windy.mypage.action.userInfoSelectAction;
 import com.windy.shop.action.ProductDetailAction;
 import com.windy.shop.action.ProductListAction;
@@ -146,9 +148,25 @@ public class BController extends javax.servlet.http.HttpServlet{
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-		}else if(command.equals("/eventlist.b")){
+		}else if(command.equals("/eventdetail.b")){
+			System.out.println("detail");
+			action = new EventDetailAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/eventlisting.b")){
 			System.out.println("event");
-			action = new EventListAction();
+			action = new EventListingAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/eventlistend.b")){
+			System.out.println("event");
+			action = new EventListendAction();
 			try{
 				forward=action.execute(request, response);
 			}catch(Exception e){

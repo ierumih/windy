@@ -67,4 +67,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id = "EventList" resultType = "com.windy.vo.Event">
 		select * from event;
 	</select>
+	<select id = "EventListing" resultType = "com.windy.vo.Event" parameterType="String">
+		<![CDATA[
+			select * from event where e_date >= #{value};
+		]]>
+	</select>
+	<select id = "EventListend" resultType = "com.windy.vo.Event" parameterType="String">
+		<![CDATA[
+			select * from event where e_date <= #{value};
+		]]>
+	</select>
+	<select id = "EventDetail" resultType = "com.windy.vo.Event" parameterType="String">
+		select * from event where e_num=#{value};
+	</select>
 </mapper>

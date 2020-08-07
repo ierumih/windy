@@ -6,13 +6,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.windy.board.action.Action;
-import com.windy.event.svc.EventListService;
-import com.windy.shop.svc.ProductListService;
+import com.windy.event.svc.EventListendService;
 import com.windy.vo.ActionForward;
 import com.windy.vo.Event;
-import com.windy.vo.Product;
 
-public class EventListAction implements Action{
+public class EventListendAction implements Action{
 	public ActionForward execute(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		
 		ActionForward forward = null;
@@ -20,10 +18,10 @@ public class EventListAction implements Action{
 		
 		if(e_num==null) {
 		forward = new ActionForward();
-		EventListService EventListService = new EventListService();
-		List<Event> Elist = EventListService.EventList();
-		request.setAttribute("Elist",Elist);
-		forward.setPath("e_list.jsp");
+		EventListendService EventListendService = new EventListendService();
+		List<Event> Elistend = EventListendService.EventList();
+		request.setAttribute("Elistend",Elistend);
+		forward.setPath("e_list_end.jsp");
 		}
 		
 		// p_kind 로 받은 값을 기준으로 상품 진열해야함. 디테일 하고 넘어오셈
