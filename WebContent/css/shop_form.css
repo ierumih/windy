@@ -4,7 +4,6 @@
 	}
 	.wrap{
 		width: 1080px;
-		height:4000px;
 	}
 	#menu9{
 		float: left;
@@ -57,10 +56,10 @@
 		position: fixed;
 		top: 50px;
 		left: 150px;
-		font-size: 30pt;
-		
+		font-size: 34pt;
 		font-weight: bold;
 	}
+	
 	.sub_t{
 		font-size: 65px;
 		font-weight: bold;
@@ -94,6 +93,5 @@
  		text-decoration: none;
  	}
  	
-
 
 	

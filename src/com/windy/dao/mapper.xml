@@ -40,11 +40,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id = "productdetail" resultType = "com.windy.vo.Product" parameterType = "String">
 		select * from product where p_code = #{value};
 	</select>
-	<select id = "stockmanage" resultType = "com.windy.vo.Product" parameterType = "String">
-		select * from stockmanage where p_code = #{value};
+	<select id = "size" resultType = "com.windy.vo.Product" parameterType = "String">
+		select distinct ifnull(p_size,"no") as p_size from stockmanage where p_code = #{value};
+	</select>
+	<select id = "color" resultType = "com.windy.vo.Product" parameterType = "String">
+		select distinct ifnull(p_color,"no") as p_color from stockmanage where p_code = #{value};
+	</select>
+	<select id = "gear" resultType = "com.windy.vo.Product" parameterType = "String">
+		select distinct ifnull(p_gear,"no") as p_gear from stockmanage where p_code = #{value};
 	</select>
 	<select id = "mypage_user_info_select" resultType = "com.windy.vo.User" parameterType = "String">
-		select * from user where id = #{value};
+		select * from user where id = #{id};
+	</select>
+	<select id = "productlist" resultType = "com.windy.vo.Product" parameterType = "String">
+		select * from product where p_kind = #{value};
 	</select>
 	<insert id = "ins" parameterType = "board">
 		insert into ${board_name} (nick, board_title, board_content, board_date, board_good, board_view, board_image, board_file) values(#{nick}, #{board_title}, #{board_content}, now(), 0, 0, #{board_image}, #{board_file});

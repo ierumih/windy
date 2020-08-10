@@ -16,8 +16,12 @@ public class ProductDetailAction implements Action {
 		String code = request.getParameter("p_code");
 		ProductDetailService productdetailservice = new ProductDetailService();
 		Product detail = productdetailservice.productdetail(code);
-		List<Product> sm = productdetailservice.stockmanage(code);
-		request.setAttribute("sm", sm);
+		List<Product> size = productdetailservice.size(code);
+		List<Product> color = productdetailservice.color(code);
+		List<Product>gear = productdetailservice.gear(code);
+		request.setAttribute("size", size );
+		request.setAttribute("color", color);
+		request.setAttribute("gear", gear );
 		request.setAttribute("detail", detail);
 		forward.setPath("product_detail.jsp");
 		
