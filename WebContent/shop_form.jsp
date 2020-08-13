@@ -1,3 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<%
+	String id = (String) session.getAttribute("id");
+	String nick = (String) session.getAttribute("nick");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,12 +25,27 @@
 	});
 	</script>
 	<style type="text/css">
+	
 	#title1{
 		font-size : 11pt;
 		position: fixed;
 		top: 46px;
 		left: 150px;
 		font-weight: bold;
+	}
+	#inout{
+	 float:right;
+	 position:relative;
+	 right:15px;
+	 top:20px;
+	 color:rosybrown;
+	}
+	.inoutla{
+		color:rosybrown;
+		font-weight:bold;
+	}
+	.inoutla:hover{
+		cursor:pointer;
 	}
 	</style>
 </head>
@@ -48,6 +69,10 @@
 	</div>
 	<div id="menubtn9">
 		<a href="main.jsp"><img src="img/qwer.jpg" id="logo"></a>
+	</div>
+	<div id="inout">
+		<%if(id!=null) {%><label class="inoutla" onclick="location.href='mypage.b'">마이페이지</label> | <label class="inoutla" onclick="location.href='logout.jsp?ur=shopBestList.b'">로그아웃</label>
+		<%}else {%><label class="inoutla" onclick="location.href='join.jsp'">회원가입</label> | <label class="inoutla" onclick="location.href='login.jsp'">로그인</label><%} %>
 	</div>
 	
 </body>

@@ -28,7 +28,7 @@
 			</div>
 			<div id = "headr">
 				<div>
-					<%if(id!=null) {%><a href ="mypage.b">마이페이지</a> | <a href = "logout.jsp">로그아웃</a>
+					<%if(id!=null) {%><a href ="mypage.b">마이페이지</a> | <a href = "logout.jsp?ur=main.jsp">로그아웃</a>
 					<%}else {%><a href ="join.jsp">회원가입</a> | <a href = "login.jsp">로그인</a><%} %>
 				</div>
 			</div>

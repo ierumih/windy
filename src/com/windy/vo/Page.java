@@ -1,9 +1,26 @@
 package com.windy.vo;
 
 public class Page {
-	int listcount, currentpage, limitindex, endpage;
-	String board_name, s_type, s_key;
+	int listcount, currentpage, limitindex, endpage, s_limitindex;
+	String board_name, s_type, s_key, p_kind;
 	
+	public int getS_limitindex() {
+		return s_limitindex;
+	}
+
+	public void setS_limitindex() {
+		this.s_limitindex = (currentpage-1)*6;
+	}
+
+	
+	public String getP_kind() {
+		return p_kind;
+	}
+
+	public void setP_kind(String p_kind) {
+		this.p_kind = p_kind;
+	}
+
 	public String getS_type() {
 		return s_type;
 	}

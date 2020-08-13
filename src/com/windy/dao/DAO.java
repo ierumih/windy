@@ -1,6 +1,5 @@
 package com.windy.dao;
 import java.io.*;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 import org.apache.ibatis.io.Resources;
@@ -14,11 +13,6 @@ import com.windy.vo.*;
 public class DAO {
 	static SqlSessionFactory sqlfactory;
 	private static DAO instance;
-	
-	static Date date = new Date();
-	
-	static SimpleDateFormat format = new SimpleDateFormat ("yyyy-MM-dd");
-	static String time = format.format(date);
 	
 	public static DAO getinstance() {
 		if(instance==null) {
@@ -162,21 +156,9 @@ public class DAO {
 		sqlsession.close();
 		return detail;
 	}
-	public static List<Product> size(String p_code) {
+	public static List<Product> option(String p_code) {
 		SqlSession sqlsession = sqlfactory.openSession();
-		List<Product> sm = sqlsession.selectList("size", p_code);
-		sqlsession.close();
-		return sm;
-	}
-	public static List<Product> color(String p_code) {
-		SqlSession sqlsession = sqlfactory.openSession();
-		List<Product> sm = sqlsession.selectList("color", p_code);
-		sqlsession.close();
-		return sm;
-	}
-	public static List<Product> gear(String p_code) {
-		SqlSession sqlsession = sqlfactory.openSession();
-		List<Product> sm = sqlsession.selectList("gear", p_code);
+		List<Product> sm = sqlsession.selectList("option", p_code);
 		sqlsession.close();
 		return sm;
 	}
@@ -188,34 +170,26 @@ public class DAO {
 		
 	}
 
-	
-	public static List<Event> EventListing() {
+	public static List<Product> productList(Page page) {
 		SqlSession sqlsession = sqlfactory.openSession();
-		List<Event> EventListing = sqlsession.selectList("EventListing", time);
-		sqlsession.close();
-		return EventListing;
-	}
-
-	public static List<Product> productList(String p_kind) {
-		SqlSession sqlsession = sqlfactory.openSession();
-		List<Product> list = sqlsession.selectList("productlist", p_kind);
+		List<Product> list = sqlsession.selectList("productlist", page);
 		sqlsession.close();
 		return list;
 	}
 	
-
-	public static List<Event> EventListend() {
+	public static int paging(String p_kind) {
 		SqlSession sqlsession = sqlfactory.openSession();
-		List<Event> EventListend = sqlsession.selectList("EventListend", time);
+		int x = sqlsession.selectOne("paging", p_kind);
 		sqlsession.close();
-		return EventListend;
+		return x;
+	}
+	
+	public static List<Event> EventList() {
+		SqlSession sqlsession = sqlfactory.openSession();
+		List<Event> EventList = sqlsession.selectList("EventList");
+		sqlsession.close();
+		return EventList;
 
 	}
 	
-	public static Event EventDetail(String e_num) {
-		SqlSession sqlsession = sqlfactory.openSession();
-		Event EventDetail = sqlsession.selectOne("EventDetail", e_num);
-		sqlsession.close();
-		return EventDetail;
-	}
 }

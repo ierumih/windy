@@ -42,12 +42,12 @@
 					$("#rb").addClass("fix");
 					$(".left").css("margin-top","90px");
 				}
-			else if(scr>1926&&scr<2883){
+			else if(scr>1926&&scr<2880){
 				$("#hb").removeClass("fix");
 				$("#mtb").addClass("fix");
 				$(".left").css("margin-top","90px");
 			}
-			else if(scr>=2883){
+			else if(scr>=2880){
 
 				$("#hb").addClass("fix");
 				$(".left").css("margin-top","90px");
@@ -75,7 +75,7 @@
 	
 </script>
 <style type="text/css">
-	
+		
 	body{
 		background-image: url('img/asoggetti_f.jpg');
 		background-repeat: no-repeat;
@@ -170,7 +170,7 @@
 	
 </style>
 <body>
-	<jsp:include page="shop_form.html"/>
+	<jsp:include page="shop_form.jsp"/>
 	<div class="wrap">
 		<div id="pp"></div>
 		<div class="sub_t" id="rb">Road Bike</div><div class="left">

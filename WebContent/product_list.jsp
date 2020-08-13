@@ -3,11 +3,15 @@
 <%@ page import="java.util.*" %>
 <%@ page import="com.windy.vo.Product" %>
 <%@page import="java.text.DecimalFormat" %>
+<%@page import="com.windy.vo.Page" %>
     
  <%
  	List<Product> list = (List<Product>)request.getAttribute("list");
  	DecimalFormat formatter = new DecimalFormat("###,###");
- 	String p_kind =(String) request.getAttribute("p_kind");
+ 	Page shopPage =(Page) request.getAttribute("page");
+ 	String p_kind = shopPage.getP_kind();
+ 	int p = shopPage.getCurrentpage();
+	int pag = shopPage.getEndpage();
  %>
 <!DOCTYPE html>
 <html>
@@ -102,11 +106,36 @@
 	  border-width: 4px;
 	}
 	
+	.search {
+			background-color: #cccccc;
+			border: 1px solid black;
+			align-items: center;
+		  	border-radius: 5px;
+		  	padding: 5px 10px 5px 10px;
+		  	vertical-align: middle;
+		}
+		.num{
+			text-align:center;
+			margin-top:20px;
+			word-spacing:5px;
+			padding-bottom:10px;
+		}
+		.num li{
+			display:inline;
+			word-spacing:10px;
+		}
+		.num li:first-of-type{
+			margin-left:10px;
+		}
+		.num li:last-of-type{
+			margin-right:10px;
+		}
+	
 </style>
 </head>
 <body>
 	<div>
-		<jsp:include page="shop_form.html"/>
+		<jsp:include page="shop_form.jsp"/>
 	</div>
 	<div class="wrap">
 		<div class="left">
@@ -121,6 +150,33 @@
 				}
 			%>
 		</div>
+		<div style="clear:both;position:relative;bottom:45px">
+					<table>
+						<tr>
+							<%
+								if(p>1){%>
+									<td><input type='button' value='<' class='search' onclick = "location.href='bikelist.b?p_kind=<%=p_kind %>&p=<%=p-1 %>'"></td>
+								<%}%>
+							<td><ul class="num">
+								<%
+									for(int i=(p-5); i<(p+5); i++){
+										if((i>0)&&(i<=pag)){
+											if(i!=p){%>
+												<a href = 'bikelist.b?p_kind=<%=p_kind%>&p=<%=i %>'><li><%=i %></li></a><%
+											}else{%>
+												<li id = 'cp'><%=i %></li>
+											<%}
+										}
+									}
+								%>
+							</ul></td>
+							<%
+								if(p<pag){%>
+									<td><input type='button' value='>' class='search' onclick = "location.href='bikelist.b?p_kind=<%=p_kind%>&p=<%=p+1 %>'"></td>
+								<%}%>
+						</tr>
+					</table>
+				</div>
 	</div>
 </body>
 </html>
