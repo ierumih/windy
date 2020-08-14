@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.windy.board.action.*;
-import com.windy.event.action.EventDetailAction;
+import com.windy.event.action.EventDetailendAction;
+import com.windy.event.action.EventDetailingAction;
+import com.windy.event.action.EventInsertAction;
 import com.windy.event.action.EventListendAction;
 import com.windy.event.action.EventListingAction;
 import com.windy.mypage.action.userInfoSelectAction;
@@ -148,16 +150,8 @@ public class BController extends javax.servlet.http.HttpServlet{
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-		}else if(command.equals("/eventdetail.b")){
-			System.out.println("detail");
-			action = new EventDetailAction();
-			try{
-				forward=action.execute(request, response);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
 		}else if(command.equals("/eventlisting.b")){
-			System.out.println("event");
+			System.out.println("list");
 			action = new EventListingAction();
 			try{
 				forward=action.execute(request, response);
@@ -165,8 +159,28 @@ public class BController extends javax.servlet.http.HttpServlet{
 				e.printStackTrace();
 			}
 		}else if(command.equals("/eventlistend.b")){
-			System.out.println("event");
 			action = new EventListendAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/eventdetailing.b")){
+			action = new EventDetailingAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/eventdetailend.b")){
+			action = new EventDetailendAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/eventinsert.b")){
+			action = new EventInsertAction();
 			try{
 				forward=action.execute(request, response);
 			}catch(Exception e){

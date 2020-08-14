@@ -70,9 +70,8 @@
 							<li>수리점 찾기</li>
 						</ul>
 						<ul>
-							<li>진행중인 이벤트</li>
-							<li>종료된 이벤트</li>
-							<li>당첨자 발표</li>
+							<li><a href = "eventlisting.b">진행중인 이벤트</a></li>
+							<li><a href = "eventlistend.b">종료된 이벤트</a></li>
 						</ul>
 						<ul>
 							<li>추천 코스</li>
