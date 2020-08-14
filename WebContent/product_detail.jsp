@@ -35,7 +35,7 @@
 	}
 	#obox{
 		width:450px;
-		height:380px;
+		min-height:380px;
 		border:1px solid #ececec;
 		margin-right:0;
 		border-radius:10px;
