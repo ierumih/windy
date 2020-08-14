@@ -1,5 +1,6 @@
 package com.windy.dao;
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import org.apache.ibatis.io.Resources;
@@ -13,6 +14,11 @@ import com.windy.vo.*;
 public class DAO {
 	static SqlSessionFactory sqlfactory;
 	private static DAO instance;
+	
+	static Date date = new Date();
+	
+	static SimpleDateFormat format = new SimpleDateFormat ("yyyy-MM-dd");
+	static String time = format.format(date);
 	
 	public static DAO getinstance() {
 		if(instance==null) {
@@ -184,12 +190,47 @@ public class DAO {
 		return x;
 	}
 	
-	public static List<Event> EventList() {
+	public static List<Event> EventListing() {
 		SqlSession sqlsession = sqlfactory.openSession();
-		List<Event> EventList = sqlsession.selectList("EventList");
+		List<Event> EventListing = sqlsession.selectList("EventListing", time);
 		sqlsession.close();
-		return EventList;
+		return EventListing;
+	}
 
+	public static List<Event> EventListend() {
+		SqlSession sqlsession = sqlfactory.openSession();
+		List<Event> EventListend = sqlsession.selectList("EventListend", time);
+		sqlsession.close();
+		return EventListend;
+
+	}
+	
+	public static Event EventDetail(String e_num) {
+		SqlSession sqlsession = sqlfactory.openSession();
+		Event EventDetail = sqlsession.selectOne("EventDetail", e_num);
+		sqlsession.close();
+		return EventDetail;
+	}
+	
+	public static int insert(Event_p event) {
+		SqlSession sqlsession = sqlfactory.openSession();
+		int chk = sqlsession.insert("EventInsert",event);
+		sqlsession.commit();
+		sqlsession.close();
+		return chk;
+	}
+	
+	public static Event_p EventCheck(String e_num) {
+		SqlSession sqlsession = sqlfactory.openSession();
+		Event_p EventCheck = sqlsession.selectOne("EventCheck", e_num);
+		sqlsession.close();
+		return EventCheck;
+	}
+	public static List<Event_p> EventWinner(String e_num) {
+		SqlSession sqlsession = sqlfactory.openSession();
+		List<Event_p> EventWinner = sqlsession.selectList("EventWinner", e_num);
+		sqlsession.close();
+		return EventWinner;
 	}
 	
 }
