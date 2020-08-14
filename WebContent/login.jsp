@@ -21,7 +21,7 @@
 }
 
 body {
-	background-image: url("img/UHD1.jpg");
+	background-image: url("loginbackground1.jpg");
 	background-position: center;
 	background-origin: content-box;
 	background-repeat: no-repeat;
