@@ -14,22 +14,10 @@ public class ProductDetailService {
 		return detail;
 	}
 	
-	public List<Product> size(String code) {
+	public List<Product> option(String code) {
 		DAO.getConn();
 		List<Product> sm = new ArrayList<Product>();
-		sm = DAO.size(code);
-		return sm;
-	}
-	public List<Product> color(String code) {
-		DAO.getConn();
-		List<Product> sm = new ArrayList<Product>();
-		sm = DAO.color(code);
-		return sm;
-	}
-	public List<Product> gear(String code) {
-		DAO.getConn();
-		List<Product> sm = new ArrayList<Product>();
-		sm = DAO.gear(code);
+		sm = DAO.option(code);
 		return sm;
 	}
 	

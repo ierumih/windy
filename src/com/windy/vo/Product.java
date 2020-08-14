@@ -2,9 +2,15 @@ package com.windy.vo;
 
 public class Product {
 	int p_price, p_stock;
-	String p_code, p_name, p_kind, p_detail, p_img, p_size, p_summary, p_color, p_gear;
+	String p_code, p_name, p_kind, p_detail, p_img, p_size, p_summary, p_color, p_gear, p_option;
 	
 	
+	public String getP_option() {
+		return p_option;
+	}
+	public void setP_option(String p_option) {
+		this.p_option = p_option;
+	}
 	public String getP_size() {
 		return p_size;
 	}

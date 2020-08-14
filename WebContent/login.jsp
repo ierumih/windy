@@ -127,12 +127,12 @@ body {
 			</div>
 			<input type= "checkbox" name = "maintain" value = "mt"> <label class="cbox">로그인유지</label><br>
 			<input type = "hidden" name = "ur" value = "<%=request.getHeader("referer")%>">
-			<input type="submit" class="btn" value = "SUBMIT"'>
+			<input type="submit" class="btn" value = "SUBMIT">
 			
 			<br> <br>
 			<a href="..." class="a1">CAN'T SIGN IN?</a><br>
-			<a href="..." class="a1">CREATE ACCOUNT</a><br>
-			<a href="..." class="a1">GO MAIN PAGE</a>
+			<a href="join.jsp" class="a1">CREATE ACCOUNT</a><br>
+			<a href="main.jsp" class="a1">GO MAIN PAGE</a>
 		</form>
 	</div>
 </body>

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.windy.board.action.Action;
 import com.windy.shop.svc.ProductListService;
 import com.windy.vo.ActionForward;
+import com.windy.vo.Page;
 import com.windy.vo.Product;
 
 public class ProductListAction implements Action {
@@ -16,6 +17,7 @@ public class ProductListAction implements Action {
 		
 		ActionForward forward = null;
 		String p_kind = request.getParameter("p_kind");
+		Page page = new Page();
 		
 		if(p_kind==null) {
 			forward = new ActionForward();
@@ -27,13 +29,19 @@ public class ProductListAction implements Action {
 		else {
 			forward = new ActionForward();
 			ProductListService productListService = new ProductListService();
-			List<Product> list = productListService.productlist(p_kind);
+			page = productListService.paging(p_kind);
+			if(request.getParameter("p")!=null)
+				page.setCurrentpage(Integer.valueOf(request.getParameter("p")));
+			else
+				page.setCurrentpage(1);
+			page.setS_limitindex();
+			page.setP_kind(p_kind);
+			List<Product> list = productListService.productlist(page);
 			request.setAttribute("list", list);
-			request.setAttribute("p_kind", p_kind);
+			request.setAttribute("page", page);
 			forward.setPath("product_list.jsp");
 		}
 		
-		// p_kind 로 받은 값을 기준으로 상품 진열해야함. 디테일 하고 넘어오셈
 		return forward;
 	}
 }

@@ -4,14 +4,12 @@
 <%@page import="java.text.DecimalFormat" %>
 <%
 	Product detail = (Product)request.getAttribute("detail");
-	List<Product> bs = (List<Product>)request.getAttribute("size");
-	List<Product> color = (List<Product>)request.getAttribute("color");
-	List<Product> gear = (List<Product>)request.getAttribute("gear");
+	List<Product> option = (List<Product>)request.getAttribute("option");
+	
 	DecimalFormat formatter = new DecimalFormat("###,###");
 	String [] dimg = detail.getP_detail().split(" "); 
 	String [] mimg = detail.getP_img().split(" ");
 	String [] man = detail.getP_name().split(" ");
-
 %>
 
 <!DOCTYPE html>
@@ -93,9 +91,37 @@
 		font-family: inherit;
 		border: 1px solid #999; 
 		border-radius: 0px; 
-		}
-
-
+	}
+	#b_box input[type="button"]{
+		font-size:16pt;
+		font-weight:bold;
+		width:210px;
+		height:60px;
+		
+	}
+	#ord_b{
+		margin-left:5px;
+	}
+	#whis_b{
+		margin-left:20px;
+	}
+	#pricebox{
+		min-width:200px;
+		height:70px;
+		text-align: right;
+	}
+	#won{
+		font-size:9pt;
+		float:right;
+		margin-top:17px;
+		margin-right:7px;
+	}
+	#sumprice{
+		font-size:20pt;
+		color:red;
+		font-weight:bold;
+		float:right;
+	}
 </style>
 	<script type="text/javascript">
 		$(function(){
@@ -114,12 +140,11 @@
 				}
 			});
 		});
-
 	</script>
 </head>
 <body>
 	<div>
-		<jsp:include page="shop_form.html"/>
+		<jsp:include page="shop_form.jsp"/>
 	</div>
 	
 	<%if(detail.getP_kind().equals("road")){ %><div class="sub_t" id="rb">Road Bike</div>
@@ -154,51 +179,25 @@
 					<th>상품코드</th>
 					<td><%=detail.getP_code() %></td>
 				</tr>
-				<%if(!(bs.get(0).getP_size().equals("no"))){ %>
+				
 				<tr>	
-					<th>사이즈</th>
-					<td><select name="b_size" id="sel_size">
+					<th>옵션선택</th>
+					<td><select name="b_option" id="sel_option">
 						<option value="" selected>선택</option>
 						<option value="">------------</option>
-				<%for(int i=0;i<bs.size();i++){ %>
-						<option value="<%=bs.get(i).getP_size()%>"><%=bs.get(i).getP_size()%></option>
-						<%} %>
-					</select></td>
-				</tr>
-				<%} %>
-				<%if(!(color.get(0).getP_color().equals("no"))){ %>
-				<tr>	
-					<th>색상</th>
-					<td><select name="b_color" id="sel_color">
-						<option value="">선택</option>
-						<option value="">------------</option>
-				<%for(int i=0;i<color.size();i++){ %>
-						<option value="<%=color.get(i).getP_color()%>"><%=color.get(i).getP_color()%></option>
-						<%} %>
-					</select></td>
-				</tr>
-				<%} %>
-				<%if(!(gear.get(0).getP_gear().equals("no"))){%>
-				<tr>	
-					<th>기어</th>
-					<td><select name="b_gear" id="sel_gear">
-						<option value="">선택</option>
-						<option value="">------------</option>
-				<%for(int i=0;i<gear.size();i++){ %>
-						<option value="<%=gear.get(i).getP_gear()%>"><%=gear.get(i).getP_gear()%></option>
-				<%}%>						
-					</select></td>
-				</tr>
-				<%} %>
-				<tr>
-					<td>
+				<%for(int i=0;i<option.size();i++){ %>
+					<%if(option.get(i).getP_stock()==0){ %>
+						<option value="<%=option.get(i).getP_option()%>" disabled><%=option.get(i).getP_option()%> [품절]</option>
+						<%}else{ %><option value="<%=option.get(i).getP_option()%>"><%=option.get(i).getP_option()%></option>
 						
-						<label id="ss"></label>
-					</td>
+						<%} }%>
+					</select></td>
 				</tr>
 			</table>				
-				
-				
+				<div id="optionbox">
+				</div>
+				<div id="pricebox"><div id="sumprice">0</div><div id="won">\</div></div>
+				<div id="b_box"><input type="button" value="주문하기" id="ord_b"><input type="button" value="찜하기" id="whis_b"></div>
 				
 			</div>
 			<div id="thumbimg">

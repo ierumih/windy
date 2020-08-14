@@ -17,6 +17,7 @@ import com.windy.event.action.EventListingAction;
 import com.windy.mypage.action.userInfoSelectAction;
 import com.windy.shop.action.ProductDetailAction;
 import com.windy.shop.action.ProductListAction;
+import com.windy.shop.action.ProductOrderAction;
 import com.windy.vo.ActionForward;
 
 @WebServlet("*.b")
@@ -129,6 +130,15 @@ public class BController extends javax.servlet.http.HttpServlet{
 		else if(command.equals("/productDetail.b")){
 			
 			action = new ProductDetailAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/productOrder.b")){
+			
+			action = new ProductOrderAction();
 			try{
 				forward=action.execute(request, response);
 			}catch(Exception e){
