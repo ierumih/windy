@@ -18,10 +18,7 @@ public class ProductOrderAction implements Action {
 		String order = request.getParameter("item");
 		ProductOrderService productorderservice = new ProductOrderService();
 		
-		request.setAttribute("size", size );
-		request.setAttribute("color", color);
-		request.setAttribute("gear", gear );
-		request.setAttribute("detail", detail);
+		
 		forward.setPath("product_detail.jsp");
 		
 		return forward;

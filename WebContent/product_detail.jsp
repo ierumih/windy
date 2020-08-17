@@ -6,7 +6,7 @@
 	Product detail = (Product)request.getAttribute("detail");
 	List<Product> option = (List<Product>)request.getAttribute("option");
 	
-	DecimalFormat formatter = new DecimalFormat("###,###");
+	DecimalFormat aaa = new DecimalFormat("###,###");
 	String [] dimg = detail.getP_detail().split(" "); 
 	String [] mimg = detail.getP_img().split(" ");
 	String [] man = detail.getP_name().split(" ");
@@ -122,24 +122,72 @@
 		font-weight:bold;
 		float:right;
 	}
+	#card{
+		widht:450px;
+		height:70px;
+		border:1px solid #e5e5e5;
+	}
+	#select_op{
+		padding:10px 0 0 10px;
+		font-size:12pt;
+		font-weight:bold;
+		
+	}
+	#count{
+		margin:3px 0 0 10px;
+	}
+	#count input[type='text']{
+		width:20px;
+		height:17px;
+		text-align:center;
+		border:1px solid #b9b2b2;
+		border-radius:0;
+		
+	}
+	#count input[type='button']{
+		width:18px;
+		height:19px;
+		border:1px solid #b9b2b2;
+		border-radius:0;
+		
+	}
+	#xb{
+		float:right;
+		font-size:20pt;
+		padding-right:9px;
+		height:30px;
+		cursor:pointer;
+	}
+	#eachprice{
+		float:right;
+		font-weight:bold;
+		padding-right:9px;
+		margin-top:3px;
+		
+	}
 </style>
 	<script type="text/javascript">
+		function addComma(num) {
+		  var regexp = /\B(?=(\d{3})+(?!\d))/g;
+		  return num.toString().replace(regexp, ',');
+		}
+		
 		$(function(){
-			$("#sel_size").change(function(){
+			$("#sel_option").change(function(){
 				
-			var size = $("#sel_size option:selected").val();
-			$("#ss").text(size);
+			var option= $("#sel_option option:selected").val();
+			$("#optionbox").append("<div id='card'><div id='xb'>&times;</div><div id='select_op'>"+option+"</div><div id='eachprice'>"+
+					"&#92; "+addComma(<%=detail.getP_price()%>)+"</div><div id='count'><input type='button' value='-' id='minus'><input type='text' value='1'>"+
+					"<input type='button' value='+' id='plus'></div></div>");
 			});
 			
-			$("select:last-child").change(function(){
-				
-				if($("#sel_size option:selected").val()==""){
-					$("select:last-child option:eq(0)").prop("selected", true);
-					console.log("dd");
-					alert("순서지켜");
-				}
+			$(document).on("click","#xb",function(){
+				$(this).parent().remove();
 			});
+			
 		});
+		
+		
 	</script>
 </head>
 <body>
@@ -162,7 +210,7 @@
 				</tr>
 				<tr>
 					<th>판매가</th>
-					<td><%=formatter.format(detail.getP_price()) %></td>
+					<td><%=aaa.format(detail.getP_price()) %></td>
 				</tr>
 				<tr>
 					<td colspan="2"><hr></td>
@@ -195,9 +243,10 @@
 				</tr>
 			</table>				
 				<div id="optionbox">
+					
 				</div>
 				<div id="pricebox"><div id="sumprice">0</div><div id="won">\</div></div>
-				<div id="b_box"><input type="button" value="주문하기" id="ord_b"><input type="button" value="찜하기" id="whis_b"></div>
+				<div id="b_box"><input type="button" value="찜하기" id="whis_b"><input type="button" value="주문하기" id="ord_b"></div>
 				
 			</div>
 			<div id="thumbimg">
