@@ -171,8 +171,7 @@
 		  var regexp = /\B(?=(\d{3})+(?!\d))/g;
 		  return num.toString().replace(regexp, ',');
 		}
-		
-		$(function(){
+		ㅇ		$(function(){
 			$("#sel_option").change(function(){
 				
 			var option= $("#sel_option option:selected").val();
