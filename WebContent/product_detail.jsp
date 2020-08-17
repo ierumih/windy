@@ -158,7 +158,7 @@
 		height:30px;
 		cursor:pointer;
 	}
-	#eachprice{
+	.eachprice{
 		float:right;
 		font-weight:bold;
 		padding-right:9px;
@@ -171,21 +171,58 @@
 		  var regexp = /\B(?=(\d{3})+(?!\d))/g;
 		  return num.toString().replace(regexp, ',');
 		}
-		ㅇ		$(function(){
+			$(function(){
+			var results = 0;
+			var result = <%=detail.getP_price()%>;
+			var product_price = <%=detail.getP_price()%>;
+			var sum = 0;
 			$("#sel_option").change(function(){
-				
+			sum += product_price;
 			var option= $("#sel_option option:selected").val();
-			$("#optionbox").append("<div id='card'><div id='xb'>&times;</div><div id='select_op'>"+option+"</div><div id='eachprice'>"+
-					"&#92; "+addComma(<%=detail.getP_price()%>)+"</div><div id='count'><input type='button' value='-' id='minus'><input type='text' value='1'>"+
-					"<input type='button' value='+' id='plus'></div></div>");
+				if(option!=""){
+					$("#optionbox form").append("<div id='card'><div id='xb'>&times;</div><div id='select_op'>"+option+"</div><div class='eachprice'>"+
+							"<span>&#92; </span><span id='ep'>"+addComma(product_price)+"</span></div><div id='count'><input type='button' value='-' class='bt_down'><input type='text' value='1' class='num'>"+
+							"<input type='button' value='+' class='bt_up'></div></div>");	
+					$("#sumprice").text(addComma(sum));
+				}
+				
+			});
+			
+			$(document).on("click",".bt_up",function(){ 
+			  var n = $('.bt_up').index(this);
+			  var num = $(".num:eq("+n+")").val();
+			  num = $(".num:eq("+n+")").val(num*1+1);
+			  result = product_price * num.val();
+			  $(".eachprice:eq("+n+") #ep").text(addComma(result));
+			  sum += product_price;
+			  $("#sumprice").text(addComma(sum));
+			});
+			
+			$(document).on("click",".bt_down",function(){
+			  var n = $('.bt_down').index(this);
+			  var num = $(".num:eq("+n+")").val();
+			  if(num>1){
+				  num = $(".num:eq("+n+")").val(num*1-1);
+				  result = product_price * num.val();
+				  $(".eachprice:eq("+n+") #ep").text(addComma(result));
+				  sum -= product_price;
+				  $("#sumprice").text(addComma(sum));
+			  }
 			});
 			
 			$(document).on("click","#xb",function(){
+				var n = $('.bt_up').index(this);
+				var num = $(".num:eq("+n+")").val();
+				result = product_price * num;
+				//안됌..
+				sum -= result;
+				$("#sumprice").text(addComma(sum));
 				$(this).parent().remove();
+				  
 			});
 			
 		});
-		
+			
 		
 	</script>
 </head>
@@ -242,7 +279,8 @@
 				</tr>
 			</table>				
 				<div id="optionbox">
-					
+					<form name="ord">
+					</form>
 				</div>
 				<div id="pricebox"><div id="sumprice">0</div><div id="won">\</div></div>
 				<div id="b_box"><input type="button" value="찜하기" id="whis_b"><input type="button" value="주문하기" id="ord_b"></div>

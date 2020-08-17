@@ -21,186 +21,186 @@
 %>
 <html>
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-<link
-	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap"
-	rel="stylesheet">
-<head>
-<title>WINDY</title>
-</head>
-<meta charset="utf-8">
-<style>
-.img-circle {
-	width: 300px;
-	height: 300px;
-}
-
-.profile_img {
-	margin-top: 20px;
-}
-
-.test_t {
-	width: 880px;
-}
-
-.test_t tr td {
-	width: 200px;
-	height: 80px;
-}
-
-.test_b {
-	width: 1000px;
-}
-
-.test_b tr td {
-	padding-top: 15px;
-	border-top: solid 1px;
-	text-align: center;
-	font-size: 22px;
-	width: 25%;
-}
-
-.test_b tr td a {
-	text-decoration: none;
-	color: black;
-}
-
-#board_div table {
-	width: 1000px;
-}
-
-#board_div table tr td {
-	border: solid 1px;
-	width: 20%;
-	text-align: center;
-}
-
-#my_bike_div table {
-	width: 1000px;
-}
-
-#my_bike_div table tr td {
-	width: 33%;
-	border: solid 1px;
-	text-align: center;
-}
-
-.receipt {
-	width: 1000px;
-}
-
-.receipt tr td {
-	width: 20%;
-	text-align: center;
-}
-
-.settingbt {
-	border: none;
-	margin-left: 190px;
-}
-
-.settingbt img {
-	width: 20px;
-	height: 20px;
-}
-
-#challenge_div {
-	width: 1000px;
-	height: 500px;
-}
-
-#challenge_div p {
-	margin: 0;
-	height: 500px;
-}
-
-#nick_name {
-	border: none;
-	font-size: 30px;
-	margin-left: 45px;
-	text-align: center;
-	background-color: white;
-}
-</style>
-
-<script>
-	$(document).ready(function() {
-		$('#tapbar').tendina({});
-		$('.slider').bxSlider({
-			auto : true,
-			pause : 4000,
-			controls : false,
-			stopAutoOnClick : true,
-		});
-	});
-</script>
-<script>
-	$(document).ready(function() {
-		$('#board_div').hide();
-		$('#my_bike_div').hide();
-		$('#wish_list_div').hide();
-		$('#challenge_div').hide();
-		$('#save').hide();
-		$('#cnacel').hide();
-
-		$('#boards').click(function() {
-			$('#board_div').toggle('slow');
-			$('#my_bike_div').hide();
-			$('#wish_list_div').hide();
-			$('#challenge_div').hide();
-		});
-		$('#my_bike').click(function() {
-			$('#my_bike_div').toggle('slow');
-			$('#board_div').hide();
-			$('#wish_list_div').hide();
-			$('#challenge_div').hide();
-		});
-
-		$('#wish_list').click(function() {
-			$('#wish_list_div').toggle('slow');
-			$('#board_div').hide();
-			$('#my_bike_div').hide();
-			$('#challenge_div').hide();
-		});
-
-		$('#challenge').click(function() {
-			$('#challenge_div').toggle('slow');
-			$('#board_div').hide();
-			$('#my_bike_div').hide();
-			$('#wish_list_div').hide();
-		});
-
-		$(".settingbt").click(function() {//수정버튼
-			$(".form-control").attr('disabled', false);
-			$("#nick_name").attr('disabled', false);
-			$('#save').show();
-			$('#cnacel').show();
-			$('.settingbt').hide();
-		});
-	});
-</script>
-<script>
-	function Save(){
-		document.getElementById('name');
-		document.getElementById('nick_name');
-		document.getElementById('tel');
-		document.getElementById('email');
-		document.getElementById('addr');
-		document.getElementById('addr1');
-		alert("asd");
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<link rel="stylesheet"
+		href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap"
+		rel="stylesheet">
+	<head>
+	<title>WINDY</title>
+	</head>
+	<meta charset="utf-8">
+	<style>
+	.img-circle {
+		width: 300px;
+		height: 300px;
 	}
-</script>
+	
+	.profile_img {
+		margin-top: 20px;
+	}
+	
+	.test_t {
+		width: 880px;
+	}
+	
+	.test_t tr td {
+		width: 200px;
+		height: 80px;
+	}
+	
+	.test_b {
+		width: 1000px;
+	}
+	
+	.test_b tr td {
+		padding-top: 15px;
+		border-top: solid 1px;
+		text-align: center;
+		font-size: 22px;
+		width: 25%;
+	}
+	
+	.test_b tr td a {
+		text-decoration: none;
+		color: black;
+	}
+	
+	#board_div table {
+		width: 1000px;
+	}
+	
+	#board_div table tr td {
+		border: solid 1px;
+		width: 20%;
+		text-align: center;
+	}
+	
+	#my_bike_div table {
+		width: 1000px;
+	}
+	
+	#my_bike_div table tr td {
+		width: 33%;
+		border: solid 1px;
+		text-align: center;
+	}
+	
+	.receipt {
+		width: 1000px;
+	}
+	
+	.receipt tr td {
+		width: 20%;
+		text-align: center;
+	}
+	
+	.settingbt {
+		border: none;
+		margin-left: 190px;
+	}
+	
+	.settingbt img {
+		width: 20px;
+		height: 20px;
+	}
+	
+	#challenge_div {
+		width: 1000px;
+		height: 500px;
+	}
+	
+	#challenge_div p {
+		margin: 0;
+		height: 500px;
+	}
+	
+	#nick_name {
+		border: none;
+		font-size: 30px;
+		margin-left: 45px;
+		text-align: center;
+		background-color: white;
+	}
+	</style>
+	
+	<script>
+		$(document).ready(function() {
+			$('#tapbar').tendina({});
+			$('.slider').bxSlider({
+				auto : true,
+				pause : 4000,
+				controls : false,
+				stopAutoOnClick : true,
+			});
+		});
+	</script>
+	<script>
+		$(document).ready(function() {
+			$('#board_div').hide();
+			$('#my_bike_div').hide();
+			$('#wish_list_div').hide();
+			$('#challenge_div').hide();
+			$('#save').hide();
+			$('#cnacel').hide();
+	
+			$('#boards').click(function() {
+				$('#board_div').toggle('slow');
+				$('#my_bike_div').hide();
+				$('#wish_list_div').hide();
+				$('#challenge_div').hide();
+			});
+			$('#my_bike').click(function() {
+				$('#my_bike_div').toggle('slow');
+				$('#board_div').hide();
+				$('#wish_list_div').hide();
+				$('#challenge_div').hide();
+			});
+	
+			$('#wish_list').click(function() {
+				$('#wish_list_div').toggle('slow');
+				$('#board_div').hide();
+				$('#my_bike_div').hide();
+				$('#challenge_div').hide();
+			});
+	
+			$('#challenge').click(function() {
+				$('#challenge_div').toggle('slow');
+				$('#board_div').hide();
+				$('#my_bike_div').hide();
+				$('#wish_list_div').hide();
+			});
+	
+			$(".settingbt").click(function() {//수정버튼
+				$(".form-control").attr('disabled', false);
+				$("#nick_name").attr('disabled', false);
+				$('#save').show();
+				$('#cnacel').show();
+				$('.settingbt').hide();
+			});
+		});
+	</script>
+	<script>
+		function Save(){
+			document.getElementById('name');
+			document.getElementById('nick_name');
+			document.getElementById('tel');
+			document.getElementById('email');
+			document.getElementById('addr');
+			document.getElementById('addr1');
+			alert("asd");
+		}
+	</script>
 <body>
 
 	<header>
