@@ -106,24 +106,38 @@
 	    left: 50%;
 	    top: 50%;
 	    transform: translate(-50%,-50%);
-	    width: 500px;
-	    height: 400px;
+	    width: 400px;
+	    height: 350px;
 	    text-align: center;
 	    background: #fff;
 	    border-radius: 5px;
 	    border : 3px solid skyblue;
+	    z-index: 10;
 	}
 	
 	.pop_div{
 		margin-top:60px;
-		font-size:12pt;
+		font-size:17pt;
 		font-family: none;
+		font-weight:bold;
 	}
 	.pop_div2{
 		margin-top:10px;
 		font-weight: bold;
 		font-size:15pt;
+		font-family: -webkit-pictograph;
+	}
+	.pop_div3{
+		margin-top:20px;
+		font-size:13pt;
 		font-family: none;
+		font-weight: bold;
+	}
+	.exit{
+		margin-top:10px;
+		width:80px;
+		height: 35px;
+		font-weight: bold;
 	}
 </style>
 <script>
@@ -136,7 +150,7 @@
 	    $(".main_btn").click(function(){
 	        $("#popup").fadeIn();
 	    });
-	    $("#popup").click(function(){
+	    $(".exit").click(function(){
 	        $("#popup").fadeOut();
 	    });
 	    Swal.fire(  'Good job!',  'You clicked the button!',  'success' );
@@ -173,14 +187,14 @@
 				</div>
 				<div id="popup">
 			       <div id="popmenu">
-			       	   <div class="pop_div2">당첨자 명단</div>
+			       	   <div class="pop_div">당첨자 명단</div>
 			       	   <%
 			       			for(int i=0;i<Ewinner.size();i++){
 			       				out.println("<div class='pop_div2'>"+Ewinner.get(i).getWinner()+"님</div>");
 			       			}
 			       	   %>
-			           <div class="pop_div2">축하드립니다.</div>
-			           <div class="exit">닫기</div>
+			           <div class="pop_div3">축하드립니다.</div>
+			           <div><input type="button" value="닫기" class="exit"></div>
 			       </div>
 			   </div>
 				<div>

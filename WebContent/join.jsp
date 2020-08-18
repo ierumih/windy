@@ -8,6 +8,17 @@
 %>
 <!DOCTYPE html>
 <html>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	  <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	  <!--tap bar slide-->
+	  <script src="tendina-master/dist/tendina.js"></script>
+	  <!--font-->
+	  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap"  rel="stylesheet">
+	  <link rel="stylesheet" type="text/css" href="css/header2.css">
+	  <script type="text/javascript" src="js/header2.js"></script>
 <head>
 	<meta charset="utf-8">
 	<title>회원가입</title>

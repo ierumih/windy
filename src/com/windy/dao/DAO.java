@@ -182,21 +182,6 @@ public class DAO {
 		return list;
 	}
 	
-	public static List<Event> EventListing() {
-		SqlSession sqlsession = sqlfactory.openSession();
-		List<Event> EventListing = sqlsession.selectList("EventListing", time);
-		sqlsession.close();
-		return EventListing;
-	}
-
-	public static List<Event> EventListend() {
-		SqlSession sqlsession = sqlfactory.openSession();
-		List<Event> EventListend = sqlsession.selectList("EventListend", time);
-		sqlsession.close();
-		return EventListend;
-
-	}
-	
 	public static int paging(String p_kind) {
 		SqlSession sqlsession = sqlfactory.openSession();
 		int x = sqlsession.selectOne("paging", p_kind);
@@ -217,34 +202,6 @@ public class DAO {
 		sqlsession.close();
 		return EventListend;
 
-	}
-	
-	public static Event EventDetail(String e_num) {
-		SqlSession sqlsession = sqlfactory.openSession();
-		Event EventDetail = sqlsession.selectOne("EventDetail", e_num);
-		sqlsession.close();
-		return EventDetail;
-	}
-	
-	public static int insert(Event_p event) {
-		SqlSession sqlsession = sqlfactory.openSession();
-		int chk = sqlsession.insert("EventInsert",event);
-		sqlsession.commit();
-		sqlsession.close();
-		return chk;
-	}
-	
-	public static Event_p EventCheck(String e_num) {
-		SqlSession sqlsession = sqlfactory.openSession();
-		Event_p EventCheck = sqlsession.selectOne("EventCheck", e_num);
-		sqlsession.close();
-		return EventCheck;
-	}
-	public static List<Event_p> EventWinner(String e_num) {
-		SqlSession sqlsession = sqlfactory.openSession();
-		List<Event_p> EventWinner = sqlsession.selectList("EventWinner", e_num);
-		sqlsession.close();
-		return EventWinner;
 	}
 	
 	public static Event EventDetail(String e_num) {
