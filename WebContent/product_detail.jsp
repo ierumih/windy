@@ -242,8 +242,7 @@
 				$(".hidden_sum").val(sum);
 				$(this).parent().remove();
 				op_selected.splice(n,1);
-				
-				  
+				 
 			});
 			
 		});
