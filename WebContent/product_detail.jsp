@@ -92,6 +92,9 @@
 		border: 1px solid #999; 
 		border-radius: 0px; 
 	}
+	#b_box{
+		text-align: center;
+	}
 	#b_box input[type="button"]{
 		font-size:16pt;
 		font-weight:bold;
@@ -100,11 +103,9 @@
 		
 	}
 	#ord_b{
-		margin-left:5px;
+		margin-left:10px;
 	}
-	#whis_b{
-		margin-left:20px;
-	}
+	
 	#pricebox{
 		min-width:200px;
 		height:70px;
@@ -122,7 +123,7 @@
 		font-weight:bold;
 		float:right;
 	}
-	#card{
+	.card{
 		widht:450px;
 		height:70px;
 		border:1px solid #e5e5e5;
@@ -151,7 +152,7 @@
 		border-radius:0;
 		
 	}
-	#xb{
+	.xb{
 		float:right;
 		font-size:20pt;
 		padding-right:9px;
@@ -176,14 +177,30 @@
 			var result = <%=detail.getP_price()%>;
 			var product_price = <%=detail.getP_price()%>;
 			var sum = 0;
+			var i=0;
+			var op_selected = new Array();
 			$("#sel_option").change(function(){
-			sum += product_price;
+				
+				for(var i=0;i<op_selected.length;i++){
+					if(op_selected[i]==$("#sel_option option").index($("#sel_option option:selected"))){
+						alert("이미선택한 옵션입니다.");
+						return;
+					}
+				}
+			
+			
 			var option= $("#sel_option option:selected").val();
 				if(option!=""){
-					$("#optionbox form").append("<div id='card'><div id='xb'>&times;</div><div id='select_op'>"+option+"</div><div class='eachprice'>"+
+					sum += product_price;
+					
+					$("#optionbox form").append("<div class='card'><div class='xb'>&times;</div><div id='select_op'>"+option+"</div><div class='eachprice'>"+
 							"<span>&#92; </span><span id='ep'>"+addComma(product_price)+"</span></div><div id='count'><input type='button' value='-' class='bt_down'><input type='text' value='1' class='num'>"+
-							"<input type='button' value='+' class='bt_up'></div></div>");	
+							"<input type='button' value='+' class='bt_up'><input type='hidden' class='hidden_price' value='"+product_price+"'><input type='hidden' class='hidden_sum' value='"+sum+"'>"+
+							"</div></div>");	
 					$("#sumprice").text(addComma(sum));
+					$(".hidden_sum").val(sum);
+					op_selected.push($("#sel_option option").index($("#sel_option option:selected")));
+					i++;
 				}
 				
 			});
@@ -194,8 +211,11 @@
 			  num = $(".num:eq("+n+")").val(num*1+1);
 			  result = product_price * num.val();
 			  $(".eachprice:eq("+n+") #ep").text(addComma(result));
+			  $(".hidden_price:eq("+n+")").val(result);
 			  sum += product_price;
 			  $("#sumprice").text(addComma(sum));
+			  $(".hidden_sum").val(sum);
+			  
 			});
 			
 			$(document).on("click",".bt_down",function(){
@@ -205,19 +225,24 @@
 				  num = $(".num:eq("+n+")").val(num*1-1);
 				  result = product_price * num.val();
 				  $(".eachprice:eq("+n+") #ep").text(addComma(result));
+				  $(".hidden_price:eq("+n+")").val(result);
 				  sum -= product_price;
 				  $("#sumprice").text(addComma(sum));
+				  $(".hidden_sum").val(sum);
 			  }
 			});
 			
-			$(document).on("click","#xb",function(){
-				var n = $('.bt_up').index(this);
+			$(document).on("click",".xb",function(){
+				var n = $(".xb").index(this);
 				var num = $(".num:eq("+n+")").val();
-				result = product_price * num;
-				//안됌..
+				sum = $(".hidden_sum").val();
+				result = $(".hidden_price:eq("+n+")").val();
 				sum -= result;
 				$("#sumprice").text(addComma(sum));
+				$(".hidden_sum").val(sum);
 				$(this).parent().remove();
+				op_selected.splice(n,1);
+				
 				  
 			});
 			
