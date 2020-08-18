@@ -1,153 +1,206 @@
+<%@page import="com.windy.vo.Challenge_comp"%>
+<%@page import="com.windy.vo.Board"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="com.windy.vo.User"%>
 <%@page import="org.apache.ibatis.session.SqlSessionFactory"%>
 <%@page import="org.apache.ibatis.session.SqlSession"%>
-
+<%@page import="java.util.List"%>
 
 <!DOCTYPE html>
 <%
 	User info = (User) session.getAttribute("info");
 
-	int boards_count = 11;
+	List<Board> board = (List<Board>) session.getAttribute("board");
+
+	List<Challenge_comp> cc = (List<Challenge_comp>) session.getAttribute("compChallenge");
+
 	int my_bike_count = 2;
 	int wish_list_count = 5;
-	int challenge_count = 4;
+
 %>
 <html>
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-<link
-	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap"
-	rel="stylesheet">
-<head>
-<title>WINDY</title>
-</head>
-<meta charset="utf-8">
-<style>
-.img-circle {
-	width: 300px;
-	height: 300px;
-}
-
-.profile_img {
-	margin-top: 20px;
-}
-
-.test_t {
-	width: 880px;
-}
-
-.test_t tr td {
-	width: 200px;
-	height: 80px;
-}
-
-.test_b {
-	width: 1000px;
-}
-
-.test_b tr td {
-	padding-top: 15px;
-	border-top: solid 1px;
-	text-align: center;
-	font-size: 22px;
-	width: 25%;
-}
-
-.test_b tr td a {
-	text-decoration: none;
-	color: black;
-}
-
-#board_div table {
-	width: 1000px;
-}
-
-#board_div table tr td {
-	border: solid 1px;
-	width: 20%;
-	text-align: center;
-}
-
-#my_bike_div table {
-	width: 1000px;
-}
-
-#my_bike_div table tr td {
-	width: 33%;
-	border: solid 1px;
-	text-align: center;
-}
-
-.receipt {
-	width: 1000px;
-}
-
-.receipt tr td {
-	width: 20%;
-	text-align: center;
-}
-</style>
-
-<script>
-	$(document).ready(function() {
-		$('#tapbar').tendina({});
-		$('.slider').bxSlider({
-			auto : true,
-			pause : 4000,
-			controls : false,
-			stopAutoOnClick : true,
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<link rel="stylesheet"
+		href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap"
+		rel="stylesheet">
+	<head>
+	<title>WINDY</title>
+	</head>
+	<meta charset="utf-8">
+	<style>
+	.img-circle {
+		width: 300px;
+		height: 300px;
+	}
+	
+	.profile_img {
+		margin-top: 20px;
+	}
+	
+	.test_t {
+		width: 880px;
+	}
+	
+	.test_t tr td {
+		width: 200px;
+		height: 80px;
+	}
+	
+	.test_b {
+		width: 1000px;
+	}
+	
+	.test_b tr td {
+		padding-top: 15px;
+		border-top: solid 1px;
+		text-align: center;
+		font-size: 22px;
+		width: 25%;
+	}
+	
+	.test_b tr td a {
+		text-decoration: none;
+		color: black;
+	}
+	
+	#board_div table {
+		width: 1000px;
+	}
+	
+	#board_div table tr td {
+		border: solid 1px;
+		width: 20%;
+		text-align: center;
+	}
+	
+	#my_bike_div table {
+		width: 1000px;
+	}
+	
+	#my_bike_div table tr td {
+		width: 33%;
+		border: solid 1px;
+		text-align: center;
+	}
+	
+	.receipt {
+		width: 1000px;
+	}
+	
+	.receipt tr td {
+		width: 20%;
+		text-align: center;
+	}
+	
+	.settingbt {
+		border: none;
+		margin-left: 190px;
+	}
+	
+	.settingbt img {
+		width: 20px;
+		height: 20px;
+	}
+	
+	#challenge_div {
+		width: 1000px;
+		height: 500px;
+	}
+	
+	#challenge_div p {
+		margin: 0;
+		height: 500px;
+	}
+	
+	#nick_name {
+		border: none;
+		font-size: 30px;
+		margin-left: 45px;
+		text-align: center;
+		background-color: white;
+	}
+	</style>
+	
+	<script>
+		$(document).ready(function() {
+			$('#tapbar').tendina({});
+			$('.slider').bxSlider({
+				auto : true,
+				pause : 4000,
+				controls : false,
+				stopAutoOnClick : true,
+			});
 		});
-	});
-</script>
-<script>
-	$(document).ready(function() {
-		$('#board_div').hide();
-		$('#my_bike_div').hide();
-		$('#wish_list_div').hide();
-		$('#challenge_div').hide();
-
-		$('#boards').click(function() {
-			$('#board_div').toggle('slow');
+	</script>
+	<script>
+		$(document).ready(function() {
+			$('#board_div').hide();
 			$('#my_bike_div').hide();
 			$('#wish_list_div').hide();
 			$('#challenge_div').hide();
+			$('#save').hide();
+			$('#cnacel').hide();
+	
+			$('#boards').click(function() {
+				$('#board_div').toggle('slow');
+				$('#my_bike_div').hide();
+				$('#wish_list_div').hide();
+				$('#challenge_div').hide();
+			});
+			$('#my_bike').click(function() {
+				$('#my_bike_div').toggle('slow');
+				$('#board_div').hide();
+				$('#wish_list_div').hide();
+				$('#challenge_div').hide();
+			});
+	
+			$('#wish_list').click(function() {
+				$('#wish_list_div').toggle('slow');
+				$('#board_div').hide();
+				$('#my_bike_div').hide();
+				$('#challenge_div').hide();
+			});
+	
+			$('#challenge').click(function() {
+				$('#challenge_div').toggle('slow');
+				$('#board_div').hide();
+				$('#my_bike_div').hide();
+				$('#wish_list_div').hide();
+			});
+	
+			$(".settingbt").click(function() {//수정버튼
+				$(".form-control").attr('disabled', false);
+				$("#nick_name").attr('disabled', false);
+				$('#save').show();
+				$('#cnacel').show();
+				$('.settingbt').hide();
+			});
 		});
-		$('#my_bike').click(function() {
-			$('#my_bike_div').toggle('slow');
-			$('#board_div').hide();
-			$('#wish_list_div').hide();
-			$('#challenge_div').hide();
-		});
-
-		$('#wish_list').click(function() {
-			$('#wish_list_div').toggle('slow');
-			$('#board_div').hide();
-			$('#my_bike_div').hide();
-			$('#challenge_div').hide();
-		});
-
-		$('#challenge').click(function() {
-			$('#challenge_div').toggle('slow');
-			$('#board_div').hide();
-			$('#my_bike_div').hide();
-			$('#wish_list_div').hide();
-		});
-
-	});
-</script>
+	</script>
+	<script>
+		function Save(){
+			document.getElementById('name');
+			document.getElementById('nick_name');
+			document.getElementById('tel');
+			document.getElementById('email');
+			document.getElementById('addr');
+			document.getElementById('addr1');
+			alert("asd");
+		}
+	</script>
 <body>
 
 	<header>
@@ -163,44 +216,47 @@
 				<td rowspan="5"><img src="img/1.jpg" alt="프로필사진"
 					class="img-circle"
 					style="margin-left: 50px; margin-right: 50px; margin-top: 14px;">
-					<br> <br> <input type="text"
-					style="border: none; font-size: 30px; margin-left: 40px; text-align: center;"
-					readonly="readonly" placeholder="<%out.print(info.getNick());%>"><br>
-					<br>
-					<button type="button" class="btn btn-danger" onclick="update()"
-						style="margin-left: 158px;">SETTING</button></td>
+					<br> <br> <input type="text" disabled="disabled"
+					placeholder="<%out.print(info.getNick());%>" id="nick_name">
+					<br> <br>
+					<button type="button" class="settingbt" onclick="SettingOn">
+						<img alt="" src="img/setting.png">
+					</button>
+					<button type="button" onclick="Save" id="save"
+						style="margin-left: 165px;">저장</button>
+					<button type="button" onclick="window.location.reload();" id="cnacel">취소</button></td>
 			</tr>
 			<tr>
 
-				<td><label for="exampleInputName2">Name</label> <input
-					type="text" readonly="readonly" style="width: 256px;"
-					class="form-control" id="exampleInputName2"
+				<td><label for="name">Name</label> <input
+					type="text" disabled="disabled" style="width: 256px;"
+					class="form-control" id="name"
 					placeholder="<%out.print(info.getName());%>"></td>
 			</tr>
 			<tr>
 
-				<td><label for="exampleInputName3">Phone Number</label> <input
-					type="text" readonly="readonly" style="width: 256px;"
-					class="form-control" id="exampleInputName3"
-					placeholder=" <%out.print(info.getTel());%> "></td>
+				<td><label for="tel">Phone Number</label> <input
+					type="text" disabled="disabled" style="width: 256px;"
+					class="form-control" id="tel"
+					placeholder="<%out.print(info.getTel());%>"></td>
 			</tr>
 			<tr>
 
-				<td><label for="exampleInputName5">Email</label> <input
-					type="text" readonly="readonly" style="width: 256px;"
-					class="form-control" id="exampleInputName5"
+				<td><label for="email">Email</label> <input
+					type="text" disabled="disabled" style="width: 256px;"
+					class="form-control" id="email"
 					placeholder="<%out.print(info.getEmail());%>"></td>
 			</tr>
 			<tr>
 
-				<td><label for="exampleInputName4">Addr</label> <input
-					type="text" readonly="readonly" style="width: 256px;"
-					class="form-control" id="exampleInputName4"
+				<td><label for="addr">Addr</label> <input
+					type="text" disabled="disabled" style="width: 256px;"
+					class="form-control" id="addr"
 					placeholder="<%out.print(info.getAddr());%>"> <label
-					for="exampleInputName6">Detail</label> <textarea
-						readonly="readonly"
+					for="addr1">Detail</label> <textarea
+						disabled="disabled"
 						style="width: 256px; height: 90px; resize: none;"
-						class="form-control" id="exampleInputName6"
+						class="form-control" id="addr1"
 						placeholder="<%out.print(info.getAddr1() + "\n" + info.getAddr2() + "\n" + info.getAddr3());%>"></textarea></td>
 			</tr>
 		</table>
@@ -209,7 +265,7 @@
 		<table class="test_b">
 			<tr>
 				<td><a id="boards">Boards <%
-					out.print(boards_count);
+					out.print(board.size());
 				%></a></td>
 				<td><a id="my_bike">My_Bike <%
 					out.print(my_bike_count);
@@ -218,7 +274,7 @@
 					out.print(wish_list_count);
 				%></a></td>
 				<td><a id="challenge">Challenge <%
-					out.print(challenge_count);
+					out.print(cc.size());
 				%></a></td>
 			</tr>
 		</table>
@@ -226,21 +282,44 @@
 		<div id="board_div">
 			<table>
 				<%
-					for (int i = 0; i < boards_count; i++) {
+					for (int i = 0; i < board.size(); i++) {
 				%>
 				<tr>
-					<td><input type="checkbox"> 글번호</td>
-					<td>제목</td>
-					<td>날짜</td>
-					<td>댓긓 수</td>
-					<td>추천 , 조하수</td>
+					<td style="width: 10%;"><input type="checkbox"> <%
+ 	out.print(board.get(i).getBoard_num());
+ %></td>
+					<td style="width: 40%;">
+						<%
+							out.print(board.get(i).getBoard_title());
+						%>
+					</td>
+					<td style="width: 10%;">
+						<%
+							out.print("댓글수가 나와야하는대 데이터필드가없음");
+						%>
+					</td>
+					<td style="width: 20%;">
+						<%
+							out.print(board.get(i).getBoard_date());
+						%>
+					</td>
+					<td style="width: 20%;">
+						<%
+							out.print(board.get(i).getBoard_good());
+								out.print(board.get(i).getBoard_view());
+						%>
+					</td>
 				</tr>
 				<%
 					}
 				%>
 			</table>
-			<input type="button" value="선택 삭제">
+			<br>
+			<div style="text-align: center;">
+				<button>선택목록 삭제</button>
+			</div>
 		</div>
+
 
 		<div id="my_bike_div">
 			<table>
@@ -273,7 +352,7 @@
 		</div>
 
 		<div id="wish_list_div">
-			<table class="categori3">
+			<table>
 				<tr>
 					<td>위시 리스트</td>
 				</tr>
@@ -281,17 +360,19 @@
 		</div>
 
 		<div id="challenge_div">
-			<table class="categori4">
-				<tr>
-					<td>업적</td>
-				</tr>
-			</table>
+			<p style="width: 45%; border: solid 1px;">
+				<%
+					for (int i = 0; cc.size() > i; i++) {
+						out.println(cc.get(i).getC_code() + " 업적넘버");
+						out.println(cc.get(i).getComp_date() + " 달성 날짜 <br>");
+					}
+				%>
+			</p>
 		</div>
 		<br> <br>
 		<hr>
 		<br> <br>
-		<p style="text-align: center; font-size: 28px;">주문 현황
-		<p>
+		<p style="text-align: center; font-size: 28px;">주문 현황</p>
 		<table class="receipt">
 			<tr>
 				<td style="width: 10%">주문번호</td>

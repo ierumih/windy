@@ -175,6 +175,20 @@ public class DAO {
 		return info;
 		
 	}
+	
+	public static List<Board> getMyBoard(String nick) {
+		SqlSession sqlsession = sqlfactory.openSession();
+		List<Board> board = sqlsession.selectList("mypage_board_select" , nick);
+		sqlsession.close();
+		return board;
+	}
+	public static List<Challenge_comp> getCompChallengList(String id) {
+		SqlSession sqlsession = sqlfactory.openSession();
+		List<Challenge_comp> cc = sqlsession.selectList("mypage_comp_challenge_select" , id);
+		sqlsession.close();
+		return cc;
+	}
+
 	public static List<Product> productList(Page page) {
 		SqlSession sqlsession = sqlfactory.openSession();
 		List<Product> list = sqlsession.selectList("productlist", page);

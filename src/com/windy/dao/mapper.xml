@@ -46,6 +46,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id = "mypage_user_info_select" resultType = "com.windy.vo.User" parameterType = "String">
 		select * from user where id = #{id};
 	</select>
+	<select id = "mypage_board_select" resultType = "com.windy.vo.Board" parameterType = "String">
+		select * from board where nick = #{nick};
+	</select>
+	<select id = "mypage_comp_challenge_select" resultType = "com.windy.vo.Challenge_comp" parameterType = "String">
+		select * from challenge_comp where id = #{id};
+	</select>
 	<select id = "productlist" resultType = "com.windy.vo.Product" parameterType = "page">
 		select * from product where p_kind = #{p_kind} order by p_code desc limit #{s_limitindex}, 6;
 	</select>

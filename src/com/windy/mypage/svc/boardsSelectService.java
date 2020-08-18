@@ -1,10 +1,19 @@
 package com.windy.mypage.svc;
 
-import java.util.ArrayList;
+import java.util.List;
 
-import com.mysql.fabric.xmlrpc.base.Array;
-import com.windy.vo.*;
+import com.windy.dao.DAO;
+import com.windy.vo.Board;
 
 public class boardsSelectService {
+	
+	public List<Board> getMyBoardList(String nick) {
+		List<Board> board = null;
+		DAO dao= new DAO();
+		dao.getConn();
+		board = dao.getMyBoard(nick);
+		return board;
+	}
+	
 	
 }

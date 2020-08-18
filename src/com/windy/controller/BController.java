@@ -14,7 +14,7 @@ import com.windy.event.action.EventDetailingAction;
 import com.windy.event.action.EventInsertAction;
 import com.windy.event.action.EventListendAction;
 import com.windy.event.action.EventListingAction;
-import com.windy.mypage.action.userInfoSelectAction;
+import com.windy.mypage.action.MypageSelectAction;
 import com.windy.shop.action.ProductDetailAction;
 import com.windy.shop.action.ProductListAction;
 import com.windy.shop.action.ProductOrderAction;
@@ -154,7 +154,7 @@ public class BController extends javax.servlet.http.HttpServlet{
 			}
 		}
 		else if(command.equals("/mypage.b")){
-			action = new userInfoSelectAction();
+			action = new MypageSelectAction();
 			try{
 				forward=action.execute(request, response);
 			}catch(Exception e){

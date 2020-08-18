@@ -6,7 +6,7 @@
 	Product detail = (Product)request.getAttribute("detail");
 	List<Product> option = (List<Product>)request.getAttribute("option");
 	
-	DecimalFormat formatter = new DecimalFormat("###,###");
+	DecimalFormat aaa = new DecimalFormat("###,###");
 	String [] dimg = detail.getP_detail().split(" "); 
 	String [] mimg = detail.getP_img().split(" ");
 	String [] man = detail.getP_name().split(" ");
@@ -122,24 +122,108 @@
 		font-weight:bold;
 		float:right;
 	}
+	#card{
+		widht:450px;
+		height:70px;
+		border:1px solid #e5e5e5;
+	}
+	#select_op{
+		padding:10px 0 0 10px;
+		font-size:12pt;
+		font-weight:bold;
+		
+	}
+	#count{
+		margin:3px 0 0 10px;
+	}
+	#count input[type='text']{
+		width:20px;
+		height:17px;
+		text-align:center;
+		border:1px solid #b9b2b2;
+		border-radius:0;
+		
+	}
+	#count input[type='button']{
+		width:18px;
+		height:19px;
+		border:1px solid #b9b2b2;
+		border-radius:0;
+		
+	}
+	#xb{
+		float:right;
+		font-size:20pt;
+		padding-right:9px;
+		height:30px;
+		cursor:pointer;
+	}
+	.eachprice{
+		float:right;
+		font-weight:bold;
+		padding-right:9px;
+		margin-top:3px;
+		
+	}
 </style>
 	<script type="text/javascript">
-		$(function(){
-			$("#sel_size").change(function(){
+		function addComma(num) {
+		  var regexp = /\B(?=(\d{3})+(?!\d))/g;
+		  return num.toString().replace(regexp, ',');
+		}
+			$(function(){
+			var results = 0;
+			var result = <%=detail.getP_price()%>;
+			var product_price = <%=detail.getP_price()%>;
+			var sum = 0;
+			$("#sel_option").change(function(){
+			sum += product_price;
+			var option= $("#sel_option option:selected").val();
+				if(option!=""){
+					$("#optionbox form").append("<div id='card'><div id='xb'>&times;</div><div id='select_op'>"+option+"</div><div class='eachprice'>"+
+							"<span>&#92; </span><span id='ep'>"+addComma(product_price)+"</span></div><div id='count'><input type='button' value='-' class='bt_down'><input type='text' value='1' class='num'>"+
+							"<input type='button' value='+' class='bt_up'></div></div>");	
+					$("#sumprice").text(addComma(sum));
+				}
 				
-			var size = $("#sel_size option:selected").val();
-			$("#ss").text(size);
 			});
 			
-			$("select:last-child").change(function(){
-				
-				if($("#sel_size option:selected").val()==""){
-					$("select:last-child option:eq(0)").prop("selected", true);
-					console.log("dd");
-					alert("순서지켜");
-				}
+			$(document).on("click",".bt_up",function(){ 
+			  var n = $('.bt_up').index(this);
+			  var num = $(".num:eq("+n+")").val();
+			  num = $(".num:eq("+n+")").val(num*1+1);
+			  result = product_price * num.val();
+			  $(".eachprice:eq("+n+") #ep").text(addComma(result));
+			  sum += product_price;
+			  $("#sumprice").text(addComma(sum));
 			});
+			
+			$(document).on("click",".bt_down",function(){
+			  var n = $('.bt_down').index(this);
+			  var num = $(".num:eq("+n+")").val();
+			  if(num>1){
+				  num = $(".num:eq("+n+")").val(num*1-1);
+				  result = product_price * num.val();
+				  $(".eachprice:eq("+n+") #ep").text(addComma(result));
+				  sum -= product_price;
+				  $("#sumprice").text(addComma(sum));
+			  }
+			});
+			
+			$(document).on("click","#xb",function(){
+				var n = $('.bt_up').index(this);
+				var num = $(".num:eq("+n+")").val();
+				result = product_price * num;
+				//안됌..
+				sum -= result;
+				$("#sumprice").text(addComma(sum));
+				$(this).parent().remove();
+				  
+			});
+			
 		});
+			
+		
 	</script>
 </head>
 <body>
@@ -162,7 +246,7 @@
 				</tr>
 				<tr>
 					<th>판매가</th>
-					<td><%=formatter.format(detail.getP_price()) %></td>
+					<td><%=aaa.format(detail.getP_price()) %></td>
 				</tr>
 				<tr>
 					<td colspan="2"><hr></td>
@@ -195,9 +279,11 @@
 				</tr>
 			</table>				
 				<div id="optionbox">
+					<form name="ord">
+					</form>
 				</div>
 				<div id="pricebox"><div id="sumprice">0</div><div id="won">\</div></div>
-				<div id="b_box"><input type="button" value="주문하기" id="ord_b"><input type="button" value="찜하기" id="whis_b"></div>
+				<div id="b_box"><input type="button" value="찜하기" id="whis_b"><input type="button" value="주문하기" id="ord_b"></div>
 				
 			</div>
 			<div id="thumbimg">
