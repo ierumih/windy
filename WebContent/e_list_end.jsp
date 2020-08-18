@@ -114,8 +114,16 @@
 		.now{
 			color:#e65700;
 		}
+		.now:hover{
+			color:#e65700;
+			text-decoration: none;
+		}
 		.not{
 			color:black;
+		}
+		.not:hover{
+			color:black;
+			text-decoration: none;
 		}
 		.pp{
 			width: 1080px;
@@ -137,7 +145,6 @@
 					<ul class="event">
 						<li><a href="eventlisting.b" class="not">진행중인 이벤트</a></li>
 						<li><a href="eventlistend.b" class="now">종료된 이벤트</a></li>
-						<li><a href="" class="not">당첨자 발표</a></li>
 					</ul>
 					<p>윈디에서만 즐길 수 있는 다양한 이벤트, 놓치지 마세요!</p>
 				</div>			
@@ -147,7 +154,7 @@
 			
 			<%for(int i=0;i<Elistend.size();i++) {
 				
-				out.println("<a href='eventdetail.b?e_num="+Elistend.get(i).getE_num()+"'><li><img src="+Elistend.get(i).getE_sum()+">");
+				out.println("<a href='eventdetailend.b?e_num="+Elistend.get(i).getE_num()+"'><li><img src="+Elistend.get(i).getE_sum()+">");
 				out.println("<div>"+Elistend.get(i).getE_title()+"</div>");
 				out.println("<p> 이벤트기간 <span>"+Elistend.get(i).getS_date()+" ~ "+Elistend.get(i).getE_date()+"</span></p></a></li>");
 			}%>

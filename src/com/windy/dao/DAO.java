@@ -239,11 +239,14 @@ public class DAO {
 		sqlsession.close();
 		return EventCheck;
 	}
+	
 	public static List<Event_p> EventWinner(String e_num) {
 		SqlSession sqlsession = sqlfactory.openSession();
 		List<Event_p> EventWinner = sqlsession.selectList("EventWinner", e_num);
 		sqlsession.close();
 		return EventWinner;
 	}
+	
+	
 	
 }

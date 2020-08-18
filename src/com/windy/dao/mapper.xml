@@ -76,9 +76,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id = "boardviewupd" parameterType = "Integer">
 		update ${board_name} set board_view = board_view+1 where board_num = #{board_num};
 	</update>
-	<select id = "EventList" resultType = "com.windy.vo.Event">
-		select * from event;
-	</select>
 	<select id = "EventListing" resultType = "com.windy.vo.Event" parameterType="String">
 		<![CDATA[
 			select * from event where e_date >= #{value};
@@ -91,5 +88,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<select id = "EventDetail" resultType = "com.windy.vo.Event" parameterType="String">
 		select * from event where e_num=#{value};
+	</select>
+	
+	<insert id = "EventInsert" parameterType = "String">
+		insert into event_pp (id, e_num) values(#{id}, #{e_num});
+	</insert>
+	
+	<select id = "EventCheck" resultType = "com.windy.vo.Event_p" parameterType="String">
+		select count(distinct id) as participant from event_pp where e_num=#{value};
+	</select>
+	
+	<select id = "EventWinner" resultType = "com.windy.vo.Event_p" parameterType="String">
+		select distinct id as winner from windy.event_pp where e_num = #{value} order by rand() limit 3;
 	</select>
 </mapper>

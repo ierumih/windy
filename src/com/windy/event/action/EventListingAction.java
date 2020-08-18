@@ -15,7 +15,7 @@ public class EventListingAction implements Action{
 		
 		ActionForward forward = null;
 		String e_num = request.getParameter("e_num");
-		
+		System.out.println("aciton");
 		if(e_num==null) {
 		forward = new ActionForward();
 		EventListingService EventListingService = new EventListingService();

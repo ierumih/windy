@@ -3,10 +3,15 @@
 <%@page import="org.apache.ibatis.session.SqlSession"%>
 <%@page import="com.windy.dao.DAO" %>
 <%@page import="com.windy.vo.Event" %>
+<%@page import="com.windy.vo.Event_p" %>
 <%@page import="java.text.DecimalFormat" %>
 <%@page import="java.util.*" %>
+
 <%
 	Event Edetail = (Event)request.getAttribute("Edetail");
+	List<Event_p> Ewinner = (List<Event_p>)request.getAttribute("Ewinner");
+	System.out.println("번호"+Edetail.getE_num());
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -69,11 +74,87 @@
 	.main img{
 		width:1080px;
 	}
+	.main_btn{
+		width: 302px;
+	    height: 77px;
+	    /*background: linear-gradient(15deg, #f78d3f,#fcd271);*/
+	    background:#9ed6f3;
+	    color: #102e37;
+	    font-size: 17pt;
+	    font-weight: bold;
+	    border-radius: 5px;
+	    border: none;
+    }
+    .sub_btn{
+	    float: right;
+	    width: 79px;
+	    height: 39px;
+	    background: #e8ede0;
+	    border: 1px solid #f1f4ec;
+	    font-weight: bold;
+    }
+     #popup {
+	    display: none; /*숨기기*/
+	    position: relative;
+	    width: 100%;
+	    height: 100%;
+	    top:0px;
+	}
+
+	#popmenu {
+	    position: absolute;
+	    left: 50%;
+	    top: 50%;
+	    transform: translate(-50%,-50%);
+	    width: 400px;
+	    height: 350px;
+	    text-align: center;
+	    background: #fff;
+	    border-radius: 5px;
+	    border : 3px solid skyblue;
+	    z-index: 10;
+	}
+	
+	.pop_div{
+		margin-top:60px;
+		font-size:17pt;
+		font-family: none;
+		font-weight:bold;
+	}
+	.pop_div2{
+		margin-top:10px;
+		font-weight: bold;
+		font-size:15pt;
+		font-family: -webkit-pictograph;
+	}
+	.pop_div3{
+		margin-top:20px;
+		font-size:13pt;
+		font-family: none;
+		font-weight: bold;
+	}
+	.exit{
+		margin-top:10px;
+		width:80px;
+		height: 35px;
+		font-weight: bold;
+	}
 </style>
 <script>
 	function back(){
 		history.back();
 	}
+</script>
+<script type="text/javascript">
+	$(document).ready(function(){
+	    $(".main_btn").click(function(){
+	        $("#popup").fadeIn();
+	    });
+	    $(".exit").click(function(){
+	        $("#popup").fadeOut();
+	    });
+	    Swal.fire(  'Good job!',  'You clicked the button!',  'success' );
+	});
 </script>
 <body>
 	<header>
@@ -101,8 +182,24 @@
 				</article>
 			</div>
 			<div>
-				<input type="button" value="이벤트 참여하기">
-				<input type="button" value="목록" onclick="back()">
+				<div>
+					<input type="button" value="당첨자 확인" class="main_btn">
+				</div>
+				<div id="popup">
+			       <div id="popmenu">
+			       	   <div class="pop_div">당첨자 명단</div>
+			       	   <%
+			       			for(int i=0;i<Ewinner.size();i++){
+			       				out.println("<div class='pop_div2'>"+Ewinner.get(i).getWinner()+"님</div>");
+			       			}
+			       	   %>
+			           <div class="pop_div3">축하드립니다.</div>
+			           <div><input type="button" value="닫기" class="exit"></div>
+			       </div>
+			   </div>
+				<div>
+					<input type="button" value="목록" onclick="back()" class="sub_btn">
+				</div>
 			</div>
 		</div>
 	<hr style="clear:both;">
