@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.windy.dao.DAO;
+import com.windy.vo.P_review;
 import com.windy.vo.Product;
 
 public class ProductDetailService {
@@ -21,4 +22,10 @@ public class ProductDetailService {
 		return sm;
 	}
 	
+	public List<P_review> p_review(String code){
+		DAO.getConn();
+		List<P_review> pr = new ArrayList<P_review>();
+		pr = DAO.p_review(code);
+		return pr;
+	}
 }

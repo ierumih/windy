@@ -34,8 +34,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id = "csearch" resultType = "Integer" parameterType = "page">
 		select count(*) from ${board_name} where ${s_type} like #{s_key};
 	</select>
-	<select id = "Bproductlist" resultType = "com.windy.vo.Product">
-		select * from product where p_best is not null;
+	<select id = "Bproductlist_r" resultType = "com.windy.vo.Product">
+		select a.*, avg(pr_star) as'best' from windy.product a 
+		join windy.p_review b on a.p_code = b.p_code where a.p_kind = #{value} group by p_code order by best desc, count(*) desc limit 6;
+	</select>
+	<select id = "Bproductlist_m" resultType = "com.windy.vo.Product">
+		select a.*, avg(pr_star) as'best' from windy.product a 
+		join windy.p_review b on a.p_code = b.p_code where a.p_kind = #{value} group by p_code order by best desc, count(*) desc limit 6;
+	</select>
+	<select id = "Bproductlist_h" resultType = "com.windy.vo.Product">
+		select a.*, avg(pr_star) as'best' from windy.product a 
+		join windy.p_review b on a.p_code = b.p_code where a.p_kind = #{value} group by p_code order by best desc, count(*) desc limit 6;
 	</select>
 	<select id = "productdetail" resultType = "com.windy.vo.Product" parameterType = "String">
 		select * from product where p_code = #{value};
@@ -43,6 +52,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id = "option" resultType = "com.windy.vo.Product" parameterType = "String">
 		select p_option,p_stock from stockmanage where p_code = #{value};
 	</select>
+	<select id = "p_review" resultType = "com.windy.vo.P_review" parameterType = "String">
+		select * from windy.p_review where p_code = #{p_code};
+	</select>
+	<select id = "findp" resultType = "com.windy.vo.Product" parameterType = "com.windy.vo.Product">
+		SELECT distinct a.* FROM windy.product a join windy.stockmanage b on a.p_code=b.p_code where (p_kind regexp #{p_kind}) 
+		and (p_size regexp #{p_size}) and (p_name regexp #{p_name})
+		<choose>
+			<when test="p_price ==1">
+				order by p_price asc;
+			</when>
+			<otherwise>
+				order by p_price desc;
+			</otherwise>
+		</choose>
+	</select>
+	<insert id = "pr_write" parameterType = "com.windy.vo.P_review">
+		insert into p_review values(default,#{p_code},#{pr_text},#{pr_star},#{pr_title},#{nick});
+	</insert>
+	<insert id = "ord" parameterType = "com.windy.vo.Order">
+		insert into windy.order values
+		<foreach collection="list" index="index" item="orl" separator=",">
+			(now(),#{orl.p_code},#{orl.id},#{orl.o_option},${orl.o_count},${orl.o_price},curdate(),#{orl.o_state})
+		</foreach>
+	</insert>
 	<select id = "mypage_user_info_select" resultType = "com.windy.vo.User" parameterType = "String">
 		select * from user where id = #{id};
 	</select>

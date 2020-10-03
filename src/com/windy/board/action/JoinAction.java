@@ -69,7 +69,7 @@ public class JoinAction implements Action {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('°¡ÀÔ½ÇÆÐ')");
+			out.println("alert('ï¿½ï¿½ï¿½Ô½ï¿½ï¿½ï¿½')");
 			out.println("history.back();");
 			out.println("</script>");
 		}

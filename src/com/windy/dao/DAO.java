@@ -150,11 +150,23 @@ public class DAO {
 		return chk;
 	}
 	
-	public static List<Product> BproductList() {
+	public static List<Product> BproductList_r() {
 		SqlSession sqlsession = sqlfactory.openSession();
-		List<Product> Bproductlist = sqlsession.selectList("Bproductlist");
+		List<Product> Bproductlist_r = sqlsession.selectList("Bproductlist_r","road");
 		sqlsession.close();
-		return Bproductlist;
+		return Bproductlist_r;
+	}
+	public static List<Product> BproductList_m() {
+		SqlSession sqlsession = sqlfactory.openSession();
+		List<Product> Bproductlist_m = sqlsession.selectList("Bproductlist_m","mtb");
+		sqlsession.close();
+		return Bproductlist_m;
+	}
+	public static List<Product> BproductList_h() {
+		SqlSession sqlsession = sqlfactory.openSession();
+		List<Product> Bproductlist_h = sqlsession.selectList("Bproductlist_h","hy");
+		sqlsession.close();
+		return Bproductlist_h;
 	}
 	public static Product productdetail(String p_code) {
 		SqlSession sqlsession = sqlfactory.openSession();
@@ -162,11 +174,36 @@ public class DAO {
 		sqlsession.close();
 		return detail;
 	}
+	public static List<Product> findproduct(Product pd) {
+		SqlSession sqlsession = sqlfactory.openSession();
+		List<Product> fp = sqlsession.selectList("findp", pd);
+		sqlsession.close();
+		return fp;
+	}
 	public static List<Product> option(String p_code) {
 		SqlSession sqlsession = sqlfactory.openSession();
 		List<Product> sm = sqlsession.selectList("option", p_code);
 		sqlsession.close();
 		return sm;
+	}
+	public static List<P_review> p_review(String p_code) {
+		SqlSession sqlsession = sqlfactory.openSession();
+		List<P_review> pr = sqlsession.selectList("p_review", p_code);
+		sqlsession.close();
+		return pr;
+	}public static int pr_write(P_review p_review) {
+		SqlSession sqlsession = sqlfactory.openSession();
+		int chk = sqlsession.insert("pr_write", p_review);
+		sqlsession.commit();
+		sqlsession.close();
+		return chk;
+	}
+	public static int prodctOrd(List<Order> or_list) {
+		SqlSession sqlsession = sqlfactory.openSession();
+		int chk = sqlsession.insert("ord", or_list);
+		sqlsession.commit();
+		sqlsession.close();
+		return chk;
 	}
 	public static User getUserinfo(String id) {
 		SqlSession sqlsession = sqlfactory.openSession();

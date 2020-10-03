@@ -11,3 +11,10 @@
 		#foot ul li{
 			display:inline;
 		}
+		footer{
+			position:relative;
+			background-color:#5e5e5e;
+			min-width:1080px;
+			height:150px;
+			margin:auto;
+		}

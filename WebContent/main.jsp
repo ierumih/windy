@@ -644,7 +644,7 @@
 								<li id = "Namyangju">남양주</li>
 								<li id = "Yangju">양주</li>
 								<li id = "Vijongbu">의정부</li>
-								<li id = "Gapyeong">가평<</li>
+								<li id = "Gapyeong">가평</li>
 								<li id = "Hanam">하남</li>
 								<li id = "Seongnam-si">성남</li>
 								<li id = "Gwangju-si">광주</li>
@@ -871,7 +871,7 @@
 		<footer>
 			<jsp:include page="footer2.jsp"/>
 		</footer>
-	</div>
+	
 
 </body>
 </html>

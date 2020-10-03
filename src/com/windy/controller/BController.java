@@ -15,9 +15,11 @@ import com.windy.event.action.EventInsertAction;
 import com.windy.event.action.EventListendAction;
 import com.windy.event.action.EventListingAction;
 import com.windy.mypage.action.MypageSelectAction;
+import com.windy.shop.action.FindProductAction;
 import com.windy.shop.action.ProductDetailAction;
 import com.windy.shop.action.ProductListAction;
 import com.windy.shop.action.ProductOrderAction;
+import com.windy.shop.action.ProductReviewAction;
 import com.windy.vo.ActionForward;
 
 @WebServlet("*.b")
@@ -117,7 +119,15 @@ public class BController extends javax.servlet.http.HttpServlet{
 				e.printStackTrace();
 			}
 		}
-		
+		else if(command.equals("/findProduct.b")){
+			
+			action = new FindProductAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
 		else if(command.equals("/shopBestList.b")){
 			
 			action = new ProductListAction();
@@ -139,6 +149,15 @@ public class BController extends javax.servlet.http.HttpServlet{
 		else if(command.equals("/productOrder.b")){
 			
 			action = new ProductOrderAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/productReview.b")){
+			
+			action = new ProductReviewAction();
 			try{
 				forward=action.execute(request, response);
 			}catch(Exception e){

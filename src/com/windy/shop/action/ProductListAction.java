@@ -22,8 +22,12 @@ public class ProductListAction implements Action {
 		if(p_kind==null) {
 			forward = new ActionForward();
 			ProductListService productListService = new ProductListService();
-			List<Product> Blist = productListService.Bproductlist();
-			request.setAttribute("Blist",Blist);
+			List<Product> Rlist = productListService.Bproductlist_r();
+			List<Product> Mlist = productListService.Bproductlist_m();
+			List<Product> Hlist = productListService.Bproductlist_h();
+			request.setAttribute("Rlist",Rlist);
+			request.setAttribute("Mlist",Mlist);
+			request.setAttribute("Hlist",Hlist);
 			forward.setPath("shop_main.jsp");
 		}
 		else {

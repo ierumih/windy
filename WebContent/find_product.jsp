@@ -8,10 +8,6 @@
  <%
  	List<Product> list = (List<Product>)request.getAttribute("list");
  	DecimalFormat formatter = new DecimalFormat("###,###");
- 	Page shopPage =(Page) request.getAttribute("page");
- 	String p_kind = shopPage.getP_kind();
- 	int p = shopPage.getCurrentpage();
-	int pag = shopPage.getEndpage();
  %>
 <!DOCTYPE html>
 <html>
@@ -136,9 +132,8 @@
 	</div>
 	<div class="wrap">
 		<div class="left">
-			<%if(p_kind.equals("road")){ %><div class="sub_t" id="rb">Road Bike</div>
-			<%}else if(p_kind.equals("mtb")) {%><div class="sub_t" id="mtb">MTB</div>
-			<%}else if(p_kind.equals("hy")) {%><div class="sub_t" id="hb">Hybrid Bike</div><%} %>
+		<%if(list!=null){ %>
+		<div class="sub_t" id="rb">Your Bike</div>
 			<%for(int i=0;i<list.size();i++) {
 						out.println("<ul><a href='productDetail.b?p_code="+list.get(i).getP_code()
 								+"'><li class='pic hvr-reveal'><img src="+list.get(i).getP_img()+"></li></a>");
@@ -147,33 +142,10 @@
 						out.println("<li>"+formatter.format(list.get(i).getP_price())+"</li></ul>");
 				}
 			%>
+			<%}else{%>
+				<div class="sub_t" id="rb">결과 없음</div>
+			<%}%>
 		</div>
-		<div style="clear:both;position:relative;bottom:0px">
-					<table>
-						<tr>
-							<%if(p>1){%>
-									<td>
-										<input type='button' value='<' class='search' onclick = "location.href='bikelist.b?p_kind=<%=p_kind %>&p=<%=p-1 %>'">
-									</td>
-								<%}%>
-							<td>
-								<ul class="num">
-									<%for(int i=(p-5); i<(p+5); i++){
-										if((i>0)&&(i<=pag)){
-											if(i!=p){%>
-												<a href = 'bikelist.b?p_kind=<%=p_kind%>&p=<%=i %>'><li><%=i %></li></a>
-											<%}else{%>
-												<li id = 'cp'><%=i %></li>
-									<%}	} }	%>
-							</ul></td>
-							<%if(p<pag){%>
-									<td>
-										<input type='button' value='>' class='search' onclick = "location.href='bikelist.b?p_kind=<%=p_kind%>&p=<%=p+1 %>'">
-									</td>
-								<%}%>
-						</tr>
-					</table>
-				</div>
 	</div>
 </body>
 </html>

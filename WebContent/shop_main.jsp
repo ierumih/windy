@@ -6,7 +6,9 @@
 <%@page import="java.text.DecimalFormat" %>
 <%@page import="java.util.*" %>
 <%
-	List<Product> Blist = (List<Product>)request.getAttribute("Blist");
+	List<Product> Rlist = (List<Product>)request.getAttribute("Rlist");
+	List<Product> Mlist = (List<Product>)request.getAttribute("Mlist");
+	List<Product> Hlist = (List<Product>)request.getAttribute("Hlist");
 	DecimalFormat formatter = new DecimalFormat("###,###");
 %>
 <!DOCTYPE html>
@@ -47,8 +49,8 @@
 				$("#mtb").addClass("fix");
 				$(".left").css("margin-top","90px");
 			}
-			else if(scr>=2880){
-
+			else if(scr>2880){
+				$("#mtb").removeClass("fix");
 				$("#hb").addClass("fix");
 				$(".left").css("margin-top","90px");
 			}
@@ -173,35 +175,35 @@
 	<jsp:include page="shop_form.jsp"/>
 	<div class="wrap">
 		<div id="pp"></div>
-		<div class="sub_t" id="rb">Road Bike</div><div class="left">
-		<%for(int i=0;i<Blist.size();i++) {
-			if(Blist.get(i).getP_kind().equals("road")){
-				
-				out.println("<ul><a href='productDetail.b?p_code="+Blist.get(i).getP_code()+"'><li class='pic hvr-reveal'><img src="+Blist.get(i).getP_img()+"></li></a>");
-					out.println("<li>"+Blist.get(i).getP_name()+"</li>");
-					out.println("<li>"+Blist.get(i).getP_summary()+"</li>");
-					out.println("<li>"+formatter.format(Blist.get(i).getP_price())+"</li></ul>");
-			}}%>
+			<div class="sub_t" id="rb">Best Road</div><div class="left">
+		<%for(int i=0;i<Rlist.size();i++) {
+				out.println("<ul><a href='productDetail.b?p_code="+Rlist.get(i).getP_code()+"'><li class='pic hvr-reveal'><img src="+Rlist.get(i).getP_img()+"></li></a>");
+					out.println("<li>"+Rlist.get(i).getP_name()+"</li>");
+					out.println("<li>"+Rlist.get(i).getP_summary()+"</li>");
+					out.println("<li>"+formatter.format(Rlist.get(i).getP_price())+"</li></ul>");
+			}%>
 			</div>
-			<div class="sub_t" id="mtb">MTB</div><div class='left'>
-			<%for(int i=0;i<Blist.size();i++) {
-			if(Blist.get(i).getP_kind().equals("mtb")){
-				out.println("<ul><a href='productDetail.b?p_code="+Blist.get(i).getP_code()+"'><li class='pic hvr-reveal'><img src="+Blist.get(i).getP_img()+"></li></a>");
-					out.println("<li>"+Blist.get(i).getP_name()+"</li>");
-					out.println("<li>"+Blist.get(i).getP_summary()+"</li>");
-					out.println("<li>"+formatter.format(Blist.get(i).getP_price())+"</li></ul>");
-			}}%>
+			<div class="sub_t" id="mtb">Best MTB</div><div class='left'>
+			<%for(int i=0;i<Mlist.size();i++) {
+			
+				out.println("<ul><a href='productDetail.b?p_code="+Mlist.get(i).getP_code()+"'><li class='pic hvr-reveal'><img src="+Mlist.get(i).getP_img()+"></li></a>");
+					out.println("<li>"+Mlist.get(i).getP_name()+"</li>");
+					out.println("<li>"+Mlist.get(i).getP_summary()+"</li>");
+					out.println("<li>"+formatter.format(Mlist.get(i).getP_price())+"</li></ul>");
+			}%>
 			</div>
 				
-			<div class="sub_t" id="hb">Hybrid Bike</div><div class='left'>
-			<%for(int i=0;i<Blist.size();i++) {
-			if(Blist.get(i).getP_kind().equals("hy")){
-				out.println("<ul><a href='productDetail.b?p_code="+Blist.get(i).getP_code()+"'><li class='pic hvr-reveal'><img src="+Blist.get(i).getP_img()+"></li></a>");
-					out.println("<li>"+Blist.get(i).getP_name()+"</li>");
-					out.println("<li>"+Blist.get(i).getP_summary()+"</li>");
-					out.println("<li>"+formatter.format(Blist.get(i).getP_price())+"</li></ul>");
-			}}%>
+			<div class="sub_t" id="hb">Best Hybrid</div><div class='left'>
+			<%for(int i=0;i<Hlist.size();i++) {
+				out.println("<ul><a href='productDetail.b?p_code="+Hlist.get(i).getP_code()+"'><li class='pic hvr-reveal'><img src="+Hlist.get(i).getP_img()+"></li></a>");
+					out.println("<li>"+Hlist.get(i).getP_name()+"</li>");
+					out.println("<li>"+Hlist.get(i).getP_summary()+"</li>");
+					out.println("<li>"+formatter.format(Hlist.get(i).getP_price())+"</li></ul>");
+			}%>
 			</div>
 	</div>
+	<footer>
+		<jsp:include page="footer2.jsp"/>
+	</footer>
 </body>
 </html>
