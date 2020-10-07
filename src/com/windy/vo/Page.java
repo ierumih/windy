@@ -1,15 +1,36 @@
 package com.windy.vo;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Page {
-	int listcount, currentpage, limitindex, endpage, s_limitindex;
+	int listcount, currentpage, limitindex, endpage, s_limitindex, e_limitindex;
 	String board_name, s_type, s_key, p_kind;
 	
+		
+	public static String getTime() {
+		Date date = new Date();
+
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		String time = format.format(date);
+
+		return time;
+	}
+
 	public int getS_limitindex() {
 		return s_limitindex;
 	}
 
 	public void setS_limitindex() {
 		this.s_limitindex = (currentpage-1)*6;
+	}
+	
+	public int getE_limitindex() {
+		return e_limitindex;
+	}
+
+	public void setE_limitindex() {
+		this.e_limitindex = (currentpage-1)*6;
 	}
 
 	

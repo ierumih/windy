@@ -115,14 +115,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id = "boardviewupd" parameterType = "Integer">
 		update ${board_name} set board_view = board_view+1 where board_num = #{board_num};
 	</update>
-	<select id = "EventListing" resultType = "com.windy.vo.Event" parameterType="String">
+	<select id = "EventListing" resultType = "com.windy.vo.Event" parameterType="page">
 		<![CDATA[
-			select * from event where e_date >= #{value};
+			select * from event where e_date >= #{time} limit #{s_limitindex}, 6;
 		]]>
 	</select>
-	<select id = "EventListend" resultType = "com.windy.vo.Event" parameterType="String">
+	<select id = "EventListend" resultType = "com.windy.vo.Event" parameterType="page">
 		<![CDATA[
-			select * from event where e_date <= #{value};
+			select * from event where e_date <= #{time} limit #{s_limitindex}, 6;
 		]]>
 	</select>
 	<select id = "EventDetail" resultType = "com.windy.vo.Event" parameterType="String">
@@ -140,4 +140,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id = "EventWinner" resultType = "com.windy.vo.Event_p" parameterType="String">
 		select distinct id as winner from windy.event_pp where e_num = #{value} order by rand() limit 3;
 	</select>
+	<select id = "eventpaging" resultType = "Integer" parameterType = "String">
+	<![CDATA[
+		select count(*) from event where e_date >= #{value} ;
+	]]>
+	</select>
+	<select id = "eventpagend" resultType = "Integer" parameterType = "String">
+	<![CDATA[
+		select count(*) from event where e_date <= #{value} ;
+	]]>
+	</select>
+	<select id = "BikeList" resultType = "com.windy.vo.Bike" parameterType="String">
+			select * from bike_view where bike_brand=#{value};
+	</select>
+	<select id = "BikeBackList" resultType = "com.windy.vo.Bike" parameterType="String">
+			select * from bike_view where bike_brand= (select bike_brand from bike_view where bike_num=#{value});
+	</select>
+	<select id = "BikeComment" resultType = "com.windy.vo.B_comment" parameterType="String">
+			select * from bike_comment where bike_num=#{value};
+	</select>
+	<insert id = "CommentInsert" parameterType = "com.windy.vo.B_comment">
+		insert into bike_comment (comment_id, comment_content, bike_num) values(#{comment_id}, #{comment_content}, #{bike_num});
+	</insert>
+	<select id = "BikeListSelect" resultType = "com.windy.vo.Bike" parameterType="String">
+			select * from bike_view where bike_num=#{value};
+	</select>
+	<update id = "CommentEdit" parameterType = "com.windy.vo.B_comment">
+		update bike_comment set comment_content = #{comment_content} where comment_no=#{comment_no};
+	</update>
+	<delete id = "CommentDelete" parameterType = "com.windy.vo.B_comment">
+		delete from bike_comment where comment_no =#{comment_no};
+	</delete>
 </mapper>

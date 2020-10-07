@@ -8,6 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.windy.bike.action.BikeCommentAction;
+import com.windy.bike.action.BikeListAction;
+import com.windy.bike.action.CommentDeleteAction;
+import com.windy.bike.action.CommentInsertAction;
 import com.windy.board.action.*;
 import com.windy.event.action.EventDetailendAction;
 import com.windy.event.action.EventDetailingAction;
@@ -206,6 +210,41 @@ public class BController extends javax.servlet.http.HttpServlet{
 			}
 		}else if(command.equals("/eventinsert.b")){
 			action = new EventInsertAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/brandselect.b")){
+			action = new BikeListAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/bikecomment.b")){
+			action = new BikeCommentAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/commentinsert.b")){
+			action = new CommentInsertAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/back.b")){
+			action = new BikeListAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/commentdelete.b")){
+			action = new CommentDeleteAction();
 			try{
 				forward=action.execute(request, response);
 			}catch(Exception e){

@@ -17,7 +17,6 @@ public class EventInsertAction  implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		
-		System.out.println("ÀÌ°÷Àº action");
 		
 		HttpSession httpSession = request.getSession();
 		

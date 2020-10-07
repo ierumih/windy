@@ -644,7 +644,7 @@
 								<li id = "Namyangju">남양주</li>
 								<li id = "Yangju">양주</li>
 								<li id = "Vijongbu">의정부</li>
-								<li id = "Gapyeong">가평</li>
+								<li id = "Gapyeong">가평<</li>
 								<li id = "Hanam">하남</li>
 								<li id = "Seongnam-si">성남</li>
 								<li id = "Gwangju-si">광주</li>
@@ -824,12 +824,12 @@
 					<td colspan="2"><div class="cate4" >CATEGORY</div></td>
 
 					<td rowspan="2" class="race">
-						<div>
+						<div><a href = "eventlisting.b">
 							<div class="race_content">
 								EVENT
 							</div>
 							<img src="img/race11.jpg" class="img_race">
-						</div>
+						</a></div>
 					</td>
 
 					<td class="community">
@@ -853,12 +853,12 @@
 						</div>
 					</td>
 					<td colspan="2" class="bike">
-						<div>
+						<div><a href = "bike_kind.jsp">
 							<div class="bike_content">
 								BICYCLE
 							</div>
 							<div class="img_bike"><img src="img/bb13.jpg"></div>
-						</div>
+						</a></div>
 					</td>
 				</tr>
 			</table>
@@ -871,7 +871,7 @@
 		<footer>
 			<jsp:include page="footer2.jsp"/>
 		</footer>
-	
+	</div>
 
 </body>
 </html>

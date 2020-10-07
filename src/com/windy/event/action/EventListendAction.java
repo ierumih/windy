@@ -9,22 +9,29 @@ import com.windy.board.action.Action;
 import com.windy.event.svc.EventListendService;
 import com.windy.vo.ActionForward;
 import com.windy.vo.Event;
+import com.windy.vo.Page;
 
 public class EventListendAction implements Action{
 	public ActionForward execute(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		
 		ActionForward forward = null;
-		String e_num = request.getParameter("e_num");
+		Page page = new Page();
+		String time = page.getTime();
 		
-		if(e_num==null) {
 		forward = new ActionForward();
 		EventListendService EventListendService = new EventListendService();
-		List<Event> Elistend = EventListendService.EventList();
-		request.setAttribute("Elistend",Elistend);
-		forward.setPath("e_list_end.jsp");
-		}
+		page = EventListendService.paging(time);
+		if(request.getParameter("p")!=null)
+			page.setCurrentpage(Integer.valueOf(request.getParameter("p")));
+		else
+			page.setCurrentpage(1);
+		page.setS_limitindex();
 		
-		// p_kind 로 받은 값을 기준으로 상품 진열해야함. 디테일 하고 넘어오셈
+		List<Event> Elistend = EventListendService.EventList(page);
+		request.setAttribute("Elistend",Elistend);
+		request.setAttribute("page", page);
+		forward.setPath("e_list_end.jsp");
+		
 		return forward;
 	}
 }

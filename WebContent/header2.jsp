@@ -36,7 +36,7 @@
 		<div id = "headb">
 			<ul id = "menu">
 				<li>
-					자전거 정보
+					<a href = "bike_kind.jsp">자전거 정보</a>
 				</li>
 				<li>
 					투어
@@ -60,7 +60,7 @@
 			<div id = "submenu">
 				<div id = "submenuin">
 						<ul>
-							<li>자전거 정보</li>
+							<li><a href = "bike_kind.jsp">자전거 정보</a></li>
 						</ul>
 						<ul>
 							<li>전국 투어</li>

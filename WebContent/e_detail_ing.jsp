@@ -180,7 +180,14 @@
 	    $("#popup").click(function(){
 	        $("#popup").fadeOut();
 	    });
-	    Swal.fire(  'Good job!',  'You clicked the button!',  'success' );
+	    //Swal.fire(  'Good job!',  'You clicked the button!',  'success' );
+	    var id = "<%=id%>";
+	    $('.main_btn').click(function(){
+	    	if(id=="null"){
+				alert("로그인 후 이용 가능합니다.");
+	    		return false;
+	    	}
+	    });
 	});
 </script>
 

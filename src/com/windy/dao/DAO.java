@@ -246,17 +246,16 @@ public class DAO {
 		sqlsession.close();
 		return x;
 	}
-	
-	public static List<Event> EventListing() {
+		public static List<Event> EventListing(Page page) {
 		SqlSession sqlsession = sqlfactory.openSession();
-		List<Event> EventListing = sqlsession.selectList("EventListing", time);
+		List<Event> EventListing = sqlsession.selectList("EventListing", page);
 		sqlsession.close();
 		return EventListing;
 	}
 
-	public static List<Event> EventListend() {
+	public static List<Event> EventListend(Page page) {
 		SqlSession sqlsession = sqlfactory.openSession();
-		List<Event> EventListend = sqlsession.selectList("EventListend", time);
+		List<Event> EventListend = sqlsession.selectList("EventListend", page);
 		sqlsession.close();
 		return EventListend;
 
@@ -289,6 +288,68 @@ public class DAO {
 		List<Event_p> EventWinner = sqlsession.selectList("EventWinner", e_num);
 		sqlsession.close();
 		return EventWinner;
+	}
+	
+	public static int eventpageing(String time) {
+		SqlSession sqlsession = sqlfactory.openSession();
+		int x = sqlsession.selectOne("eventpaging", time);
+		sqlsession.close();
+		return x;
+	}
+	public static int eventpageend(String time) {
+		SqlSession sqlsession = sqlfactory.openSession();
+		int x = sqlsession.selectOne("eventpagend", time);
+		sqlsession.close();
+		return x;
+	}
+
+	public static List<Bike> BikeList(String select) {
+		SqlSession sqlsession = sqlfactory.openSession();
+		List<Bike> BikeList = sqlsession.selectList("BikeList", select);
+		sqlsession.close();
+		return BikeList;
+	}
+	
+	public static List<Bike> BikeBackList(String num) {
+		SqlSession sqlsession = sqlfactory.openSession();
+		List<Bike> BikeList = sqlsession.selectList("BikeBackList", num);
+		sqlsession.close();
+		return BikeList;
+	}
+	
+	public static List<B_comment> BikeComment(String comment) {
+		SqlSession sqlsession = sqlfactory.openSession();
+		List<B_comment> commentlist = sqlsession.selectList("BikeComment", comment);
+		sqlsession.close();
+		return commentlist;
+	}
+	public static int CommentInsert(B_comment insert) {
+		SqlSession sqlsession = sqlfactory.openSession();
+		int chk = sqlsession.insert("CommentInsert",insert);
+		sqlsession.commit();
+		sqlsession.close();
+		return chk;
+	}
+	public static List<Bike> BikeListSelect(String select) {
+		SqlSession sqlsession = sqlfactory.openSession();
+		List<Bike> BikeList = sqlsession.selectList("BikeListSelect", select);
+		sqlsession.close();
+		return BikeList;
+	}
+	
+	public static void CommentEdit(B_comment comment) {
+		SqlSession sqlsession = sqlfactory.openSession();
+		//int chk = sqlsession.update("CommentEdit", comment);
+		sqlsession.update("CommentEdit", comment);
+		sqlsession.commit();
+		sqlsession.close();
+	}
+	public static int commentdelete(B_comment comment) {
+		SqlSession sqlsession = sqlfactory.openSession();
+		int chk = sqlsession.delete("CommentDelete", comment);
+		sqlsession.commit();
+		sqlsession.close();
+		return chk;
 	}
 	
 	
