@@ -83,11 +83,8 @@
 							<li>거래게시판</li>
 						</ul>
 						<ul>
-							<li>자전거</li>
-							<li>부수기재</li>
-							<li>장바구니</li>
-							<li>관심물품</li>
-							<li>가격비교</li>
+							<li><a href = "shopBestList.b">자전거</a></li>
+							<li><a href = "mypage.b">장바구니</a></li>
 						</ul>
 						<ul>
 							<li>비만도 계산</li>

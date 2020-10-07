@@ -15,7 +15,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>a</title>
+	<title>WINDY shop</title>
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/shop_form.css">
@@ -177,11 +177,12 @@
 		<div id="pp"></div>
 			<div class="sub_t" id="rb">Best Road</div><div class="left">
 		<%for(int i=0;i<Rlist.size();i++) {
-				out.println("<ul><a href='productDetail.b?p_code="+Rlist.get(i).getP_code()+"'><li class='pic hvr-reveal'><img src="+Rlist.get(i).getP_img()+"></li></a>");
-					out.println("<li>"+Rlist.get(i).getP_name()+"</li>");
-					out.println("<li>"+Rlist.get(i).getP_summary()+"</li>");
-					out.println("<li>"+formatter.format(Rlist.get(i).getP_price())+"</li></ul>");
-			}%>
+				out.println("<ul><a href='productDetail.b?p_code="+Rlist.get(i).getP_code()+"'>"
+					+"<li class='pic hvr-reveal'><img src="+Rlist.get(i).getP_img()+"></li></a>");
+				out.println("<li>"+Rlist.get(i).getP_name()+"</li>");
+				out.println("<li>"+Rlist.get(i).getP_summary()+"</li>");
+				out.println("<li>"+formatter.format(Rlist.get(i).getP_price())+"</li></ul>");
+		}%>
 			</div>
 			<div class="sub_t" id="mtb">Best MTB</div><div class='left'>
 			<%for(int i=0;i<Mlist.size();i++) {

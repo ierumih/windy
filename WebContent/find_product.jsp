@@ -13,7 +13,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Insert title here</title>
+<title>검색결과</title>
 <style type="text/css">
 	#pp{
 		text-align: center;

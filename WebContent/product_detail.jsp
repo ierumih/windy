@@ -278,14 +278,13 @@
 		  var regexp = /\B(?=(\d{3})+(?!\d))/g;
 		  return num.toString().replace(regexp, ',');
 		}
+		
 			$(function(){
-			var results = 0;
-			var result = <%=detail.getP_price()%>;
 			var product_price = <%=detail.getP_price()%>;
 			var sum = 0;
 			var op_selected = new Array();
-
 			var op_size = <%=option.size()%>;
+			
 			$("#sel_option").change(function(){
 				var j = $("#sel_option option").index($("#sel_option option:selected"));
 			    
@@ -296,8 +295,8 @@
 					}
 				}
 			
-			
 				var option= $("#sel_option option:selected").val();
+
 				if(option!=""){
 					op_selected.push(j);
 					sum += product_price;
@@ -323,7 +322,7 @@
 			  var n = $('.bt_up').index(this);
 			  var num = $(".num:eq("+n+")").val();
 			  num = $(".num:eq("+n+")").val(num*1+1);
-			  result = product_price * num.val();
+			  var result = product_price * num.val();
 			  $(".eachprice:eq("+n+") #ep").text(addComma(result));
 			  $(".hidden_price:eq("+n+")").val(result);
 			  sum += product_price;
@@ -337,7 +336,7 @@
 			  var num = $(".num:eq("+n+")").val();
 			  if(num>1){
 				  num = $(".num:eq("+n+")").val(num*1-1);
-				  result = product_price * num.val();
+				  var result = product_price * num.val();
 				  $(".eachprice:eq("+n+") #ep").text(addComma(result));
 				  $(".hidden_price:eq("+n+")").val(result);
 				  sum -= product_price;
@@ -350,16 +349,16 @@
 				var n = $(".xb").index(this);
 				var num = $(".num:eq("+n+")").val();
 				sum = $(".hidden_sum").val();
-				result = $(".hidden_price:eq("+n+")").val();
+				var result = $(".hidden_price:eq("+n+")").val();
 				sum -= result;
 				$("#sumprice").text(addComma(sum));
 				$(".hidden_sum").val(sum);
 				op_selected.splice(n,1);
 				$(this).parent().remove();
-				for(var n=0;n<op_size;n++){
+				/*for(var n=0;n<op_size;n++){
 					$(".c_op:eq("+n+")").attr('name','op'+n);
 					$(".num:eq("+n+")").attr('name','count'+n);
-				}
+				}*/
 			});
 			/*
 			============
@@ -437,9 +436,15 @@
 				}else{
 					$.ajax({
 						url : 'p_review.jsp',
-						data :{"title":title, "content":content, "star":star, "nick":nick, "code":code},
+						data :{"title":title, "content":content, "star":star, "nick":nick, "code":code, "id":id},
 						datatype:'json',
 						success : function(data){
+							console.log(data);
+							if(data==0){
+								alert("구매 후 리뷰를 작성해주세요");
+							}else{
+								window.location.reload();
+							}
 							/*$('.pr_inner').append("<div class='pr_list plist'><hr color='#ececec' size='1'><ul><li><div class='starP'>"
 									+"<span class='starR1'>0.5</span>"
 									+"<span class='starR2'>1</span>"
@@ -455,7 +460,8 @@
 									+"<li>"+nick+"</li>"
 									+"<li>"+title+"</li></ul>"
 									+"<div class='pr_content'>"+content+"</div></div>")*/
-									window.location.reload();
+									
+									
 						}
 					})	
 				}
@@ -514,7 +520,7 @@
 				<%for(int i=0;i<option.size();i++){ %>
 					<%if(option.get(i).getP_stock()==0){ %>
 						<option value="<%=option.get(i).getP_option()%>" disabled><%=option.get(i).getP_option()%> [품절]</option>
-						<%}else{ %><option value="<%=option.get(i).getP_option()%>"><%=option.get(i).getP_option()%></option>
+						<%}else{ %><option value="<%=option.get(i).getP_option()%>"><%=option.get(i).getP_option()%>[수량:<%=option.get(i).getP_stock()%>]</option>
 						
 						<%} }%>
 					</select></td>

@@ -36,15 +36,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<select id = "Bproductlist_r" resultType = "com.windy.vo.Product">
 		select a.*, avg(pr_star) as'best' from windy.product a 
-		join windy.p_review b on a.p_code = b.p_code where a.p_kind = #{value} group by p_code order by best desc, count(*) desc limit 6;
+		join windy.p_review b on a.p_code = b.p_code where a.p_kind = #{value} 
+		group by p_code order by best desc, count(*) desc limit 6;
 	</select>
 	<select id = "Bproductlist_m" resultType = "com.windy.vo.Product">
 		select a.*, avg(pr_star) as'best' from windy.product a 
-		join windy.p_review b on a.p_code = b.p_code where a.p_kind = #{value} group by p_code order by best desc, count(*) desc limit 6;
+		join windy.p_review b on a.p_code = b.p_code where a.p_kind = #{value}
+		group by p_code order by best desc, count(*) desc limit 6;
 	</select>
 	<select id = "Bproductlist_h" resultType = "com.windy.vo.Product">
 		select a.*, avg(pr_star) as'best' from windy.product a 
-		join windy.p_review b on a.p_code = b.p_code where a.p_kind = #{value} group by p_code order by best desc, count(*) desc limit 6;
+		join windy.p_review b on a.p_code = b.p_code where a.p_kind = #{value} 
+		group by p_code order by best desc, count(*) desc limit 6;
 	</select>
 	<select id = "productdetail" resultType = "com.windy.vo.Product" parameterType = "String">
 		select * from product where p_code = #{value};
@@ -54,6 +57,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<select id = "p_review" resultType = "com.windy.vo.P_review" parameterType = "String">
 		select * from windy.p_review where p_code = #{p_code};
+	</select>
+	<select id = "pr_chk" resultType = "Integer" parameterType = "com.windy.vo.Order">
+		select count(*) from windy.order where p_code = #{p_code} and id=#{id};
 	</select>
 	<select id = "findp" resultType = "com.windy.vo.Product" parameterType = "com.windy.vo.Product">
 		SELECT distinct a.* FROM windy.product a join windy.stockmanage b on a.p_code=b.p_code where (p_kind regexp #{p_kind}) 

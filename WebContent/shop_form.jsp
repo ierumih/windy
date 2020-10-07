@@ -9,7 +9,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title></title>
+	<title>WINDY shop</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/shop_form.css">
 	<script type="text/javascript">
@@ -221,6 +221,9 @@
 		border:1px solid #fff7ee;
 		margin-top:10px;
 	}
+	#fp{
+		cursor: pointer;
+	}
 	</style>
 </head>
 <body>
@@ -238,7 +241,6 @@
 				<li id="fp">FindProduct</li>
 			</ul>
 		</div>
-		<div id="add_prod"><a href="admin_add_product.jsp">+</a></div>
 	</div>
 	<div id="menubtn9">
 		<a href="main.jsp"><img src="img/qwer.jpg" id="logo"></a>

@@ -120,7 +120,6 @@ public class BController extends javax.servlet.http.HttpServlet{
 			}
 		}
 		else if(command.equals("/findProduct.b")){
-			
 			action = new FindProductAction();
 			try{
 				forward=action.execute(request, response);
@@ -129,7 +128,6 @@ public class BController extends javax.servlet.http.HttpServlet{
 			}
 		}
 		else if(command.equals("/shopBestList.b")){
-			
 			action = new ProductListAction();
 			try{
 				forward=action.execute(request, response);
@@ -138,7 +136,6 @@ public class BController extends javax.servlet.http.HttpServlet{
 			}
 		}
 		else if(command.equals("/productDetail.b")){
-			
 			action = new ProductDetailAction();
 			try{
 				forward=action.execute(request, response);
@@ -147,7 +144,6 @@ public class BController extends javax.servlet.http.HttpServlet{
 			}
 		}
 		else if(command.equals("/productOrder.b")){
-			
 			action = new ProductOrderAction();
 			try{
 				forward=action.execute(request, response);

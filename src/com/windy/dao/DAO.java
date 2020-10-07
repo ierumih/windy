@@ -186,12 +186,19 @@ public class DAO {
 		sqlsession.close();
 		return sm;
 	}
+	public static int pr_chk(Order order) {
+		SqlSession sqlsession = sqlfactory.openSession();
+		int chk = sqlsession.selectOne("pr_chk", order);
+		sqlsession.close();
+		return chk;
+	}
 	public static List<P_review> p_review(String p_code) {
 		SqlSession sqlsession = sqlfactory.openSession();
 		List<P_review> pr = sqlsession.selectList("p_review", p_code);
 		sqlsession.close();
 		return pr;
-	}public static int pr_write(P_review p_review) {
+	}
+	public static int pr_write(P_review p_review) {
 		SqlSession sqlsession = sqlfactory.openSession();
 		int chk = sqlsession.insert("pr_write", p_review);
 		sqlsession.commit();
