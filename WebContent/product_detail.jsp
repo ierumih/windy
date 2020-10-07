@@ -610,7 +610,7 @@
 						<li><%=p_review.get(i).getNick() %></li>
 						<li><%=p_review.get(i).getPr_title() %></li>
 					</ul>
-					<div class="pr_content"><%=p_review.get(i).getPr_text() %></div>
+					<div class="pr_content"><pre><%=p_review.get(i).getPr_text() %></pre></div>
 					<hr color="#ececec" size="1">
 				</div>
 				<%} }%>
