@@ -1,8 +1,16 @@
 package com.windy.vo;
 
 public class Order {
-	String o_code, p_code, id, o_option, o_date, o_state;
+	String o_code, p_code, id, o_option, o_date, o_state, p_name;
 	int o_count, o_price;
+
+	public String getP_name() {
+		return p_name;
+	}
+
+	public void setP_name(String p_name) {
+		this.p_name = p_name;
+	}
 
 	public String getO_code() {
 		return o_code;

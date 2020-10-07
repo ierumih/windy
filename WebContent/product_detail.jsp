@@ -469,9 +469,37 @@
 		});
 		
 		function cart(){
-			document.ord.action = "productOrder.b?p_code=<%=detail.getP_code() %>&add=on";
-			document.ord.submit();
-		}
+				var id = "<%=id%>";
+				var sp = document.getElementById("sumprice").innerText;
+				
+				if(id=="null"){
+					alert("로그인 후 진행해주세요.");
+					return false;
+				}else{
+					document.ord.action = "productOrder.b?p_code=<%=detail.getP_code() %>&add=on";
+					document.ord.submit();
+				}
+				
+				if(sp==0){
+					alert('옵션을 선택해 주세요.');
+					return false;	
+				}
+				
+			}
+		function lo(){
+				var id = "<%=id%>";
+				var sp = document.getElementById("sumprice").innerText;
+				
+				if(id=="null"){
+					alert("로그인 후 진행해주세요.");
+					return false;
+				}
+				if(sp==0){
+					alert('옵션을 선택해 주세요.');
+					return false;	
+				}
+			}
+		
 	</script>
 </head>
 <body>
@@ -534,8 +562,7 @@
 				</div>
 				
 				<div id="pricebox"><div id="sumprice">0</div><div id="won">\</div></div>
-				<div id="b_box"><input type="button" value="찜하기" id="whis_b" onclick="cart()"><input type="submit" value="주문하기" id="ord_b"
-				<%if(id==null){ %> onclick="return lo()"<%} %>></div>
+				<div id="b_box"><input type="button" value="찜하기" id="whis_b" onclick="return cart()"><input type="submit" value="주문하기" id="ord_b" onclick="return lo()"></div>
 				</form>
 			</div>
 			<div id="thumbimg">
