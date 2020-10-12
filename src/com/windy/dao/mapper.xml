@@ -82,6 +82,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			(now(),#{orl.p_code},#{orl.id},#{orl.o_option},${orl.o_count},${orl.o_price},curdate(),#{orl.o_state})
 		</foreach>
 	</insert>
+	
+	
 	<select id = "mypage_user_info_select" resultType = "com.windy.vo.User" parameterType = "String">
 		select * from user where id = #{id};
 	</select>
@@ -89,8 +91,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from board where nick = #{nick};
 	</select>
 	<select id = "mypage_comp_challenge_select" resultType = "com.windy.vo.Challenge_comp" parameterType = "String">
-		select * from challenge_comp where id = #{id};
+		select challenge_comp.c_code, challenge_comp.id,challenge_comp.comp_date,challenge_list.c_name,challenge_list.c_content,challenge_list.c_score from challenge_comp natural join challenge_list where id = #{id};
 	</select>
+	<select id = "mypage_event_select" resultType="com.windy.vo.Mypage_event" parameterType = "String">
+		select event_pp.e_num ,windy.event.e_title , windy.event.s_date,windy.event.e_date from windy.event_pp natural join windy.event where id = #{id};
+	</select>
+	
+	<select id = "mypage_wish_list_select" resultType = "com.windy.vo.Order" parameterType = "String">
+		SELECT windy.order.*,product.p_name from windy.order natural join product where id = #{id} and o_state = 'addcart';
+	</select>
+	<update id = "mypage_user_info_update" parameterType = "user">
+		update user set nick = #{nick}, name = #{name},  tel = #{tel}, addr = #{addr}, addr1 = #{addr1}, addr2 = #{addr2}, addr3 = #{addr3}, email = #{email}, profile_img = #{profile_img} where id = #{id};
+	</update>
+	<delete id="mypage_delete_Account" parameterType="String">
+		delete from user where id = #{id};
+	</delete>
+	<select id = "mypage_orderList_select" resultType = "com.windy.vo.Order" parameterType = "String">
+		SELECT windy.order.*,product.p_name from windy.order natural join product where id = #{id} and o_state = 'wait';
+	</select>
+	<select id = "challenge_list_select" resultType = "com.windy.vo.Challenge_list">
+		SELECT * FROM windy.challenge_list;
+	</select>
+	
 	<select id = "productlist" resultType = "com.windy.vo.Product" parameterType = "page">
 		select * from product where p_kind = #{p_kind} order by p_code desc limit #{s_limitindex}, 6;
 	</select>

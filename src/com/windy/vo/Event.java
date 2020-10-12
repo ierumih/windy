@@ -1,14 +1,9 @@
 package com.windy.vo;
 
 public class Event {
-	String id, e_title, e_file, e_content, e_sum, s_date, e_date;
+	String e_title, e_file, e_content, e_sum, s_date, e_date;
 	int e_num;
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
+	
 	public String getE_title() {
 		return e_title;
 	}

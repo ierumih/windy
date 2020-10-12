@@ -12,4 +12,15 @@ public class UserInfoService {
 		info = dao.getUserinfo(id);
 		return info;
 	}
+	public void updateInfo(User info) throws Exception{
+		
+		System.out.println("svc");
+		
+		DAO dao = new DAO();
+		dao.getConn();
+		dao.updateInfo(info);
+		
+	}
+	
+	
 }

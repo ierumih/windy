@@ -65,7 +65,7 @@
 						<ul>
 							<li>전국 투어</li>
 							<li>투어 계획 세우기</li>
-							<li>업적</li>
+							<li><a href="challengeList.b">업적</a></li>
 							<li>추천 동선</li>
 							<li>수리점 찾기</li>
 						</ul>
@@ -87,7 +87,7 @@
 							<li><a href = "mypage.b">장바구니</a></li>
 						</ul>
 						<ul>
-							<li>비만도 계산</li>
+							<li><a href="checkBMI.b">비만도 계산기</a></li>
 							<li>코스 추천</li>
 							<li>식단 제공</li>
 							<li>건강 변화 확인</li>

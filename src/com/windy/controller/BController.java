@@ -18,7 +18,11 @@ import com.windy.event.action.EventDetailingAction;
 import com.windy.event.action.EventInsertAction;
 import com.windy.event.action.EventListendAction;
 import com.windy.event.action.EventListingAction;
+import com.windy.mypage.action.Go_to_BMI_Action;
+import com.windy.mypage.action.MypageDeleteAction;
 import com.windy.mypage.action.MypageSelectAction;
+import com.windy.mypage.action.ChallengeListSelectAction;
+import com.windy.mypage.action.userinfoUpdateAction;
 import com.windy.shop.action.FindProductAction;
 import com.windy.shop.action.ProductDetailAction;
 import com.windy.shop.action.ProductListAction;
@@ -245,6 +249,34 @@ public class BController extends javax.servlet.http.HttpServlet{
 			}
 		}else if(command.equals("/commentdelete.b")){
 			action = new CommentDeleteAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/deleteAccount.b")){
+			action = new MypageDeleteAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/mypage_info_update.b")){
+			action = new userinfoUpdateAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/checkBMI.b")){
+			action = new Go_to_BMI_Action();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/challengeList.b")){
+			action = new ChallengeListSelectAction();
 			try{
 				forward=action.execute(request, response);
 			}catch(Exception e){
