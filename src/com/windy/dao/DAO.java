@@ -212,12 +212,24 @@ public class DAO {
 		sqlsession.close();
 		return chk;
 	}
+	
+	
+	
+	
+	////V
 	public static User getUserinfo(String id) {
 		SqlSession sqlsession = sqlfactory.openSession();
 		User info = sqlsession.selectOne("mypage_user_info_select" , id);
 		sqlsession.close();
 		return info;
-		
+	}
+	public static void updateInfo(User info) {
+		System.out.println("dao");
+		SqlSession sqlsession = sqlfactory.openSession();
+		sqlsession.update("mypage_user_info_update" , info);
+		System.out.println("DAO Front commit");
+		sqlsession.commit();
+		sqlsession.close();
 	}
 	
 	public static List<Board> getMyBoard(String nick) {
@@ -232,6 +244,45 @@ public class DAO {
 		sqlsession.close();
 		return cc;
 	}
+	
+	public static List<Order> getOrderList(String id){
+		SqlSession sqlsession = sqlfactory.openSession();
+		List<Order> o = sqlsession.selectList("mypage_orderList_select" , id);
+		sqlsession.close();
+		return o;
+		
+	}
+	public static List<Order> getWishList(String id){
+		SqlSession sqlsession = sqlfactory.openSession();
+		List<Order> o = sqlsession.selectList("mypage_wish_list_select" , id);
+		sqlsession.close();
+		return o;
+		
+	}
+	public static void deleteAccount(String id) {
+		System.out.println("dao in:");
+		SqlSession sqlsession = sqlfactory.openSession();
+		sqlsession.delete("mypage_delete_Account" , id);
+		sqlsession.commit();
+		sqlsession.close();
+		System.out.println("service out:");
+	}
+	public static List<Mypage_event> getMypageEvent(String id){
+		SqlSession sqlsession = sqlfactory.openSession();
+		List<Mypage_event> me = sqlsession.selectList("mypage_event_select" , id);
+		sqlsession.close();
+		return me;
+	}
+	public static List<Challenge_list> getChallengeList(){
+		SqlSession sqlsession = sqlfactory.openSession();
+		List<Challenge_list> cl = sqlsession.selectList("challenge_list_select");
+		sqlsession.close();
+		return cl;
+	}
+	
+	
+	
+	
 
 	public static List<Product> productList(Page page) {
 		SqlSession sqlsession = sqlfactory.openSession();

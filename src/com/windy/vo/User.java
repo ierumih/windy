@@ -2,7 +2,7 @@ package com.windy.vo;
 
 public class User {
 
-	String id, pw, name, nick, birth, email, tel, sex, addr, addr1, addr2, addr3, b_have, f_bike, sms;
+	String id, pw, name, nick, birth, email, tel, sex, addr, addr1, addr2, addr3, b_have, f_bike, sms, profile_img;
 
 	public String getId() {
 		return id;
@@ -14,6 +14,14 @@ public class User {
 
 	public String getPw() {
 		return pw;
+	}
+
+	public String getProfile_img() {
+		return profile_img;
+	}
+
+	public void setProfile_img(String profile_img) {
+		this.profile_img = profile_img;
 	}
 
 	public void setPw(String pw) {
