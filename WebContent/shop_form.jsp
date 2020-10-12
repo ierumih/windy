@@ -56,7 +56,17 @@
 				$('#fpf').submit();
 			}
 		});
-		
+		$(window).scroll(function(){
+			var scr = $(document).height() - $(window).height() - $(window).scrollTop();
+			console.log(scr);
+		if (scr<30)
+			{
+				$("#m_top").css("bottom","150px");
+			}
+		else {
+				$("#m_top").css("bottom","0px");
+			}
+		});
 		
 	});
 	</script>
@@ -85,8 +95,8 @@
 	}
 	#m_top{
 		position:fixed;
-		bottom:0;
-		right:0;
+		bottom:0px;
+		right:0px;
 	}
 	#m_top:hover{
 		cursor:pointer;
