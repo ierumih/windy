@@ -14,8 +14,8 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 8.5/lib/servlet-api.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Sim_JW/Desktop/work/api/cos.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Sim_JW/Desktop/work/api/json-simple-1.1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Sim_JW/Desktop/work/api/mybatis-3.2.8.jar"/>
+	<classpathentry kind="lib" path="C:/windyLib/cos.jar"/>
+	<classpathentry kind="lib" path="C:/windyLib/json-simple-1.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/windyLib/mybatis-3.2.8.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
