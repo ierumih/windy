@@ -94,7 +94,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select challenge_comp.c_code, challenge_comp.id,challenge_comp.comp_date,challenge_list.c_name,challenge_list.c_content,challenge_list.c_score from challenge_comp natural join challenge_list where id = #{id};
 	</select>
 	<select id = "mypage_event_select" resultType="com.windy.vo.Mypage_event" parameterType = "String">
-		select event_pp.e_num ,windy.event.e_title , windy.event.s_date,windy.event.e_date from windy.event_pp natural join windy.event where id = #{id};
+		select distinct event_pp.e_num ,windy.event.e_title , windy.event.s_date,windy.event.e_date from windy.event_pp natural join windy.event where id = #{id};
 	</select>
 	
 	<select id = "mypage_wish_list_select" resultType = "com.windy.vo.Order" parameterType = "String">
