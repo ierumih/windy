@@ -88,9 +88,6 @@
 						</ul>
 						<ul>
 							<li><a href="checkBMI.b">비만도 계산기</a></li>
-							<li>코스 추천</li>
-							<li>식단 제공</li>
-							<li>건강 변화 확인</li>
 						</ul>
 				</div>
 			</div>
