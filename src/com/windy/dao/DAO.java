@@ -404,5 +404,103 @@ public class DAO {
 	}
 	
 	
+	//course
+		public static List<Course> courselist(String c_area) {
+			SqlSession sqlsession = sqlfactory.openSession();
+			List<Course> listc = sqlsession.selectList("courselist", c_area);
+			sqlsession.close();
+			return listc;
+		}
+		
+		public static Course coursedetail(String c_name) {
+			SqlSession sqlsession = sqlfactory.openSession();
+			Course coursed = sqlsession.selectOne("coursedetail", c_name);
+			sqlsession.close();
+			return coursed;
+		}
+		
+		public static int coursecount() {
+			SqlSession sqlsession = sqlfactory.openSession();
+			int nop = sqlsession.selectOne("coursecount");
+			sqlsession.close();
+			return nop;
+		}
+		
+		public static int coursecountsearch(Page page) {
+			SqlSession sqlsession = sqlfactory.openSession();
+			int nop = sqlsession.selectOne("coursecountsearch", page);
+			sqlsession.close();
+			return nop;
+		}
+		
+		public static List<Course> courseboardlist(Page page) {
+			SqlSession sqlsession = sqlfactory.openSession();
+			List<Course> cboardl = sqlsession.selectList("courseboardlist",page);
+			sqlsession.close();
+			return cboardl;
+		}
+		
+		public static List<Course> courseboardlists(Page page) {
+			SqlSession sqlsession = sqlfactory.openSession();
+			List<Course> cboardl = sqlsession.selectList("courseboardlists",page);
+			sqlsession.close();
+			return cboardl;
+		}
+		
+		public static int courseboardupd(Course course) {
+			SqlSession sqlsession = sqlfactory.openSession();
+			int chk = sqlsession.update("courseboardupd", course);
+			sqlsession.commit();
+			sqlsession.close();
+			return chk;
+		}
+		
+		public static Course courseboardview(Course course) {
+			SqlSession sqlsession = sqlfactory.openSession();
+			Course course1 = sqlsession.selectOne("courseboardview", course);
+			sqlsession.close();
+			return course1;
+		}
+		
+		public static int courseboardviewupd(Course course) {
+			SqlSession sqlsession = sqlfactory.openSession();
+			int chk = sqlsession.update("courseboardviewupd", course);
+			sqlsession.commit();
+			sqlsession.close();
+			return chk;
+		}
+		
+		public static int courseboardgoodupd(Course course) {
+			SqlSession sqlsession = sqlfactory.openSession();
+			int chk = sqlsession.update("courseboardgoodupd", course);
+			sqlsession.commit();
+			sqlsession.close();
+			return chk;
+		}
+		
+		public static int courseins(Course course) {
+			SqlSession sqlsession = sqlfactory.openSession();
+			int chk = sqlsession.insert("courseins",course);
+			sqlsession.commit();
+			sqlsession.close();
+			return chk;
+		}
+		
+		public static int courseboarddel(Course course) {
+			SqlSession sqlsession = sqlfactory.openSession();
+			int chk = sqlsession.delete("courseboarddel", course);
+			sqlsession.commit();
+			sqlsession.close();
+			return chk;
+		}
+		
+		public static String coursewriterchk(Course course) {
+			SqlSession sqlsession = sqlfactory.openSession();
+			String writer = sqlsession.selectOne("coursewriterchk", course);
+			sqlsession.close();
+			return writer;
+		}
+	
+	
 	
 }

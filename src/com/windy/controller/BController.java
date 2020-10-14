@@ -13,6 +13,7 @@ import com.windy.bike.action.BikeListAction;
 import com.windy.bike.action.CommentDeleteAction;
 import com.windy.bike.action.CommentInsertAction;
 import com.windy.board.action.*;
+import com.windy.course.action.*;
 import com.windy.event.action.EventDetailendAction;
 import com.windy.event.action.EventDetailingAction;
 import com.windy.event.action.EventInsertAction;
@@ -283,6 +284,87 @@ public class BController extends javax.servlet.http.HttpServlet{
 				e.printStackTrace();
 			}
 		}
+		
+		else if(command.equals("/courselist.b")){
+			action = new CourseListAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals("/courseboardlist.b")){
+			action = new CourseBoardListAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals("/coursedetail.b")){
+			action = new CourseDetailAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals("/courseboardview.b")){
+			action = new CourseBoardViewAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals("/courseboarddelete.b")){
+			action = new CourseBoardDeleteAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals("/coursewrite.b")){
+			forward=new ActionForward();
+			forward.setPath("/course_write.jsp");
+		}
+		
+		
+		
+		else if(command.equals("/coursewriteaction.b")){
+			action = new CourseBoardWriteAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals("/courseboardeditform.b")){
+			action = new CourseBoardEditFormAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals("/courseboardedit.b")){
+			action = new CourseBoardEditAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		
+		
 
 			
 		if(forward != null){

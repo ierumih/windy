@@ -45,7 +45,7 @@
 					<a href = "eventlisting.b">이벤트</a>
 				</li>
 				<li>
-					추천 코스
+					<a href = "course.jsp">추천 코스</a>
 				</li>
 				<li>
 					<a href = "boardlist.b?board_name=freeb">게시판</a>
@@ -74,8 +74,8 @@
 							<li><a href = "eventlistend.b">종료된 이벤트</a></li>
 						</ul>
 						<ul>
-							<li>추천 코스</li>
-							<li>추천 코스 정보</li>
+							<li><a href = "course.jsp">추천 코스<a></a></li>
+							<li><a href = "courseboardlist.b">추천 코스 정보</a></li>
 						</ul>
 						<ul>
 							<li>자유게시판</li>

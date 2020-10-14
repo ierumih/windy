@@ -193,4 +193,68 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id = "CommentDelete" parameterType = "com.windy.vo.B_comment">
 		delete from bike_comment where comment_no =#{comment_no};
 	</delete>
+	
+	
+	
+	<insert id = "reply" parameterType = "board">
+		insert into ${board_name} (nick, board_num, board_date, board_content) values(#{nick}, #{board_num}, now(), #{board_content});
+	</insert>
+	<select id = "replyview" resultType = "board" parameterType = "board">
+		select * from ${board_name} where board_num = #{board_num} order by board_date asc;
+	</select>
+	
+	
+	
+	
+	<select id = "courselist" parameterType = "String" resultType = "course">
+		select * from course where c_area = #{value} order by c_like desc limit 5;
+	</select>
+	
+	<select id = "coursedetail" parameterType = "String" resultType = "course">
+		select * from course where c_name = #{value};
+	</select>
+	
+	<select id = "courseboardlist" parameterType = "Page" resultType = "course">
+		select * from course order by c_like desc limit #{limitindex}, 20;
+	</select>
+	
+	<select id = "coursecount" resultType = "Integer">
+		select count(*) from course;
+	</select>
+	
+	<select id = "coursecountsearch" resultType = "Integer" parameterType = "page">
+		select count(*) from course where c_area like #{s_type} and c_name like #{s_key};
+	</select>
+	
+	<select id = "courseboardlists" resultType = "course" parameterType = "page">
+		select * from course where c_area like #{s_type} and c_name like #{s_key} order by c_like desc limit #{limitindex}, 20;
+	</select>
+	
+	<delete id = "courseboarddel" parameterType = "course">
+		delete from course where c_num = #{c_num};
+	</delete>
+	
+	<update id = "courseboardupd" parameterType = "course">
+		update course set c_name = #{c_name}, c_cont = #{c_cont}, c_img = #{c_img} where c_num = #{c_num};
+	</update>
+	
+	<update id = "courseboardgoodupd" parameterType = "Integer">
+		update course set c_like = c_like+1 where c_num = #{c_num};
+	</update>
+	
+	<update id = "courseboardviewupd" parameterType = "Integer">
+		update course set c_view = c_view+1 where c_num = #{c_num};
+	</update>
+	
+	<select id = "courseboardview" resultType = "course" parameterType = "course">
+		select * from course where c_num = #{c_num};
+	</select>
+	
+	<insert id = "courseins" parameterType = "course">
+		insert into course (nick, c_name, c_cont, c_date, c_like, c_view, c_img, c_area, c_location) values(#{nick}, #{c_name}, #{c_cont}, now(), 0, 0, #{c_img}, #{c_area}, #{c_location});
+	</insert>
+	
+	<select id = "coursewriterchk" resultType = "String" parameterType = "course">
+		select nick from course where c_num = #{c_num};
+	</select>
 </mapper>

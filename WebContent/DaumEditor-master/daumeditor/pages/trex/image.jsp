@@ -42,15 +42,16 @@
 </head>
 <body onload="initUploader();">
 <div class="wrapper">
+	<form id = "uploadform" method="post" enctype="multipart/form-data">
 	<div class="header">
 		<h1>사진 첨부</h1>
 	</div>	
 	<div class="body">
+		<input type = "file" name = "inputimg" id = "inputimg" ></input>
 		<dl class="alert">
 		    <dt>사진 첨부 확인</dt>
 		    <dd>
 		    	<form>
-		    		<input type = "file" ></input>
 		    	</form>
 			</dd>
 		</dl>
@@ -62,6 +63,7 @@
 			<li class="cancel"><a href="#" onclick="closeWindow();" title="취소" class="btnlink">취소</a></li>
 		</ul>
 	</div>
+	</form>
 </div>
 </body>
 </html>

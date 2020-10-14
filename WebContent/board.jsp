@@ -3,7 +3,6 @@
 <%@page import="org.apache.ibatis.session.SqlSession"%>
 <%@page import="com.windy.dao.DAO" %>
 <%@page import="com.windy.vo.Board" %>
-
 <%@page import="com.windy.vo.Page" %>
 <%@page import="java.util.*" %>
 <%

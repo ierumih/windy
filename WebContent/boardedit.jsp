@@ -787,7 +787,7 @@
 				            // existStage는 현재 본문에 존재하는지 여부
 				            if (images[i].existStage) {
 				                // data는 팝업에서 execAttach 등을 통해 넘긴 데이터
-				                alert('attachment information - image[' + i + '] \r\n' + JSON.stringify(images[i].data));
+				                //alert('attachment information - image[' + i + '] \r\n' + JSON.stringify(images[i].data));
 				                input = document.createElement('input');
 				                input.type = 'hidden';
 				                input.name = 'attach_image';
@@ -812,7 +812,7 @@
 				<script type="text/javascript">
 					function loadContent() {
 						var attachments = {};
-						/*attachments['image'] = [];
+						attachments['image'] = [];
 						attachments['image'].push({
 							'attacher': 'image',
 							'data': {
@@ -832,7 +832,7 @@
 								'filename': 'editor_bi.gif',
 								'filesize': 640
 							}
-						});*/
+						});
 						/* 저장된 컨텐츠를 불러오기 위한 함수 호출 */
 						Editor.modify({
 							"attachments": function () { /* 저장된 첨부가 있을 경우 배열로 넘김, 위의 부분을 수정하고 아래 부분은 수정없이 사용 */
