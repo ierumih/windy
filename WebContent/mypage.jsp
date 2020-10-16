@@ -479,6 +479,7 @@
 				for (int i = 0; i < wishList.size(); i++) {
 				
 			%>
+			
 			<tr onclick=location.href="http://windy1010.cafe24.com/productDetail.b?p_code=<%= order.get(i).getP_code()%>">
 				<td style="">
 					<%
