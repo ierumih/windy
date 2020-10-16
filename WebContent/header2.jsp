@@ -54,7 +54,7 @@
 					<a href = "shopBestList.b">쇼핑몰</a>
 				</li>
 				<li>
-					건강관리
+					<a href="checkBMI.b">건강관리</a>
 				</li>
 			</ul>
 			<div id = "submenu">
