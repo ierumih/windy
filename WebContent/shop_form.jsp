@@ -253,7 +253,7 @@
 		</div>
 	</div>
 	<div id="menubtn9">
-		<a href="main.jsp"><img src="img/qwer.jpg" id="logo"></a>
+		<a href="index.jsp"><img src="img/qwer.jpg" id="logo"></a>
 	</div>
 	<div id="inout">
 		<%if(id!=null) {%><label class="inoutla" onclick="location.href='mypage.b'">마이페이지</label> | <label class="inoutla" onclick="location.href='logout.jsp?ur=shopBestList.b'">로그아웃</label>

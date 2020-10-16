@@ -23,7 +23,7 @@
 <body>
 	<div id = "headt">
 			<div id = "headl">
-				<a href = "main.jsp"><img id = "logo" src = "img/qwer.jpg"></a>
+				<a href = "index.jsp"><img id = "logo" src = "img/qwer.jpg"></a>
 				windy
 			</div>
 			<div id = "headr">

@@ -35,18 +35,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from ${board_name} where ${s_type} like #{s_key};
 	</select>
 	<select id = "Bproductlist_r" resultType = "com.windy.vo.Product">
-		select a.*, avg(pr_star) as'best' from windy.product a 
-		join windy.p_review b on a.p_code = b.p_code where a.p_kind = #{value} 
+		select a.*, avg(pr_star) as'best' from windy1010.product a 
+		join windy1010.p_review b on a.p_code = b.p_code where a.p_kind = #{value} 
 		group by p_code order by best desc, count(*) desc limit 6;
 	</select>
 	<select id = "Bproductlist_m" resultType = "com.windy.vo.Product">
-		select a.*, avg(pr_star) as'best' from windy.product a 
-		join windy.p_review b on a.p_code = b.p_code where a.p_kind = #{value}
+		select a.*, avg(pr_star) as'best' from windy1010.product a 
+		join windy1010.p_review b on a.p_code = b.p_code where a.p_kind = #{value}
 		group by p_code order by best desc, count(*) desc limit 6;
 	</select>
 	<select id = "Bproductlist_h" resultType = "com.windy.vo.Product">
-		select a.*, avg(pr_star) as'best' from windy.product a 
-		join windy.p_review b on a.p_code = b.p_code where a.p_kind = #{value} 
+		select a.*, avg(pr_star) as'best' from windy1010.product a 
+		join windy1010.p_review b on a.p_code = b.p_code where a.p_kind = #{value} 
 		group by p_code order by best desc, count(*) desc limit 6;
 	</select>
 	<select id = "productdetail" resultType = "com.windy.vo.Product" parameterType = "String">
@@ -56,13 +56,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select p_option,p_stock from stockmanage where p_code = #{value};
 	</select>
 	<select id = "p_review" resultType = "com.windy.vo.P_review" parameterType = "String">
-		select * from windy.p_review where p_code = #{p_code};
+		select * from windy1010.p_review where p_code = #{p_code};
 	</select>
 	<select id = "pr_chk" resultType = "Integer" parameterType = "com.windy.vo.Order">
-		select count(*) from windy.order where p_code = #{p_code} and id=#{id};
+		select count(*) from windy1010.order where p_code = #{p_code} and id=#{id};
 	</select>
 	<select id = "findp" resultType = "com.windy.vo.Product" parameterType = "com.windy.vo.Product">
-		SELECT distinct a.* FROM windy.product a join windy.stockmanage b on a.p_code=b.p_code where (p_kind regexp #{p_kind}) 
+		SELECT distinct a.* FROM windy1010.product a join windy1010.stockmanage b on a.p_code=b.p_code where (p_kind regexp #{p_kind}) 
 		and (p_size regexp #{p_size}) and (p_name regexp #{p_name})
 		<choose>
 			<when test="p_price ==1">
@@ -77,7 +77,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into p_review values(default,#{p_code},#{pr_text},#{pr_star},#{pr_title},#{nick});
 	</insert>
 	<insert id = "ord" parameterType = "com.windy.vo.Order">
-		insert into windy.order values
+		insert into windy1010.order values
 		<foreach collection="list" index="index" item="orl" separator=",">
 			(now(),#{orl.p_code},#{orl.id},#{orl.o_option},${orl.o_count},${orl.o_price},curdate(),#{orl.o_state})
 		</foreach>
@@ -94,11 +94,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select challenge_comp.c_code, challenge_comp.id,challenge_comp.comp_date,challenge_list.c_name,challenge_list.c_content,challenge_list.c_score from challenge_comp natural join challenge_list where id = #{id};
 	</select>
 	<select id = "mypage_event_select" resultType="com.windy.vo.Mypage_event" parameterType = "String">
-		select distinct event_pp.e_num ,windy.event.e_title , windy.event.s_date,windy.event.e_date from windy.event_pp natural join windy.event where id = #{id};
+		select distinct event_pp.e_num ,windy1010.event.e_title , windy1010.event.s_date,windy1010.event.e_date from windy1010.event_pp natural join windy1010.event where id = #{id};
 	</select>
 	
 	<select id = "mypage_wish_list_select" resultType = "com.windy.vo.Order" parameterType = "String">
-		SELECT windy.order.*,product.p_name from windy.order natural join product where id = #{id} and o_state = 'addcart';
+		SELECT windy1010.order.*,product.p_name from windy1010.order natural join product where id = #{id} and o_state = 'addcart';
 	</select>
 	<update id = "mypage_user_info_update" parameterType = "user">
 		update user set nick = #{nick}, name = #{name},  tel = #{tel}, addr = #{addr}, addr1 = #{addr1}, addr2 = #{addr2}, addr3 = #{addr3}, email = #{email}, profile_img = #{profile_img} where id = #{id};
@@ -107,10 +107,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from user where id = #{id};
 	</delete>
 	<select id = "mypage_orderList_select" resultType = "com.windy.vo.Order" parameterType = "String">
-		SELECT windy.order.*,product.p_name from windy.order natural join product where id = #{id} and o_state = 'wait';
+		SELECT windy1010.order.*,product.p_name from windy1010.order natural join product where id = #{id} and o_state = 'wait';
 	</select>
 	<select id = "challenge_list_select" resultType = "com.windy.vo.Challenge_list">
-		SELECT * FROM windy.challenge_list;
+		SELECT * FROM windy1010.challenge_list;
 	</select>
 	
 	<select id = "productlist" resultType = "com.windy.vo.Product" parameterType = "page">
@@ -160,7 +160,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id = "EventWinner" resultType = "com.windy.vo.Event_p" parameterType="String">
-		select distinct id as winner from windy.event_pp where e_num = #{value} order by rand() limit 3;
+		select distinct id as winner from windy1010.event_pp where e_num = #{value} order by rand() limit 3;
 	</select>
 	<select id = "eventpaging" resultType = "Integer" parameterType = "String">
 	<![CDATA[
