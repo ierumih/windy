@@ -58,7 +58,6 @@
 		});
 		$(window).scroll(function(){
 			var scr = $(document).height() - $(window).height() - $(window).scrollTop();
-			console.log(scr);
 		if (scr<30)
 			{
 				$("#m_top").css("bottom","150px");
