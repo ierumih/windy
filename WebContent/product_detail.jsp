@@ -475,15 +475,17 @@
 				if(id=="null"){
 					alert("로그인 후 진행해주세요.");
 					return false;
-				}else{
+				}
+				else if(sp==0){
+					alert('옵션을 선택해 주세요.');
+					return false;	
+				}
+				else{
 					document.ord.action = "productOrder.b?p_code=<%=detail.getP_code() %>&add=on";
 					document.ord.submit();
 				}
 				
-				if(sp==0){
-					alert('옵션을 선택해 주세요.');
-					return false;	
-				}
+				
 				
 			}
 		function lo(){
