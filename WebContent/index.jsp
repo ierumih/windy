@@ -107,11 +107,10 @@
 		#weather{
 			position:relative;
 			width:530px;
-			height:245px;
+			height:450px;
 			float:left;
 			margin:20px 0 0 0;
 			z-index:10;
-			border-bottom: 1px solid #af833770;
 		}
 		.mdiv2{
 			position:relative;
@@ -175,6 +174,9 @@
 			z-index:10;
 			cursor:pointer;
 		}
+		#weat > li:hover{
+			font-weight:bold;
+		}
 		#weat > li{
 			width:53px;
 			display:table-cell;
@@ -194,15 +196,15 @@
 		#weal{
 			left:0;
 			width:530px;
-			height:180px;
+			height:420px;
 			z-index:0;
-			background-color: rgba(0, 0, 0, 0.4);
+			border-radius: 10px;
 		}
 		#weal img{
 			/*position:absolute;*/
 			right:0;
 			width:530px;
-			height:180px;
+			height:420px;
 			border-radius: 0 0 10px 10px;
 
 			
@@ -212,15 +214,15 @@
 			color : white;
 			top:30px;
 			width:530px;
-			height:180px;
+			height:420px;
 			z-index:2;
 			background-color: rgba(0, 0, 0, 0.1);
 			border-radius: 0 0 10px 10px;
 			padding-left: 150px;
 		}
 		#wear ul{
-			line-height: 2.1;
-			padding:15px 0 0 0;
+			line-height: 3.5;
+			padding:70px 0 0 0;
 			list-style-type:none;
 			font-weight: bold;
 		}
@@ -644,7 +646,7 @@
 								<li id = "Namyangju">남양주</li>
 								<li id = "Yangju">양주</li>
 								<li id = "Vijongbu">의정부</li>
-								<li id = "Gapyeong">가평<</li>
+								<li id = "Gapyeong">가평</li>
 								<li id = "Hanam">하남</li>
 								<li id = "Seongnam-si">성남</li>
 								<li id = "Gwangju-si">광주</li>
@@ -787,35 +789,7 @@
 					</ul>
 				</div>
 			</div>
-			<div  class = "mdivr">
-				<div>최신 뉴스<span class="mdivrspan">더보기 ▶</span></div>
-				<ul>
-					<li>
-						<ul>
-							<li>GS칼텍스 주유소, 카카오 전기자전거 충전소로 변신</li>
-							<li>2020-07-21</li>
-						</ul>
-					</li>
-					<li>
-						<ul>
-							<li>코로나 영향.. 전세계 자전거 이용 40% '급증'</li>
-							<li>2020-07-22</li>
-						</ul>
-					</li>
-					<li>
-						<ul>
-							<li>'안전,크기,AS' 어린이 자전거 구매 팁 3가지</li>
-							<li>2020-07-17</li>
-						</ul>
-					</li>
-					<li>
-						<ul>
-							<li>구글 맵에 자전거 내비게이션 기능 도입된다</li>
-							<li>2020-07-21</li>
-						</ul>
-					</li>
-				</ul>
-			</div>
+			
 		</div>
 		</div>
 		<section class="section_hei">
