@@ -130,7 +130,6 @@ body {
 			<input type="submit" class="btn" value = "SUBMIT">
 			
 			<br> <br>
-			<a href="..." class="a1">CAN'T SIGN IN?</a><br>
 			<a href="join.jsp" class="a1">CREATE ACCOUNT</a><br>
 			<a href="index.jsp" class="a1">GO MAIN PAGE</a>
 		</form>

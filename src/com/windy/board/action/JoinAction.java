@@ -76,7 +76,7 @@ public class JoinAction implements Action {
 		else {
 			forward = new ActionForward();
 			forward.setRedirect(true);
-			forward.setPath("main.jsp");
+			forward.setPath("index.jsp");
 		}
 		
 		return forward;
