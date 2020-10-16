@@ -31,7 +31,8 @@
 		z-index: 1;
 	}
 	.pic_detail img{
-		max-width: 100vmax;
+		width: 100vmax;
+		max-height: 550px;
 	}
 	.head_tag{
 		margin: 0 auto;
