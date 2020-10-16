@@ -624,10 +624,10 @@
 		</div>
 	<div id = "wrap">
 		<div class = "mdiv">
-			<div class = "mdivl">
+			<div class = "mdivl"><a href = "course.jsp">
 				<div class="course">COURSE</div>				
 				<img src = "img/course13.jpg">	
-			</div>
+			</a></div>
 			
 			<div id = "weather">
 				
@@ -807,24 +807,24 @@
 					</td>
 
 					<td class="community">
-						<div>
+						<div><a href = "boardlist.b?board_name=freeb">
 							<div class="health2_content">
 								COMMUNITY
 							</div>
-							<a href="board.jsp"><img src="img/community.jpg" class="img_community"></a>
-						</div>
+							<img src="img/community.jpg" class="img_community">
+						</a></div>
 					</td>
 					<td></td>
 				</tr>
 				<tr>
 					<td></td>
 					<td class="vital">
-						<div>
+						<div><a href="checkBMI.b">
 							<div class="health_content">
 								HEALTH
 							</div>
 							<img src="img/vital.jpg" class="img_health">
-						</div>
+						</a></div>
 					</td>
 					<td colspan="2" class="bike">
 						<div><a href = "bike_kind.jsp">
