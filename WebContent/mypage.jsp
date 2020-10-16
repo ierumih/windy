@@ -434,7 +434,7 @@
 				for (int i = 0; i < order.size(); i++) {
 				
 			%>
-			<tr onclick=location.href="http://windy1010.cafe24.com/productDetail.b?p_code=<%= order.get(i).getP_code()%>">
+			<tr onclick=location.href="productDetail.b?p_code=<%= order.get(i).getP_code()%>">
 				<td style="">
 					<%
 						out.println(order.get(i).getO_code());
@@ -480,7 +480,7 @@
 				
 			%>
 			
-			<tr onclick=location.href="http://windy1010.cafe24.com/productDetail.b?p_code=<%= order.get(i).getP_code()%>">
+			<tr onclick=location.href="productDetail.b?p_code=<%= order.get(i).getP_code()%>">
 				<td style="">
 					<%
 						out.println(wishList.get(i).getP_code());
