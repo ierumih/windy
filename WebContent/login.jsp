@@ -21,12 +21,12 @@
 }
 
 body {
-	background-image: url("loginbackground1.jpg");
+	background-image: url("img/loginbackground3.jpg");
 	background-position: center;
 	background-origin: content-box;
 	background-repeat: no-repeat;
 	background-size: cover;
-	min-height: 100vh;
+	min-height: 98vh;
 	font-family: 'Noto Sans', sans-serif;
 }
 

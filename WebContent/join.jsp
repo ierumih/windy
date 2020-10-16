@@ -581,7 +581,7 @@
 				<jsp:include page="footer2.jsp"/>
 			</footer>		
 			</div>
-	<form >
+	</form>
 
 </body>
 </html>
