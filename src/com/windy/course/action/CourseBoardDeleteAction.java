@@ -20,7 +20,7 @@ public class CourseBoardDeleteAction implements Action{
 		ActionForward forward = null;
 		Course course = new Course();
 		HttpSession httpSession = request.getSession();
-		course.setC_num(Integer.valueOf(request.getParameter("c_num")));
+		course.setC_num(Integer.valueOf(request.getParameter("board_num")));
 		course.setNick((String)httpSession.getAttribute("nick"));
 		CourseBoardDeleteSVC cbds = new CourseBoardDeleteSVC();
 		boolean Success = cbds.CourseBoardDelete(course);

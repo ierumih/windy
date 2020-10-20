@@ -23,7 +23,7 @@ import com.windy.mypage.action.Go_to_BMI_Action;
 import com.windy.mypage.action.MypageDeleteAction;
 import com.windy.mypage.action.MypageSelectAction;
 import com.windy.mypage.action.ChallengeListSelectAction;
-import com.windy.mypage.action.userinfoUpdateAction;
+import com.windy.mypage.action.UserinfoUpdateAction;
 import com.windy.shop.action.FindProductAction;
 import com.windy.shop.action.ProductDetailAction;
 import com.windy.shop.action.ProductListAction;
@@ -263,7 +263,7 @@ public class BController extends javax.servlet.http.HttpServlet{
 				e.printStackTrace();
 			}
 		}else if(command.equals("/mypage_info_update.b")){
-			action = new userinfoUpdateAction();
+			action = new UserinfoUpdateAction();
 			try{
 				forward=action.execute(request, response);
 			}catch(Exception e){

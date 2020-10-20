@@ -69,14 +69,14 @@ public class JoinAction implements Action {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('ï¿½ï¿½ï¿½Ô½ï¿½ï¿½ï¿½')");
+			out.println("alert('°¡ÀÔ½ÇÆÐ')");
 			out.println("history.back();");
 			out.println("</script>");
 		}
 		else {
 			forward = new ActionForward();
 			forward.setRedirect(true);
-			forward.setPath("index.jsp");
+			forward.setPath("main.jsp");
 		}
 		
 		return forward;

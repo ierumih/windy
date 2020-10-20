@@ -377,6 +377,13 @@
 						</script>
 					</div>
 					<div id = "board_cont">
+						<%
+							for(int i=0; i<imga.length; i++){
+						%>
+							<img src = 'img/course/<%=imga[i] %>'><br>
+						<%
+							}
+						%>
 						<%=courseview.getC_cont()%>
 					</div>
 					

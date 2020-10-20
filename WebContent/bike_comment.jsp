@@ -279,8 +279,8 @@
 						<%
 							for (int z = 0; z < commentlist.size(); z++) {
 								out.println("<li>" + commentlist.get(z).getComment_content() + "</li><div class='haha'><span class='hoho'>"
-										+ commentlist.get(z).getComment_id() + "</span><a href='bike_comment_edit.jsp?comment_no="+commentlist.get(z).getComment_no()+"&comment_content="
-										+commentlist.get(z).getComment_content()+"&comment_id="+commentlist.get(z).getComment_id()+
+										+ commentlist.get(z).getid() + "</span><a href='bike_comment_edit.jsp?comment_no="+commentlist.get(z).getComment_no()+"&comment_content="
+										+commentlist.get(z).getComment_content()+"&id="+commentlist.get(z).getid()+
 										"&bike_num="+commentlist.get(z).getBike_num()+"'><span class='modify'>수정</span></a><a href = 'commentdelete.b?comment_no="+commentlist.get(z).getComment_no()+"&bike_num="+commentlist.get(z).getBike_num()+"'><span class='delete'>삭제</span></a></div>");
 							}
 						%>

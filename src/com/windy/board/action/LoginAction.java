@@ -15,7 +15,7 @@ public class LoginAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		String url = request.getParameter("ur");
+		
 		ActionForward forward = null;
 		User user = new User();
 		user.setId(request.getParameter("id"));
@@ -36,11 +36,8 @@ public class LoginAction implements Action{
 			httpSession.setAttribute("id", request.getParameter("id"));
 			httpSession.setAttribute("nick", nick);
 			forward.setRedirect(true);
-			if(!(url.equals("null")))
-				forward.setPath(url);
-			else
-				forward.setPath("main.jsp");
-		}		
+			forward.setPath("index.jsp");
+		}	
 		return forward;
 	}
 

@@ -6,7 +6,6 @@ import com.windy.dao.DAO;
 import com.windy.vo.Board;
 import com.windy.vo.Page;
 
-
 public class BoardListSVC {
 	
 

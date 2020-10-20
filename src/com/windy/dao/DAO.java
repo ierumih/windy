@@ -405,6 +405,26 @@ public class DAO {
 	
 	
 	//course
+		
+		public static int reply(Board board) {
+			SqlSession sqlsession = sqlfactory.openSession();
+			int chk = sqlsession.insert("reply",board);
+			sqlsession.commit();
+			sqlsession.close();
+			return chk;
+		}
+		
+		public static List<Board> replyview(Board board) {
+			SqlSession sqlsession = sqlfactory.openSession();
+			List<Board> boardl = sqlsession.selectList("replyview",board);
+			sqlsession.close();
+			return boardl;
+		}
+		
+		
+		
+		
+		//course
 		public static List<Course> courselist(String c_area) {
 			SqlSession sqlsession = sqlfactory.openSession();
 			List<Course> listc = sqlsession.selectList("courselist", c_area);

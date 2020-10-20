@@ -209,10 +209,6 @@
 			width:800px;
 			height:28px;
 		}
-		#c_location{
-			width:800px;
-		}
-		
 	</style>
 	<script>
 		$(window).load(function(){
@@ -220,7 +216,16 @@
 		});
 	</script>
 	<script>
-
+	  $(document).ready(function(){
+		$('#tapbar').tendina({  
+		});
+		$('.slider').bxSlider({
+	  	auto:true,
+		pause:4000,
+		controls:false,
+		stopAutoOnClick:true,
+		});
+	  });
 	</script>
  </head>
  <body>
@@ -668,26 +673,6 @@
 								<!-- 첨부박스 끝 -->
 						</div>
 						<!-- 에디터 컨테이너 끝 -->
-						지역 선택&nbsp<select id = "ssel" style="height:32px;">
-									<option value = "seoul">서울</option>
-									<option value = "gyeonggi">경기도</option>
-									<option value = "incheon">인천</option>
-									<option value = "gangwon">강원도</option>
-									<option value = "chungnam">충청남도</option>
-									<option value = "chungbuk">충청북도</option>
-									<option value = "sejong">세종</option>
-									<option value = "daejeon">대전</option>
-									<option value = "gyeongbuk">경상북도</option>
-									<option value = "gyeongnam">경상남도</option>
-									<option value = "busan">부산</option>
-									<option value = "daegu">대구</option>
-									<option value = "ulsan">울산</option>
-									<option value = "jeonbuk">전라북도</option>
-									<option value = "jeonnam">전라남도</option>
-									<option value = "gwangju">광주</option>
-									<option value = "jeju">제주</option>
-						</select><br><br>
-						주소 입력&nbsp<input type = "text" name = "c_location" id = "c_location" value = "<%=course.getC_location()%>">
 					</form>
 				</div>
 				<!-- 에디터 끝 -->

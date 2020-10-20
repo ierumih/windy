@@ -228,9 +228,8 @@
 	<div id = "wrap">
 				<div class="board_head">
 					<ul>
-						<li>자유게시판</li>
-						<li>인증게시판</li>
-						<li>거래게시판</li>
+						<li>코스</li>
+
 					</ul>
 				</div>
 				

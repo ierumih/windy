@@ -1,5 +1,7 @@
 package com.windy.board.svc;
 
+import java.util.List;
+
 import com.windy.dao.DAO;
 import com.windy.vo.Board;
 
@@ -19,5 +21,11 @@ public class BoardViewSVC {
 		Board board1 = DAO.view(board);
 		board1.setBoard_name(board.getBoard_name());
 		return board1;
+	}
+	
+	public List<Board> replyview(Board board) {
+		DAO.getConn();
+		List<Board> reply = DAO.replyview(board);
+		return reply;
 	}
 }

@@ -3,7 +3,6 @@
 <%@page import="org.apache.ibatis.session.SqlSession"%>
 <%@page import="com.windy.dao.DAO" %>
 <%@page import="com.windy.vo.Board" %>
-
 <%@page import="java.util.*" %>
 <%
 	String id = (String) session.getAttribute("id");
@@ -16,6 +15,7 @@
 	int board_num = view.getBoard_num();
 	String board_name = view.getBoard_name();
 	List<Board> listb = (List<Board>)request.getAttribute("listb");
+	List<Board> replyview = (List<Board>)request.getAttribute("replyview");
 %>
 <!doctype html>
 <html lang="en">
@@ -76,7 +76,6 @@
 		#wrap{
 			position:relative;
 			width:1080px;
-			height:1200px;
 			min-height:1000px;
 		}
 
@@ -240,11 +239,105 @@
 			height:2px;
 			background:black;
 		}
+		
+		.board_reply{
+			position:relative;
+			width:1080px;
+			height:150px;
+			background:#d8d8d8;
+			margin-bottom:10px;
+		}
+		
+		.brl{
+			width:200px;
+			height:150px;
+			position:absolute;
+			left:10px;
+			padding-top:20px;
+		}
+		.brr{
+			width:850px;
+			height:150px;
+			position:absolute;
+			right:10px;
+			padding-top:20px;
+			font-size:15pt;
+		}
+		
+		
+
+		#rep_cont{
+			width:900px;
+			height:150px;
+			resize: none;
+			padding:20px;
+			overflow:hidden;
+		}
+		
+		
+		#board_reply_ins{
+			text-align:center;
+			width:1080px;
+			height:150px;
+			position:relative;
+		}
+				
+		#bril{
+			position:absolute;
+			left:30px;
+			width:900px;
+			height:150px;
+		}
+		#brir{
+			position:absolute;
+			right:30px;
+			width:100px;
+			height:150px;
+			padding:auto;
+		}
+		#reply{
+			margin-top:45px;
+			width:90px;
+			height:40px;
+			
+		}
 	</style>
 	<script>
 		$(document).ready(function(){
+			$('#rep_cont').keyup(function (e){
+			    var content = $(this).val();
+			    var row = content.split("\n").length; 
+			    if (content.length>400){
+			        alert("댓글은 400자까지만 입력하실 수 있습니다.");
+			        $(this).val(content.substring(0, 400));
+			    }
+			    if(row>5){
+				    alert("댓글은 5줄까지만 입력하실 수 있습니다.")
+				    $(this).val(content.split("\n").slice(0, 5).join("\n"));
+			    }
+			});
+
+			$("#reply").click(function(){
+				var nick = "<%=nick%>";
+				if(nick=="null")
+					alert('로그인하셔야 댓글을 작성하실 수 있습니다.');
+				else{
+					var nick = "<%=nick%>";
+					var board_num = <%=board_num%>;
+					var board_name = "<%=board_name%>";
+					var rep_cont = $("#rep_cont").val();
+					$.ajax({
+						url:'reply.jsp',
+						data:{'nick':nick, 'board_name':board_name, 'board_num':board_num, 'rep_cont':rep_cont},
+						success:function(req){
+							location.reload();
+						}
+					});
+				}
+			});
+			
 			$("#delete").click(function(){
-				$(location).attr("href","boarddelete.b?board_num=<%=board_num%>");
+				$(location).attr("href","boarddelete.b?board_name=<%=view.getBoard_name()%>&board_num=<%=board_num%>");
 			});
 			$("#edit").click(function(){
 				var nick = "<%=nick%>";
@@ -332,17 +425,35 @@
 					<div id = "board_cont">
 						<%=view.getBoard_content()%>
 					</div>
+					<%if(replyview!=null){
+						for(int i=0;i<replyview.size();i++){%>
+						<div class = "board_reply">
+								<div class = "brl">
+									댓글 작성자:<%=replyview.get(i).getNick() %><br><br>
+									댓글 작성 일시:<br>
+									<%=replyview.get(i).getBoard_date()%>
+								</div>
+								<div class = "brr">
+									<%=replyview.get(i).getBoard_content()%>
+								</div>
+						</div>
+					<%}} %>
+					<div id = "board_reply_ins">
+						<div id = "bril">
+							<textarea id = "rep_cont" cols="40" rows="5"></textarea>
+						</div>
+						<div id = "brir">
+							<input type = 'button' value = '댓글  작성' id = 'reply'>
+						</div>
+					</div>
 					<div id = "board_foot">
+						<hr>
 								<input type = 'button' value = '추천' id = 'good'>&nbsp
 								<input type = 'button' value = '수정' id = 'edit'>&nbsp
 								<input type = 'button' value = '삭제' id = 'delete'>
 					</div>
 					<hr id = "sep">
 				</div>
-
-			</article>
-		</main>
-		
 	</div>
 
 		<footer>

@@ -2,7 +2,7 @@ package com.windy.vo;
 
 public class B_comment {
 	int bike_num, comment_no;
-	String comment_id, comment_content;
+	String id, comment_content;
 	public int getBike_num() {
 		return bike_num;
 	}
@@ -15,11 +15,11 @@ public class B_comment {
 	public void setComment_no(int comment_no) {
 		this.comment_no = comment_no;
 	}
-	public String getComment_id() {
-		return comment_id;
+	public String getid() {
+		return id;
 	}
-	public void setComment_id(String comment_id) {
-		this.comment_id = comment_id;
+	public void setid(String id) {
+		this.id = id;
 	}
 	public String getComment_content() {
 		return comment_content;

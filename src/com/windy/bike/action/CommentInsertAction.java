@@ -19,7 +19,7 @@ public class CommentInsertAction implements Action{
 		
 		ActionForward forward = null;
 		B_comment comment = new B_comment();
-		comment.setComment_id(request.getParameter("hidden"));
+		comment.setid(request.getParameter("hidden"));
 		comment.setComment_content(request.getParameter("comment"));
 		comment.setBike_num(Integer.valueOf(request.getParameter("hidden2")));
 		CommentInsertService CommentInsertService = new CommentInsertService();

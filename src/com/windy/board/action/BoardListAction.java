@@ -10,7 +10,6 @@ import com.windy.vo.ActionForward;
 import com.windy.vo.Board;
 import com.windy.vo.Page;
 
-
 public class BoardListAction implements Action{
 
 	@Override

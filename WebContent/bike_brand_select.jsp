@@ -68,6 +68,10 @@
 		margin-bottom:0px;
 		color:black;
 	}
+	.main_grid2 a:hover{
+		text-decoration: none;
+		color:black;
+	}
 	.main_grid3{
 		float:right;
 		font-size: 10pt;

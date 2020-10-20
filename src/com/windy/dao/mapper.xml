@@ -88,7 +88,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from user where id = #{id};
 	</select>
 	<select id = "mypage_board_select" resultType = "com.windy.vo.Board" parameterType = "String">
-		select * from board where nick = #{nick};
+		select * from freeb where nick = #{nick};
 	</select>
 	<select id = "mypage_comp_challenge_select" resultType = "com.windy.vo.Challenge_comp" parameterType = "String">
 		select challenge_comp.c_code, challenge_comp.id,challenge_comp.comp_date,challenge_list.c_name,challenge_list.c_content,challenge_list.c_score from challenge_comp natural join challenge_list where id = #{id};

@@ -22,14 +22,15 @@ public class CourseBoardEditFormAction implements Action {
 		Course course = new Course();
 		Course course1;
 		HttpSession httpSession = request.getSession();
-		course.setC_num(Integer.valueOf(request.getParameter("c_num")));
+		course.setC_num(Integer.valueOf(request.getParameter("C_num")));
+		
 		CourseBoardEditFormSVC cbefs = new CourseBoardEditFormSVC();
 		String writer = cbefs.writerchk(course);
 		if(writer.equals(httpSession.getAttribute("nick"))) {
 			course1 = DAO.courseboardview(course);
 			request.setAttribute("course", course1);
 			forward = new ActionForward();
-			forward.setPath("courseedit.jsp");
+			forward.setPath("courseboardedit.jsp");
 		}
 		
 		return forward;

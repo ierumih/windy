@@ -23,8 +23,9 @@ public class BoardWriteAction implements Action {
 		board.setNick((String)httpSession.getAttribute("nick"));
 		board.setBoard_title(request.getParameter("title"));
 		board.setBoard_content(request.getParameter("content"));
-		board.setBoard_image(request.getParameter("images"));
-		board.setBoard_file(request.getParameter("files"));
+
+		board.setBoard_image(request.getParameter("attach_image"));
+		board.setBoard_file(request.getParameter("attach_file"));
 		BoardWriteSVC bws = new BoardWriteSVC();
 		boolean Success = bws.BoardWrite(board);
 		if(!Success) {

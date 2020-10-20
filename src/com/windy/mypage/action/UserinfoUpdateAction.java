@@ -11,7 +11,7 @@ import com.windy.mypage.svc.UserInfoService;
 import com.windy.vo.ActionForward;
 import com.windy.vo.User;
 
-public class userinfoUpdateAction implements Action{
+public class UserinfoUpdateAction implements Action{
 	//사용자 정보 수정
 	
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
