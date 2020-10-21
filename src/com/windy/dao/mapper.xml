@@ -182,7 +182,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			select * from bike_comment where bike_num=#{value};
 	</select>
 	<insert id = "CommentInsert" parameterType = "com.windy.vo.B_comment">
-		insert into bike_comment (comment_id, comment_content, bike_num) values(#{comment_id}, #{comment_content}, #{bike_num});
+		insert into bike_comment (id, comment_content, bike_num) values(#{id}, #{comment_content}, #{bike_num});
 	</insert>
 	<select id = "BikeListSelect" resultType = "com.windy.vo.Bike" parameterType="String">
 			select * from bike_view where bike_num=#{value};
@@ -193,23 +193,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id = "CommentDelete" parameterType = "com.windy.vo.B_comment">
 		delete from bike_comment where comment_no =#{comment_no};
 	</delete>
-	
-	
-	
 	<insert id = "reply" parameterType = "board">
 		insert into ${board_name} (nick, board_num, board_date, board_content) values(#{nick}, #{board_num}, now(), #{board_content});
 	</insert>
 	<select id = "replyview" resultType = "board" parameterType = "board">
 		select * from ${board_name} where board_num = #{board_num} order by board_date asc;
 	</select>
-	
-	
-	
-	
 	<select id = "courselist" parameterType = "String" resultType = "course">
 		select * from course where c_area = #{value} order by c_like desc limit 5;
 	</select>
-	
 	<select id = "coursedetail" parameterType = "String" resultType = "course">
 		select * from course where c_name = #{value};
 	</select>

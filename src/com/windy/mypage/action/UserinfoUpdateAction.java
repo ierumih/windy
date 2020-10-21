@@ -12,8 +12,8 @@ import com.windy.vo.ActionForward;
 import com.windy.vo.User;
 
 public class UserinfoUpdateAction implements Action{
-	//사용자 정보 수정
 	
+	//사용자 정보 수정
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = new ActionForward();
 		HttpSession httpSession = request.getSession();
